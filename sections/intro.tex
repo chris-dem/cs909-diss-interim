@@ -42,10 +42,30 @@ We hope to demonstrate that such problem could help us bound, the
 counting complexity limits of $\textbf{\#}\text{PureCircuit} -1$.
 
 
-We define the following updated list of software and research objectives:
 
-\begin{enumerate}[label=R\arabic*]
-    \item Test 1 
+
+\subsection{Project objectives}
+Below we will present our table of objectives. We will denote updated objectives with
+*, new objectives with (!), completed objectives with (\checkmark),  deleted objectives with (-).
+
+\begin{enumerate}[label*=R.\arabic*)]
+    \item (\checkmark) Find a parsimonious reduction from the $\textit{EndOfLine}$ to $\textit{EndOfLine}$.
+    \item (!) Improve the combinatorial bound between the reduction from EndOfLine to PureCircuit
+    \item (!) Demonstrate that $\textbf{\#}\text{PPAD}(PureCircuit)- 1 \not\subseteq \textbf{\#P}$
+    \item (*) Prove or disprove the following $\forall n \in \mathbb{N}_{\geq 2}$:
+\[
+\!\!\!\! \exists c \in \mathbb{N}:  \#\textsc{SourceOrExcess}(n, 1) \subseteq^c \#\textsc{PureCircuit}
+\]
+\item (*) Prove or disprove the following claim: $\forall L \in \textbf{PPAD}$
+    $$
+    \exists c \in \mathbb{N}: \#L \subseteq^c \#\textsc{PureCircuit}
+    $$
+\end{enumerate}
+
+Below we will be representing the development portion of the project.
+
+\begin{enumerate}[label=S.\arabic*)]
+    \item 
     \item Test 2
     \item Test 3 
 \end{enumerate}
