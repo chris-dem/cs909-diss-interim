@@ -41,9 +41,6 @@ Kleene logic, to find satisfying assingments in sequential circuits.
 We hope to demonstrate that such problem could help us bound, the
 counting complexity limits of $\textbf{\#}\text{PureCircuit} -1$.
 
-
-
-
 \subsection{Project objectives}
 Below we will present our table of objectives. We will denote updated objectives with
 *, new objectives with (!), completed objectives with (\checkmark),  deleted objectives with (-).
@@ -65,7 +62,90 @@ Below we will present our table of objectives. We will denote updated objectives
 Below we will be representing the development portion of the project.
 
 \begin{enumerate}[label=S.\arabic*)]
-    \item 
-    \item Test 2
-    \item Test 3 
+    \item Visualise a pure circuit
+    \item Generate a solution
+    \item Count number of solutions for smaller scales 
 \end{enumerate}
+
+
+We will compile the rest of the report, based on our current findings, how we modified our objectives to
+the current ones as well as general reflections.
+
+
+\subsection{Core set of results}
+
+Below we will present our main list of findings up to this point:
+
+\begin{definition}[Poly-Function Bounded Parsimonious Reductions]
+    Given two counting problems $A, B : \{0,1\}* \to \mathbb{N}$
+    and a function $f : {0,1}^{*} \to \mathbb{N}$ such that $f \in n^{O(1)}$, we
+    say that:
+    $$
+    A \subseteq^f B
+    $$
+    If for input $w \in \{0,1\}^*$, if $a$ represent the number of solutions
+    for problem $A$ and $b$ the number of solutions for problem $B$, we have:
+    $$
+    a \leq b \leq f(|w|) \cdot a
+    $$
+\end{definition}
+
+\begin{theorem}[ND-Brouwer to PureCircuit]
+    Given $f(x) \triangleq 20$
+    $$
+    \textbf{\#}\textsc{Brouwer}^{f_3} \subset^f \textbf{\#}\textsc{PureCircuit}
+    $$
+\end{theorem}
+
+\begin{corollary}
+    For any $d \in \mathbb{N}_{\geq 2}$, we can define $f(\cdot) = \sum_{i = 1}^{d -1}  \binom{d}{i} 2^i$
+    such that:
+    $$
+    \textbf{\#}\textsc{Brouwer}^{d} \subset^f \textbf{\#}\textsc{PureCircuit}
+    $$ 
+\end{corollary}
+
+
+
+\begin{conjecture}
+    For any $d \in \mathbb{N}_{\geq 2}$, we can define $f(\cdot) = 5$
+    such that:
+    $$
+    \textbf{\#}\textsc{Brouwer}^{d} \subset^f \textbf{\#}\textsc{PureCircuit}
+    $$ 
+\end{conjecture}
+
+Throughout our search, we stumbled upon
+various variants of the problem as well as reductions and claims from other
+subclasses of PPAD or Hazard-Free logic
+
+\begin{proposition}
+    Weaker variants of PureCircuit can result to parsimonious reductions to the EndOfLine problem
+    as such:
+    \begin{gather*}
+        \textsc{\#AcyclicBPureCircuit} \subseteq \textsc{\#EndOfLine} \\
+        \textsc{\#PermutationFreeBPureCircuit} \subseteq \textsc{\#EndOfLine}
+    \end{gather*}
+\end{proposition}
+
+
+In addition, we were able to show that for different promise problems,
+we can find reductions to the PureCircuit problem
+
+\begin{proposition}
+    $$
+        \textsc{\#PUnsatHazard} \subseteq  \textsc{\#PureCircuit}
+    $$
+\end{proposition}
+
+Lastly we introduce the following proposition
+\begin{proposition}
+    Given function $F: \mathbb{T}^n \to \mathbb{T}^n$
+    where $\mathbb{T} \triangleq \{0, 1, \bot\}$ and $F$ is a \textbf{natural}
+    function:
+$$
+\exists x^\star \in \mathbb{T}^n: F(x^\star) = x^\star
+$$
+\end{proposition}
+A simpler version of the proposition above has been demonstrated
+in other works such as \ref{kozen2006theory}
