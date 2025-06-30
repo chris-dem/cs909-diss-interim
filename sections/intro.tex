@@ -147,5 +147,16 @@ $$
 \exists x^\star \in \mathbb{T}^n: F(x^\star) = x^\star
 $$
 \end{proposition}
-A simpler version of the proposition above has been demonstrated
-in other works such as \ref{kozen2006theory}
+
+
+The idea above is based on the Tarski Fixed point theorem.
+Using fixed points with the Kleene logic set, has been used in the past
+by Kozer as seen in his book \cite{kozen2006theory}, but we
+are extending such ideas to any possible functions or gates
+that use monotone gates. Doing that allows us to make the following observation
+
+\begin{proposition}
+    $$
+    \textsc{\#HazardTarski} \subseteq \textsc{\#PureCircuit}
+    $$
+\end{proposition}
