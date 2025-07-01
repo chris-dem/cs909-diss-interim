@@ -1,5 +1,8 @@
 % LTeX: enabled=true
 
+
+\subsection{Background overview}
+
 %% ADD ALL MISSING REFERENCES
 
 As mentioned in the introduction, the current project works as an interaction
@@ -7,7 +10,7 @@ of three different fields: 1. counting complexity and combinatorial interpretati
 2. total search problems and PPAD and 3. Kleene logic.
 
 
-\subsection{Counting Complexity and Combinatorial Interpretations}
+\subsubsection{Counting Complexity and Combinatorial Interpretations}
 As we previously mentioned, we say that an object or a structure $f$
 has a combinatorial interpretation if $f \in \textbf{\#P}$. $\textbf{\#P}$
 is a complexity class created by Valiant \cite{valiantComplexityComputingPermanent1979},
@@ -54,7 +57,22 @@ For the purposes of the current project, we are focusing on \cite{ikenmeyerWhatW
 where they demonstrated how several $\textsc{TFNP}$ problems, 
 change in complexity as we ignore one of its solutions.
 
-\subsection{Total Search Problems and PPAD}
+
+Any class of problems in complexity theory utilises the notion of reduction
+to indicate the similarity between problems. For counting complexity
+this is referred to as \textit{parsimonious reductions}.
+
+
+\begin{definition}[Parsimonious reductions]
+    Let $R, R'$ be search problems and let $M$ be a Karp reduction of
+    $S_R = \{x \mid R(x) \neq \emptyset \}$ to $S_{R'} = \{x \mid R'(x) \neq \emptyset \}$.
+    We say $f$ is \textbf{parsimonious} if:
+    $$
+    \forall x \in S_R : |R(x)| = |R'(f(x))|
+    $$ 
+\end{definition}
+
+\subsubsection{Total Search Problems and PPAD}
 When talking about search problems, we are using the following definition:
 
 \begin{definition}[Search Problems and Total Search Problems]
@@ -67,18 +85,17 @@ When talking about search problems, we are using the following definition:
     $$
 \end{definition}
 
-Using the above, we can define the following complexity clasess
+Using the above, we can define the following complexity classes
 
 \begin{definition}[FP, FNP, TFNP]
     \textbf{FP} are \textit{search problems} such that there exists poly-time TM $M$
-    such that $M(x) = y$ where $x Ry$.
-
+    such that $M(x) = y$ where $x Ry$.\\
     \textbf{FNP} are \textit{search problems} such that there exists poly-time TM $M: \{0,1\}^* \to \{0,1\}$
     and a poly function $p : \mathbb{N} \to \mathbb{N}$ such that:
     $$
     \forall x \in \{0,1\}^*, y \in \{0,1\}^{p(|x|)}: xRy \iff M(x,y) = 1
     $$
-    Lastly $\textbf{TFNP} = \{L \in \textbf{TFNP} \mid L \text{ is total}\}$
+    Lastly $\textbf{TFNP} = \{L \in \textbf{FNP} \mid L \text{ is total}\}$
 \end{definition}
 
 Our current work focuses on a specific subclass of $\textbf{TFNP}$ problems
@@ -132,14 +149,40 @@ several problems of interest as they will be referenced in later sections.
 
 
 
-\begin{definition}[\textit{Sperner} problem]
-    %Add
+\begin{definition}[StrongSperner problem]\\
+    \textbf{Input}: A boolean circuit computing a labelling $\lambda: [M]^N \to \{-1, 1\}^N$
+    satisfying the following boundary conditions $\forall i \in [N]$:
+    \begin{itemize}
+        \item if $x_i = 1 \implies [\lambda(x)]_i = +1$
+        \item if $x_i = M \implies [\lambda(x)]_i = -1$
+    \end{itemize}
+    \textbf{Output}: A set of points $\{x^{(i)}\}_{i \in [N]} \subseteq [M]^{[N]}$, such that:
+    \begin{itemize}
+        \item \textit{Closessness condition}: $\forall i,j \in [N]: \|x^{(i)} - x^{(j)}\|_{\infty}$
+        \item \textit{Covers all labels}:
+            $$
+            \forall i \in [N], \ell \in \{-1, +1\}, \exists j \in [N]: [\lambda(x^{(j)})]_{i} = \ell
+            $$
+    \end{itemize}
 \end{definition}
 
 
+The above is a generalised variant of the tradtional Sperner problem to
+a grid of dimensions $N$ and width of $M$. 
+Throughout literature the same variants of the problem or specifications
+have been defined using sperner or discrete brouwer. For the sake 
+of clarity, we will stick to $\textsc{StrongSperner}$ and
+we will refer to $\textsc{StrongSperner}^n$ as the problem
+with a fixed dimensionality of $n$. This problem
+is crucial as it show $\textbf{PPAD}$-Hardness as well as
+relating to the reduction of various problems.
+We mainly use this to show counting arguments with respect to the
+\textsc{EndOfLine} as people have indicated a parsimonious reduction
+between $\textsc{StrongSperner}^2$ to a variant of the EndOfLine
+and $\textsc{StrongSperner}^3$ to the EndOfLine problem but with
+different colourings.
 
-
-
+%% Add citations
 
 
 These problems have found
@@ -152,10 +195,19 @@ can be summarised as:
 
 \begin{gather*}
     \textbf{\#PPAD}(\textsc{SourceOrSink})-1/2  = \textbf{\#P}\\
-    \textbf{\#PPAD}(\textsc{SourceOrExcess})-1/2  = \textbf{\#P}\\
+    \textbf{\#P}^A \not\subseteq \textbf{\#PPAD}(\textsc{SourceOrExcess(2,1)})^A-1
 \end{gather*} 
 
 
-\subsection{Kleene Logic and Hazard-Free Circuits}
+Currently we are mainly focused into the study of a certain 
+$\textbf{PPAD}\textit{-complete}$ problem, known as $\textsc{PureCircuit}$
 
+\subsubsection{Kleene Logic and Hazard-Free Circuits}
 
+Kleene logic, is the type of system that extends the traditional %% Please triple check it just in case you get nuked for this
+binary system to: $\mathbb{T} = \{0, \bot,1 \}$. 
+Study of such systems has an impact to both
+the development of robust systems and from a theoritical point of view,
+people developed systems such as \textit{Alternative Turing mahcines}, as well as
+showing important correlations between the complexity of monotone circuits
+and the robustness of hazard free circuits. 
