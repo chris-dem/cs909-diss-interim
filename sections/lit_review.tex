@@ -1,10 +1,21 @@
 % LTeX: enabled=true
 
 
+
+\subsection{Important Notation}
+
+Here we will introduce important notation to avoid confusion:
+\begin{itemize}
+    \item $\forall n \in \mathbb{N}: [n] \triangleq \{1, ..., n\}$
+    \item $\forall n \in \mathbb{N}: [n]_0 \triangleq [n] \cup \{0\}$
+    \item $\forall n \in \mathbb{N}: \bar{n}$ implies the unary representation of the number $n$ and $n$ by default implies the binary
+    \item $A^B \triangleq \{f \mid f: A \to B\}$
+    \item $\mathbb{B} \triangleq \{0,1\}$
+    \item $\mathbb{N} \triangleq \mathbb{Z}_{\geq 1}$
+    \item $\mathbb{N}_0 \triangleq \mathbb{Z}_{\geq 0}$
+\end{itemize}
+
 \subsection{Background overview}
-
-%% ADD ALL MISSING REFERENCES
-
 As mentioned in the introduction, the current project works as an interaction
 of three different fields: 1. counting complexity and combinatorial interpretation, 
 2. total search problems and PPAD and 3. Kleene logic.
@@ -125,7 +136,7 @@ which is defined as follows:
 
 \begin{definition}[\textbf{PPAD} complexity class]
     \textbf{PPAD} is defined as the set of search problems that
-    are levin reducible to the \textsc{EndOfLine} problem
+    are levin reducible to the \scn{EndOfLine} problem
 \end{definition}
 
 
@@ -148,8 +159,7 @@ several problems of interest as they will be referenced in later sections.
 
 
 
-
-\begin{definition}[StrongSperner problem]\\
+\begin{definition}[StrongSperner problem]
     \textbf{Input}: A boolean circuit computing a labelling $\lambda: [M]^N \to \{-1, 1\}^N$
     satisfying the following boundary conditions $\forall i \in [N]$:
     \begin{itemize}
@@ -211,3 +221,29 @@ the development of robust systems and from a theoritical point of view,
 people developed systems such as \textit{Alternative Turing mahcines}, as well as
 showing important correlations between the complexity of monotone circuits
 and the robustness of hazard free circuits. 
+
+We want to introduce the following concepts:
+
+\begin{definition}[Kleene Resolutions]
+    Given $x \in \mathbb{T}^n$, we define the \textit{resolutions} of $x$, using the following notation:
+    $$
+    \scn{Res}(x) \triangleq \big\{ y \in \mathbb{B}^n \mid \forall j \in [n]: x_i \in \mathbb{B} \implies x_i = y_i \big\}
+    $$
+\end{definition}
+
+\begin{definition}[Hazard circuit]
+    A \textit{circuit} $C$, on $n$ inputs has \textbf{hazard} at $x \in \mathbb{T}^n \iff C(x) = \bot$
+    and $\exists b \in \mathbb{B}, \forall r \in \scn{Res}(x): C(r) = b$
+\end{definition}
+
+
+\begin{definition}[Natural function]
+    A function $F: \mathbb{T}^n \to \mathbb{T}$ can be computed by stable values and is monotone with respect to $\preceq$
+\end{definition}
+
+\begin{definition}[K-bit Hazard]
+    For $k \in \mathbb{N}$ at $x \in \mathbb{T}^n \iff C$  has a \textit{hazard} at $x$ and $\bot$ appears at most $k$ times in $x$
+\end{definition}
+
+
+
