@@ -45,3 +45,5 @@
 .bak 
 .mtc
 build/
+svg-inkscape/*
+.DS_Store
