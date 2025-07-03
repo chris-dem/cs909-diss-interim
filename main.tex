@@ -2,6 +2,7 @@
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
+\usepackage{hhline}
 \usepackage{lineno}
 \usepackage{amsmath,amssymb,amsfonts, amsthm}
 \usepackage{enumitem}
@@ -13,9 +14,11 @@
 \usepackage{lipsum}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage{subcaption}
 \usepackage{tikz}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{conjecture}[theorem]{Conjecture}
@@ -26,7 +29,7 @@
 \newtheorem{definition}{Definition}[section]
 
 \newcommand{\scn}[1]{\textnormal{\textsc{#1}}}
-
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
 
 \begin{document}
 
@@ -57,11 +60,16 @@ u2018918@live.warwick.ac.uk, u2018918}}
 \section{Current Progress}
 \input{sections/main_findings}
 
-\section{Research Methodology} 
-\input{sections/methodology}
+\section{Next Steps}
+\input{sections/next_steps}
 
-\section{Project Plan} 
-\input{sections/project_plan}
+
+% \section{Project Plan} 
+% \input{sections/project_plan}
+%
+%
+% \section{Research Methodology} 
+% \input{sections/methodology}
 
 \section{Conclusion} 
 \input{sections/conclusion}
