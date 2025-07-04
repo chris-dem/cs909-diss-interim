@@ -3,6 +3,7 @@
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
 \usepackage{hhline}
+\usepackage[most]{tcolorbox}
 \usepackage{lineno}
 \usepackage{amsmath,amssymb,amsfonts, amsthm}
 \usepackage{enumitem}
@@ -14,11 +15,29 @@
 \usepackage{lipsum}
 \usepackage{textcomp}
 \usepackage{xcolor}
-\usepackage{subcaption}
 \usepackage{tikz}
+\usepackage{caption}
+\usepackage{subcaption}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
+\tcbuselibrary{theorems}
+\newtcbtheorem[auto counter, number within=section]{definitionbox}{Definition}{
+  colback=gray!5!white,
+  colframe=black!60,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.3mm,
+  arc=1mm,
+  left=1mm,
+  right=1mm,
+  top=1mm,
+  bottom=1mm,
+  enhanced,
+  sharp corners=south,
+  attach boxed title to top left={xshift=0.5cm, yshift=-2mm},
+  boxed title style={colback=white, boxrule=0pt},
+}{def}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{conjecture}[theorem]{Conjecture}
@@ -63,18 +82,24 @@ u2018918@live.warwick.ac.uk, u2018918}}
 \section{Next Steps}
 \input{sections/next_steps}
 
+\section{Project Plan} 
+\input{sections/project_plan}
 
-% \section{Project Plan} 
-% \input{sections/project_plan}
-%
-%
-% \section{Research Methodology} 
-% \input{sections/methodology}
+\section{Appraisals}
+\input{sections/appraisals.tex}
+
+\section{Project Management} 
+\input{sections/management.tex}
 
 \section{Conclusion} 
 \input{sections/conclusion}
     
 \bibliographystyle{IEEEtran}
 \bibliography{dissertation}
+
+
+%TC:ignore
+\input{sections/appendix}
+%TC:endignore
 
 \end{document}
