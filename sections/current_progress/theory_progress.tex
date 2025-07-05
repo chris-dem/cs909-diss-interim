@@ -519,4 +519,26 @@ Otherwise for two distinct solutions we can use the following
 \label{fig:not-equal}
 \end{figure}
 
-%% TODO finish and cleanup tomrrow
+
+\subsubsection{Next steps}
+
+Our next steps will focus mainly on two directions. One is lowering the bound as we declare in our conjecture with the
+usage of snake embeddings. We believe that each dimension can be parsimoniously reduced with another. This implies
+that, if we can show that $\forall n \in \mathbb{N}_{\geq 3}: \textsc{\#nD-StrongSperner} \subseteq \textsc{\#2D-StrongSperner}$
+we get to prove our conjecture.
+
+
+With regards to, our second direction, we want to emphasize on the hardness of \textsc{PureCircuit}.
+Or more specifically we will investigate as to if any of the following statements hold true.
+
+\begin{gather*}
+    \exists n, \alpha \in \mathbb{N}_{\geq 2}:
+    \textsc{\#SourceOrExcess}(\alpha,1) - 1  \subseteq \textsc{\#nD-StrongSperner} -1 \\
+    \exists n \in \mathbb{N}_{\geq 2}: \textsc{\#SourceOrExcess}(n,1) - 1 \subseteq \textsc{\#PureCircuit} -1 \\
+\end{gather*}
+
+We believe the above two should be our next steps in order to get close to the main question of our project.
+Ideally generalising, the above reductions to the infinity hierarchy of
+$\textsc{\#SourceOrExcess}(\cdot,1)$ would be ideal as it may lead to finding an overall upper bound
+towards the entire $\textsc{\#PPAD} -1$ class.
+

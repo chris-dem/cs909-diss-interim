@@ -1,19 +1,32 @@
 % LTeX: enabled=true
 
 
-
+% \subsection{Important Notation}
+%
+% To avoid ambiguity, we introduce the following notation 
+% \begin{itemize}
+%     \item $\forall n \in \mathbb{N}: [n] \triangleq \{1, ..., n\}$
+%     \item $\forall n \in \mathbb{N}: [n]_0 \triangleq [n] \cup \{0\}$
+%     \item $\forall n \in \mathbb{N}: \bar{n}$ implies the unary representation of the number $n$ and $n$ by default implies the binary
+%     \item $A^B \triangleq \{f \mid f: A \to B\}$
+%     \item $\mathbb{B} \triangleq \{0,1\}$
+%     \item $\mathbb{N} \triangleq \mathbb{Z}_{\geq 1}$
+%     \item $\mathbb{N}_0 \triangleq \mathbb{Z}_{\geq 0}$
+% \end{itemize}
+%
+%
 \subsection{Important Notation}
 
-Here we will introduce important notation to avoid confusion:
-\begin{itemize}
-    \item $\forall n \in \mathbb{N}: [n] \triangleq \{1, ..., n\}$
-    \item $\forall n \in \mathbb{N}: [n]_0 \triangleq [n] \cup \{0\}$
-    \item $\forall n \in \mathbb{N}: \bar{n}$ implies the unary representation of the number $n$ and $n$ by default implies the binary
-    \item $A^B \triangleq \{f \mid f: A \to B\}$
-    \item $\mathbb{B} \triangleq \{0,1\}$
-    \item $\mathbb{N} \triangleq \mathbb{Z}_{\geq 1}$
-    \item $\mathbb{N}_0 \triangleq \mathbb{Z}_{\geq 0}$
-\end{itemize}
+To avoid ambiguity, we introduce the following notation conventions used throughout the paper.
+For any $n \in \mathbb{N}$, we write $[n] \triangleq \{1, \ldots, n\}$  and $[n]_0 \triangleq [n] \cup \{0\}$. 
+When using the notation $\bar{n}$, we refer to the unary representation of the number $n$; the plain symbol $n$
+denotes the binary representation by default.
+Given sets $A$ and $B$, we denote by $A^B \triangleq \{ f \mid f : A \to B \}$
+the set of all functions from $B$ to $A$.
+We define the Boolean domain as $\mathbb{B} \triangleq \{0, 1\}$,
+the natural numbers as $\mathbb{N} \triangleq \mathbb{Z}_{\geq 1}$,
+and the non-negative integers as $\mathbb{N}_0 \triangleq \mathbb{Z}_{\geq 0}$.
+
 
 \subsection{Background overview}
 As mentioned in the introduction, the current project works as an interaction
@@ -28,7 +41,7 @@ is a complexity class created by Valiant \cite{valiantComplexityComputingPermane
 to define a formal combinatorial framework in complexity theory.
 
 
-\begin{definition}[$\textbf{\#P}$ Complexity Class]
+\begin{definitionbox}{$\textsc{\#P}$ Complexity Class}{sharpp-class}
     $\textbf{\#P}$ is a class of functions $f: \{0,1\}^* \to \mathbb{N}$
     such that: there exists a polynomial time non-deterministic
     Turing machine $N: \{0,1\}^* \to \{0,1\}$ such that
@@ -42,7 +55,7 @@ to define a formal combinatorial framework in complexity theory.
     $$
     f(w) = \Big|\Big\{v \in \{0,1\}^{p(|w|)} \mid M(w, v) =1 \Big\}\Big|
     $$
-\end{definition}
+\end{definitionbox}
 
 $\textbf{\#P}$ was initially created by \cite{valiantComplexityComputingPermanent1979},
 to demonstrate, that even if we have a problem $L \in P$, $\#L$ can be computationally
