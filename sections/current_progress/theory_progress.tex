@@ -14,12 +14,17 @@ We will define the necessary prerequisites for the current section:
     $$
     a \leq b \leq f(|w|) \cdot a
     $$
+    If $\forall x : f(x) = c$ for $c \in \mathbb{N}$ then we will just say 
+    $$
+    A \subseteq^c B
+    $$
 \end{definition}
 
 \begin{proposition}[EndOfLine to 3D-StrongSperner Parsimonious reduction]
-    $$
-    \scn{\#EndOfLine} \subseteq \scn{\#3D-StrongSperner}
-    $$
+    \begin{align*}
+    \scn{\#EndOfLine} -1 &\subseteq \scn{\#3D-StrongSperner}  -1\\
+    &\subseteq \scn{\#2D-StrongSperner} -1 \\
+    \end{align*}
 \end{proposition}
 
 The above has been shown by %% Insert citation
@@ -167,7 +172,7 @@ Given that construction we make the following lemma
 \paragraph{Circuit Application}
 
 In the current phase, we will modify the circuit $\Lambda$ to be hazard-free using the construction
-from the \textit{Corollary 10} of \cite{ikenmeyerComplexityHazardfreeCircuits2019}.
+from the \textit{Corollary 10} of \cite{ikenmeyer_complexity_2019}.
 They showed that we can ensure a k-bit hazard-free circuit with the following properties:
 
 \begin{align*}
@@ -240,7 +245,7 @@ $$
 $$
 
 Therefore, we can bound the number of solutions of \textsc{3D-StrongSperner} by a factor of 20.
-Core breakthorugh came from the utilisation of the hazard-freeness from \cite{ikenmeyerComplexityHazardfreeCircuits2019},
+Core breakthorugh came from the utilisation of the hazard-freeness from \cite{ikenmeyer_complexity_2019},
 as well as studying some problems in EOPL and UEOPL or more specifically the
 One-Permutation Discrete map. Athough in the end we were not able to extract any significantlly
 useful results out of it, its key observations were enough.
@@ -284,7 +289,7 @@ More formally we conjecture the following to be true
 Whilst trying to tackle the main objectives of the dissertation, we stumbled upon
 several interest relations across Hazard. We will use the notion of
 promise problems to show the following relation. First we will
-define a variant of UnSAT hazard as explained in \cite{ikenmeyerComplexityHazardfreeCircuits2019}.
+define a variant of UnSAT hazard as explained in \cite{ikenmeyer_complexity_2019}.
 
 \begin{definition}
     Given a circuit $C$ that computes $f : \mathbb{B}^n \to \mathbb{B}$ such that
@@ -396,7 +401,7 @@ One can also attempt to make some reductions to the \textsc{EndOfLine}. It has t
 that we assume that there are no parsimonious reductions to the \textsc{EndOfLine},
 but we were able to construct some variants that allows to make there reductions.
 They key insights for this comes from the \textsc{PPAD}-inclusion proof
-by Deligkas et al. \cite{deligkasPureCircuitTightInapproximability2024}, where they
+by Deligkas et al. \cite{deligkas_pure-circuit_2024}, where they
 showed that we can reduce PureCircuit, to \textit{Brouwer} problem by constructing
 a continuous function $F: [0,1]^n \to [0,1]^n$ as such: For each $v \in V$, we create
 continuous functions $f_i(\cdot): [0,1]^n \to [0,1]$ where we take thne input of vector

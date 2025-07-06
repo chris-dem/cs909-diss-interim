@@ -8,8 +8,7 @@ as summarised in the figure \ref{fig:management:tooling}.
 \end{figure}
 
 Our project also includes the development of a visualisation tool for creation
-and verification of several \textsc{PureCircuit} instances. We will use the
-figure \ref{fig:soft:workflow} for main reference. We opted with \textit{Rust},
+and verification of several \textsc{PureCircuit} instances. We opted with \textit{Rust},
 as the main language of development, due to its high and low level features.
 From the one hand, \textit{Rust} can efficiently handle memory allocation safely
 with its clever usage of the Borrower-Ownership framework. Conversely, it implements
@@ -22,7 +21,7 @@ graph-like structures in \textit{Rust}.
 
 
 For visualisation we decided to go with \textit{Bevy}. \textit{Bevy} is a
-game engine that uses the \textit{ECS} software achitecture. A general
+game engine that uses the \textit{ECS} software architecture. A general
 workflow of an \textit{ECS} system can be described as such: a state 
 contains entities, each of which is composed of components or properties.
 A system is a specialised method that gathers entities based on their components
@@ -37,6 +36,31 @@ in the figure \ref{fig:soft:ecs-workflow}
     \label{fig:soft:ecs-workflow}
 \end{figure}
 
+With regards to the our research management, our core tool came
+through the usage of obsidian. As we can see in the figure \ref{fig:management:tooling}, 
+\texttt{Obsidian} beyond its traditional usage of note taking, it comes
+with several handy tools such as note organisation and mind-mapping.
+These can be seen in the figure \ref{fig:theory:obsidian-usages}, where we utilised connections across notes as well as
+its drawings or other thought organisation tools in order
+experiment and manage ideas.
 
 
+
+\begin{figure}[h!]
+    \centering
+    \subfloat[Obsidian Graph]{
+        \includegraphics[width=0.3\linewidth]{assets/obsidian_graph.png}
+        \label{fig:theory:obsidian-graph}
+    }
+    \subfloat[Obsidian Canvas]{
+        \includegraphics[width=0.3\linewidth]{assets/obsidian-canvas.png}
+        \label{fig:theory:obsidian-canvas}
+    }
+    \subfloat[Obsidian mindmap]{
+        \includegraphics[width=0.3\linewidth]{assets/obsidian_mindmap.png}
+        \label{fig:theory:obsidian-mindmap}
+    }
+    \caption{Usages of Obsidian}
+    \label{fig:theory:obsidian-usages}
+\end{figure}
 
