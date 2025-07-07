@@ -20,19 +20,23 @@ We will define the necessary prerequisites for the current section:
     $$
 \end{definition}
 
-\begin{proposition}[EndOfLine to 3D-StrongSperner Parsimonious reduction]
+\begin{proposition}[EndOfLine to StrongSperner Parsimonious reductions]
     \begin{align*}
     \scn{\#EndOfLine} -1 &\subseteq \scn{\#3D-StrongSperner}  -1\\
     &\subseteq \scn{\#2D-StrongSperner} -1 \\
     \end{align*}
 \end{proposition}
 
-The above has been shown by %% Insert citation
-Our main contribution comes from the following theorem
-
+Daskalakis et al. \cite{daskalakis_ComplexityComputingNash_2006} showed that we can find a parsimonious reduction between
+$\scn{EndOfLine}$ and $\scn{3D-Brouwer}$, which is a variant of $\scn{3D-StrongSperner}$ and is based on the same principal. Later on
+Chen et al. \cite{chen_Complexity2DDiscrete_2009} was able to show that it suffices to use 
+2 dimensions by reducing the problem to a 2D planar graph variant of \textsc{EndOfLine}.
+Our contribution comes from the ability to parsimoniounsly constant reduce
+every $\scn{nD-StrongSperner}$ problem to  $\scn{PureCircuit}$. We will
+demonstrate for 3 dimensions and then we will generalise.
 
 \begin{theorem}[3D-StrongnSperner to PureCircuit]
-    Given $f(\cdot) = 20$, we argue
+    Given $f(\cdot) = 19$, we argue
     $$
     \scn{\#3D-StrongSperner} \subseteq^f \scn{\#PureCircuit}
     $$
@@ -94,8 +98,7 @@ S_{\text{even}} \triangleq
     $$
     \Big\{\Lambda(2i + x_1, 2j + x_2, 2k + x_3) \mid x \in \{0,1\}^3 \Big\}
     $$
-    We can observe that if $x_i = 1$ for any $i \in {1,2,3}$, that points
-    corresponds to the same point as in $i + 1$. This implies that the set above
+    We can observe that WLOG: $\Lambda(2i + 1, \cdot, \cdot) = \lambda(i + 1, \cdot, \cdot)$. This implies that the set above
     corresponds to the neighbourhood:
     $$
     \Big\{\lambda(i + x_i, j + x_j, k + x_k) \mid x \in \{0,1\}^3 \Big\}
@@ -115,7 +118,7 @@ Given the above we provide a main sketch of our tranformation as such:
 
 The goal of the above transformation is to show that if $o_1 = o_2 =o_3 = \bot$, then we have a solution
 to the original instance. The current construction allows us to match a single box of the original problem to
-up to $20$ solutions of the PureCircuit one. We can visualise it as such:
+up to $19$ solutions of the PureCircuit one. We can visualise it as such:
 
 
 \begin{figure}[h!]
@@ -135,12 +138,12 @@ of outputs, \textit{PureCircuit} remains \textbf{PPAD}-complete, by using the co
 
 \paragraph{Bit generator}
 
-In order to generate our number we use the construction shown in the label \ref{fig:main-proof:purification},
+In order to generate our number we use the construction shown in the figure \ref{fig:main-proof:purification},
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\textwidth, clip]{assets/purification_generator.png}
-    \caption{Our bit generator bit is stacked version of a lot of $\hat{P}$ circuits. Be stacking them as shown in the figure and choosing the red nodes,
+    \caption{Our bit generator bit is stacked version of a lot of $P$ circuits. By stacking them as shown in the figure and extracting the red nodes,
     we get our binary number.}
     \label{fig:main-proof:purification}
 \end{figure}
@@ -155,7 +158,7 @@ Given that construction we make the following lemma
         \item if $s_i = b \implies u^i = b^n$, given $b \in \mathbb{B}$
         \item if $s_i = \bot \implies \forall j \in [n-1]: u^i_j \in \mathbb{B}$ and $u^i_{n} \in \{1, \bot\}$
     \end{enumerate}
-    We essentially ensure that if there exists a $\bot$ in our numbe, it should only be found in the last digit
+    The above translates to: if we have $\bot$ in our number, it can only be found in the LSB.
 \end{lemma}
 
 \begin{proof}
@@ -172,8 +175,8 @@ Given that construction we make the following lemma
 \paragraph{Circuit Application}
 
 In the current phase, we will modify the circuit $\Lambda$ to be hazard-free using the construction
-from the \textit{Corollary 10} of \cite{ikenmeyer_complexity_2019}.
-They showed that we can ensure a k-bit hazard-free circuit with the following properties:
+by Ikenmeyer et al. \cite{ikenmeyer_ComplexityHazardfreeCircuits_2019} \textit{Corollary 10}, where
+they showed that we can ensure a k-bit hazard-free circuit with the following properties:
 
 \begin{align*}
 \text{size}(C)  & =  \left( \frac{ne}{k}  \right)^{2k} (|C| + 6) + O (n^{2.71k}) \\
@@ -181,19 +184,19 @@ They showed that we can ensure a k-bit hazard-free circuit with the following pr
 \end{align*}
 
 Using the bit generator lemma \ref{lem:bit-gen}, we can observe that we can have at most 3 $\bot$ values 
-in our input. This implies that we can create a circuit of polynomial size such that it is hazard-free.
+in our input. This implies that we can create a circuit of polynomial size such that it is 3-bit-hazard-free.
 Using that property we create the lemma below:
 
 \begin{lemma}[Circuit Application Lemma]
     \label{lem:circuit}
     If $o_1 = o_2 = o_3 = \bot$ implies that we covered all the labels and found a solution
-    in $(i0,j0,k0) \in P_{\text{even}}$
+    in $(i0,j0,k0) \in S_{\text{even}}$
 \end{lemma}
 
 
-\begin{proof}
+\begin{proof}[h!]
     First part is to understand what our $u^{(1)}, u^{(2)}, u^{(3)}$
-    represent. To do that, we use the following visualisation on the figure \ref{fig:main-proof:cube-vis}
+    represent. To do that, we use the following visualisation on the figure \ref{fig:main-proof:cube-vis}.
     \begin{figure}[h!]
         \centering
         \includegraphics[width=0.2\textwidth]{assets/3d-cube.png}
@@ -208,7 +211,7 @@ Using that property we create the lemma below:
     $$
     \forall i \in \{1,2,3\}, b \in \{-1, 1\} \exists c \in \textsc{Res}(i\bot, j\bot, k\bot): [\bar{\Lambda}(c)]_i = b
     $$
-    That implies if $\bar{\Lambda}$ outputs $\bot$ in some dimensions, then it found two points with different labels. We can therefore
+    Since $\bar{\Lambda}$ is 3-bit hazard free, if we outputs $\bot$ in dimension $j$, then found two points with different labels in $j$. We can therefore
     argue that if the output it $\bot^3$, then we covered all the labels.
 \end{proof}
 
@@ -216,7 +219,7 @@ Using that property we create the lemma below:
 The above section conclude our construction. We will now demonstrate the correctness argument:
 
 \begin{lemma}[Correctness lemma]
-    We argue that every correct assingment of the above circuit, corresponds to a point in $P_{\text{even}}$
+    We argue that every correct assingment of the above circuit, corresponds to a point in $S_{\text{even}}$
 \end{lemma}
 From the transformation claim \ref{clm:main-proof:trans-claim}, we know that if our circuit
 can find all corresponding points in $P_{\text{even}}$, we can find the all the solutions of the original circuit.
@@ -226,26 +229,28 @@ can find all corresponding points in $P_{\text{even}}$, we can find the all the 
     $\exists i \in \{1,2,3\}$ such that label $i$ is not covered, meaning $o_i \neq \bot$.
     WLOG assume that $o_i = 0$. Our verification stage, will copy $0$ onto $s_i$. By our
     bit generator lemma \ref{lem:bit-gen}, we have that $u^{(i)} = 1^n$. From the boundary
-    conditions of our circuits, and the k-bit hazard-freeness construction by
-    \ref{lem:circuit}, we know that $\Lambda(*, 0^n, *) = \{*, 1,  *\}$. But that implies
+    conditions of our circuits and the k-bit hazard-freeness construction,
+    we know that $\Lambda(*, 0^n, *) = \{*, 1,  *\}$. But that implies
     $o_i = 1$ which leads to a contradiction. We can make a similar argument to when $o_i = 1$.
+    Therefore, by \ref{lem:circuit}, if $o_1 = o_2 = \bot$, we have a found a polychromatic
+    cube.
 \end{proof}
 
 \paragraph*{Counting Argument}
 
 To find how many solutions correspond to a single solution of the original instance,
-we can make the following observation: Looking at our cube \ref{fig:main-proof:cube-vis},
-if a side of the cube contains all labels, or if an edge contains all labels, we are counting
-those as additional solutions. We can find an upper bound by making the following observation:
+we can make the following observation: Looking at our cube in figure \ref{fig:main-proof:cube-vis},
+if a side of the cube contains all labels or if an edge contains all labels, we are counting
+these as additional solutions. We can find an upper bound by making the following observation:
 
 $$
 \underbrace{\binom{3}{1} \cdot 2}_{\substack{\text{One of the sides is odd} \\ \text{and covers all labels}}}
 + \underbrace{\binom{3}{2} \cdot 2^2}_{\substack{\text{One of the edges is odd} \\ \text{and covers all labels}}}
-+ \underbrace{1}_{\text{All LSBs are } \bot} = 20
++ \underbrace{1}_{\text{All LSBs are } \bot} = 19
 $$
 
-Therefore, we can bound the number of solutions of \textsc{3D-StrongSperner} by a factor of 20.
-Core breakthorugh came from the utilisation of the hazard-freeness from \cite{ikenmeyer_complexity_2019},
+Therefore, we can bound the number of solutions of \textsc{3D-StrongSperner} by a factor of 19.
+Core breakthorugh came from the utilisation of the hazard-freeness from \cite{ikenmeyer_ComplexityHazardfreeCircuits_2019},
 as well as studying some problems in EOPL and UEOPL or more specifically the
 One-Permutation Discrete map. Athough in the end we were not able to extract any significantlly
 useful results out of it, its key observations were enough.
@@ -253,43 +258,43 @@ useful results out of it, its key observations were enough.
 
 \paragraph*{Useful Corollaries}
 We can easily observe that our reduction above can work with any dimensionality.
-In fact for any $\forall n in \mathbb{N}_{\geq 2}$, Chen et al. showed that
-$\textsc{nD-StrongSperner}$ is still \textit{PPAD-Hard}. Additionally based on our proof, 
+In fact for any $\forall n \in \mathbb{N}_{\geq 2}$, Chen et al. showed that
+$\textsc{nD-StrongSperner}$ is still \textit{PPAD-Hard} in \cite{chen_SettlingComplexityComputing_2009}. Additionally based on our proof, 
 we can make the following corollary:
 
 \begin{corollary}
 Given $\scn{nD-StrongSperner}$, we define $f$ as:
 $$
-f(\cdot) = \sum_{i = 1}^{n - 1}2^k
+f(\cdot) = 1 + \sum_{i = 1}^{n - 1}\binom{n}{i}2^i = 3^n - 2^n = a_n
 $$
-Such that we have the following relationo
+Such that we have the following relation
 $$
-\scn{\#nD-StrongSperner} \subseteq^f \scn{\#PureCircuit}
+\scn{\#nD-StrongSperner} \subseteq^{a_n} \scn{\#PureCircuit}
 $$
 \end{corollary}
 
-In addition we know that (INSERT CITATION), found a parsimonious
-reduction from the $\textit{EndOfLine}$  to $\scn{3D-StrongSperner}$,
-using a slighgly different colour scheme. One can use the same construction
-that was done on the $\scn{2D-StrongSperner}$ to show \textsc{PPAD-Hardness}
-by Chen et al. by using a different but very similar variant to the $\textsc{EndOfLine}$.
-Lastly we conjecture that we can use the snake embedding technique by Chen Et Al. to bound
-all the $\scn{ND-StrongSperner}$ to the same bounds as the $\scn{2D-StrongSperner}$.
-More formally we conjecture the following to be true
+To complete our last part of the theorem, it suffices to make use
+of the parsimonious reduction $\textsc{EndOfLine}$  to $\textsc{2D-StrongSperner}$ that Chen et al. \cite{chen_SettlingComplexityComputing_2009}.
+It has to be denoted that a similar reduction was made by
+Daskalakis et al. \cite{daskalakis_ComplexityComputingNash_2006}, where
+he reduced $\textsc{EndOfLine}$ to $\textsc{3D-StrongSperner}$ parsimoniously
+with similar ideas.
+For our theorem we will refer to the $\textsc{2D-StrongSperner}$ reduction and
+conclude with the theorem.
 
-\begin{conjecture}
-\begin{gather*}
-    f(\cdot) = \binom{2}{1} * 2 + 1 \\
-    \forall n \in \mathbb{N}_{\geq 2} : \scn{\#nD-StrongSperner} \subseteq^f \scn{\#PureCircuit}  
-\end{gather*}
-\end{conjecture}
+
+\begin{theorem}[From $\scn{EndOfLine}$ to $\scn{PureCircuit}$]
+$$
+\scn{\#EndOfLine} -1 \subseteq \scn{\#2D-StrongSperner} -1 \subseteq^5 \scn{\#PureCircuit} -1
+$$
+\end{theorem}
 
 \subsubsection{Hazard-Free Logic Findings}
 
 Whilst trying to tackle the main objectives of the dissertation, we stumbled upon
 several interest relations across Hazard. We will use the notion of
 promise problems to show the following relation. First we will
-define a variant of UnSAT hazard as explained in \cite{ikenmeyer_complexity_2019}.
+define a variant of UnSAT hazard as explained in \cite{ikenmeyer_ComplexityHazardfreeCircuits_2019}.
 
 \begin{definition}
     Given a circuit $C$ that computes $f : \mathbb{B}^n \to \mathbb{B}$ such that
@@ -401,7 +406,7 @@ One can also attempt to make some reductions to the \textsc{EndOfLine}. It has t
 that we assume that there are no parsimonious reductions to the \textsc{EndOfLine},
 but we were able to construct some variants that allows to make there reductions.
 They key insights for this comes from the \textsc{PPAD}-inclusion proof
-by Deligkas et al. \cite{deligkas_pure-circuit_2024}, where they
+by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024}, where they
 showed that we can reduce PureCircuit, to \textit{Brouwer} problem by constructing
 a continuous function $F: [0,1]^n \to [0,1]^n$ as such: For each $v \in V$, we create
 continuous functions $f_i(\cdot): [0,1]^n \to [0,1]$ where we take thne input of vector

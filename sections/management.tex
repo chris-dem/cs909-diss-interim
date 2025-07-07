@@ -64,3 +64,46 @@ experiment and manage ideas.
     \label{fig:theory:obsidian-usages}
 \end{figure}
 
+
+
+\subsection{Risk Management}
+
+With regards to risks and mitigations, the biggest risk we face
+is the inability to resolve our main question. Due to the
+limited literature surrounding \textsc{PureCircuit} and its
+counting nature as well as the recency in the development of
+$\textsc{TFNP} -1$, our question could go into many directions.
+The discovery of our reduction allowed us to step closer to our question
+and in our table \ref{tab:management:risk-management}, we will analyze this is greater depth.
+The general mitigation strategy we can do is to keep researching, keep
+finding connections until we can connect all the necessary pieces to do the jump.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabularx}{0.95\textwidth}{|Y|Y|Y|Y|Y|}
+            \hline
+            \textbf{Severity} & \textbf{Probability} & \textbf{Mitigation} & \textbf{Mitigation} & \textbf{Address} \\
+            \hhline{|=|=|=|=|=|}
+            High   & Medium & Software may not be feasible within the remaining time frame. & Focus on the the first objective where the project. Restrict to solution finding or counting when the number of nodes is small. & Not yet      \\ \hline
+            Low    & Medium & Software not identifying a correct solution & Usage of TDD techniques and property testing to ensure correctness.  Comparison with hand-made instances & Not yet      \\ \hline
+            High   & High   & Inability to extend the reductions of the PureCircuit problem to SourceOrExcess & Find a path of parsimonious reductions between the two problems. If we cannot ensure a one-to-one relation between the solutions, we will focus on $1-c$ for some $c \in \mathbb{N}$  & $\checkmark$ \\ \hline
+            Medium & High   & Inability to prove the main conjecture & We can make some heuristical arguments or find reductions between other problems. We argue that if we are able to unravel enough correlations, we will hope to at least bridge the problems. Develop useful gadgets one can use with PureCircuit & Not yet     \\ \hline
+            High   & High   & Incorrect proofs or reductions. & Analyse the problem under different constraints. Apply the duck method, where attempt to explain the solution to a person which not necesserily an expert. Validate proof with supervisor & Not yet  \\ \hline
+            High   & Medium & Develop combinatorial friendly variants of \textsc{PureCircuit} & Apply robustness on the gate set of \textsc{PureCircuit}. Develop new gates or variants are easier to work with.  & $\checkmark$  \\ \hline
+    \end{tabularx}
+    \caption{Risk managment table.}
+    \label{tab:management:risk-management}
+\end{table}
+\FloatBarrier
+
+
+From our table, it is worth expanding on some of the points. The best method
+we found when tackling this problem is when we try to uncover reductions between other
+PPAD problems or when trying to incorporate gadgets from Kleene theory. We hope
+that by expereminting enough we will be able to get close to resolve our conjectures.
+In addition, for the last point, we made several efforts to ensure our problem is
+\textsc{PPAD}-complete and combinatorial friendly, by trying to restrict the \textsc{Purify} gate. 
+We soon realised that any methods that detect the $\bot$ value or try to eliminate ultimately
+fail. The observation can be based on a continuity argument that Marino created
+\cite{marino_GeneralTheoryMetastable_1981} and in general any possible extensions or gates we can
+add seem to adhere continuity. (TODO)
