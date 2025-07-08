@@ -44,15 +44,15 @@ counting complexity limits of $\textbf{\#}\text{PureCircuit} -1$.
 \subsection{Project objectives}
 
 Below we will present our table of objectives. We will denote updated objectives with
-(*), new objectives with (!), completed objectives with (\checkmark),  deleted objectives with (-).
+(*), new objectives with (!), completed objectives with (\checkmark).
 
 \begin{enumerate}[label*=R.\arabic*)]
-    \item (\checkmark) Find a parsimonious reduction from the $\textit{EndOfLine}$ to $\textit{EndOfLine}$.
-    \item (!) Improve the combinatorial bound between the reduction from EndOfLine to PureCircuit
-    \item (!) Demonstrate that $\textbf{\#}\text{PPAD}(PureCircuit)- 1 \not\subseteq \textbf{\#P}$
-    \item (*) Prove or disprove the following $\forall n \in \mathbb{N}_{\geq 2}$:
+    \item Find a parsimonious reduction from the $\textit{EndOfLine}$ to $\textit{PureCircuit}$.
+    \item Improve the combinatorial bound between the reduction from EndOfLine to PureCircuit
+    \item Demonstrate that $\textbf{\#}\text{PPAD}(PureCircuit)- 1 \not\subseteq \textbf{\#P}$
+    \item Prove or disprove the following
 \[
-\exists c \in \mathbb{N}:  \scn{\#SourceOrExcess}(n, 1) \subseteq^c \scn{\#PureCircuit}
+\forall n \in \mathbb{N}_{\geq 2} \exists c \in \mathbb{N}:  \scn{\#SourceOrExcess}(n, 1) \subseteq^c \scn{\#PureCircuit}
 \]
 
 \end{enumerate}
@@ -60,9 +60,9 @@ Below we will present our table of objectives. We will denote updated objectives
 Below we will be representing the development portion of the project.
 
 \begin{enumerate}[label=S.\arabic*)]
-    \item Visualise a pure circuit
-    \item Generate a solution
-    \item Count number of solutions for smaller scales 
+    \item Visualise and verify a \textsc{PureCircuit} instance.
+    \item Generate a solution given a \textsc{PureCircuit} instance for a small number of nodes.
+    \item Count the number of solutions of a  \textsc{PureCircuit} instance for a small number of nodes.
 \end{enumerate}
 
 

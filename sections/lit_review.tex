@@ -118,6 +118,7 @@ We give a brief overview of \textbf{TFNP} and \textbf{PPAD}.
 Our current work focuses on a specific subclass of $\textbf{TFNP}$ problems
 which is defined as follows:
 
+\begin{minipage}{0.55\linewidth}
 \begin{definitionbox}{\textit{EndOfLine} problem \cite{papadimitriou_ComplexityParityArgument_1994}}{eol-ppad}
     Given circuits $S, P \in \{0,1\}^n \to \{0,1\}^n$ such that $S,P \in n^{O(1)}$
     we define a directed graph $G = (V,E)$, such that $V= \{0,1\}^n$ and $E$ defined as:
@@ -131,14 +132,14 @@ which is defined as follows:
     A node $v \in V$ is a solution if and only if $\textit{deg}(v)$ is either
     $(0,1)$  or $(1,0)$.
 \end{definitionbox}
-
-
-\begin{figure}[h!]
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
     \centering
-    \includegraphics[width=0.3\textwidth]{assets/eol-subgraphs.png}
-    \caption{Types of subgraphs in \textsc{EndOfLine}}\label{fig:eol-subgraphs}
-\end{figure}
+    \includegraphics[width=0.7\linewidth]{assets/eol-subgraphs.png}
+    \captionof{figure}{Types of subgraphs in \textsc{EndOfLine}}\label{fig:eol-subgraphs}
+\end{minipage}
 
+\vspace{0.2cm}
 
 An illustrative example of an instance can be seen in the figure \ref{fig:eol-subgraphs}. 
 Using the \textsc{EndOfLine} problem, we define the

@@ -10,7 +10,7 @@
 \usepackage{placeins}
 \usepackage{hyperref}
 \usepackage{algorithmic}
-\usepackage{ltablex}
+\usepackage{xltabular}
 \usepackage{graphicx}
 \usepackage{lipsum}
 \usepackage{textcomp}
@@ -154,11 +154,12 @@
 \newtheorem{definition}{Definition}[section]
 
 \newcommand{\scn}[1]{\textnormal{\textsc{#1}}}
+\newcolumntype{Z}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
 \begin{document}
 
-\title{Counting Problem of \textit{PureCircuit}}
+\title{CS907 Interim Report}
 
 \author{\IEEEauthorblockN{Christos Demetriou}
 \IEEEauthorblockA{\textit{Department of Computer Science} \\
@@ -184,15 +185,14 @@ u2018918@live.warwick.ac.uk, u2018918}}
 \section{Next Steps}
 \input{sections/next_steps}
 
-% \section{Appraisals}
-% \input{sections/appraisals.tex}
 
 \section{Project Management} 
 \input{sections/management.tex}
 
-\section{Conclusion} 
-\input{sections/conclusion}
-    
+
+\section{Appraisals}
+\input{sections/appraisals.tex}
+
 \bibliographystyle{IEEEtran}
 \bibliography{dissertation}
 

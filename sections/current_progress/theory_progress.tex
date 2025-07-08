@@ -13,6 +13,15 @@ local descent problem with fixed point topologies. Combining ideas of the two
 lead to the main find of our project in \ref{sect:main-result}
 
 
+% In addition, for the last point, we made several efforts to ensure our problem is
+% \textsc{PPAD}-complete and combinatorial friendly, by trying to restrict the \textsc{Purify} gate. 
+% We soon realised that any methods that detect the $\bot$ value or try to eliminate ultimately
+% fail. The observation can be based on a continuity argument that Marino created
+% \cite{marino_GeneralTheoryMetastable_1981} and in general any possible extensions or gates we can
+% add seem to adhere continuity. 
+
+
+
 
 \subsubsection{$\scn{nD-StrongSperner}$ Constant Parsimonious Reduction} \label{sect:main-result}
 
@@ -29,7 +38,7 @@ We will demonstrate our reduction for 3 dimensions and then we will generalise.
 
 \begin{theorembox}{3D-StrongSperner to PureCircuit}{thm:strong-pure}
     $$
-    \scn{\#3D-StrongSperner} \subseteq^{19} \scn{\#PureCircuit}
+    \scn{\#3D-StrongSperner} \subseteq^{7} \scn{\#PureCircuit}
     $$
 \end{theorembox}
 
