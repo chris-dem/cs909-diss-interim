@@ -48,9 +48,9 @@ to $(0,\bot),(\bot, 1), (0,1), (1, \bot)$.  We explaind in \ref{par:pure-circ-de
 does not affect the \textsc{PPAD-hardness} of the problem nor any counting arguments.
 
 \begin{proof} 
-    The first step of the proof requires constructing a colouring function $\Lambda: (\{0,1\}^{n+1})^3$ such that:
+    The first step of the proof requires constructing a colouring function $\Lambda: (\mathbb{B}^{n+1})^3$ such that:
 $$
-    \forall (i,j,k) \in (\{0,1\}^{(n+1)})^3: \Lambda(i,j,k) \triangleq 
+\forall (i,j,k) \in (\mathbb{B}^{(n+1)})^3: \Lambda(i,j,k) \triangleq 
 \lambda\left( \left\lfloor  \frac{{i+1}}{2}  \right\rfloor, \left\lfloor  \frac{{j+1}}{2} \right\rfloor, \left\lfloor  \frac{{k+1}}{2} \right\rfloor \right)  \\
 $$
 
@@ -79,7 +79,7 @@ Given that $S$ is the original set of solution, we define the claim \ref{clm:tra
     Given $S_{\text{even}}$ the set of even solutions or more formally:
     $$
         S_{\text{even}} \triangleq
-        \Big\{(i0,j0,k0) \in (\{0,1\}^{(n+1)})^3 \mid (i0,j0,k0) \text{ covers all labels by \ref{def:bipolar-colouring}} \Big\}
+        \Big\{(i0,j0,k0) \in (\mathbb{B}^{(n+1)})^3 \mid (i0,j0,k0) \text{ covers all labels by \ref{def:bipolar-colouring}} \Big\}
     $$
     We claim $|S| = |S_{\text{even}}|$
 \end{claimbox}
@@ -90,11 +90,11 @@ Given that $S$ is the original set of solution, we define the claim \ref{clm:tra
     Using equation \ref{eq:trans-eq}, only one transformation maps all points to even coordinates.
     Additonally, we can observe its neighbourhood set:
     $$
-    N = \Big\{\Lambda(2i + x_1, 2j + x_2, 2k + x_3) \mid x \in \{0,1\}^3 \Big\}
+    N = \Big\{\Lambda(2i + x_1, 2j + x_2, 2k + x_3) \mid x \in \mathbb{B}^3 \Big\}
     $$
     We can observe that WLOG $\Lambda(2i + 1, \cdot, \cdot) = \lambda(i + 1, \cdot, \cdot)$, which implies:
     $$
-    N = \Big\{\lambda(i + x_i, j + x_j, k + x_k) \mid x \in \{0,1\}^3 \Big\}
+    N = \Big\{\lambda(i + x_i, j + x_j, k + x_k) \mid x \in \mathbb{B}^3 \Big\}
     $$
     And therefore the the point is also a solution. Conversely we can use the previous neighbourhood argument to show the opposite
     direction.
@@ -104,7 +104,7 @@ Given the above we provide a main sketch of our tranformation as such:
 \begin{enumerate}
     \item \textbf{Input bits}: We initialize input nodes $s_1, s_2, s_3$
     \item \textbf{Bit generator}: We apply the \textit{Bit Generator gadget} $\hat{P}$ for each $s_i$,
-        to create numbers $u^1, u^2, u^3 \in \{0,1\}^{k}$
+        to create numbers $u^1, u^2, u^3 \in \mathbb{B}^{k}$
     \item \textbf{Circuit application}: We apply circuit $\bar{\Lambda}(u^1, u^2, u^3)$ to create output values $o_1, o_2, o_3$, where 
 $\bar{\Lambda}$ is a 3-bit hazard-free variant of $\Lambda$.
     \item \textbf{Validation}: Copy the results to $s_1, s_2, s_3$

@@ -20,12 +20,12 @@ to demonstrate the difficulty of counting the number of solutions to a problem,
 even they are polynomially verifiable.
 
 \begin{definitionbox}{$\textsc{\#P}$ Complexity Clas \cite{valiant_ComplexityComputingPermanent_1979}}{sharpp-class}
-    $\textbf{\#P}$ is a class of functions $f: \{0,1\}^* \to \mathbb{N}$
+    $\textbf{\#P}$ is a class of functions $f: \mathbb{B}^* \to \mathbb{N}$
     such that: there
     exists a polynomial-time deterministic TM $M$, and
     $p : \mathbb{N} \to \mathbb{N}$ such that $p \in n^{O(1)}$, we have:
     $$
-    f(w) = \Big|\Big\{v \in \{0,1\}^{p(|w|)} \mid M(w, v) =1 \Big\}\Big|
+    f(w) = \Big|\Big\{v \in \mathbb{B}^{p(|w|)} \mid M(w, v) =1 \Big\}\Big|
     $$
 \end{definitionbox}
 
@@ -36,7 +36,7 @@ $\textbf{\#P}$ to define combinatorial interpretations is \cite{ikenmeyer_Positi
 
 \begin{enumerate}
     \item By polynomially bounding words, we avoid cases such as: $f(w) = |\{1, \hdots, f(w)\}|$.
-    \item Current framework allows us to work with $f(\cdot)$, whose direct computation can be computationally hard.
+    \item Work wtih $f(\cdot)$, even if its direct computation is hard.
 \end{enumerate}
 
 
@@ -44,8 +44,6 @@ The current framework was used in several papers such as
 \cite{ikenmeyer_WhatWhatNot_2022} and \cite{ikenmeyer_PositivitySymmetricGroup_2024}
 where they were able to use tools from complexity theory to show that
 many structures do or do not have a combinatorial interpretation.
-For the purposes of the current project, we are focusing on \cite{ikenmeyer_WhatWhatNot_2022},
-and $\textsc{TFNP}$ problems.
 Lastly we introduce the idea of correlating two counting problems with the help of
 \textit{parsimonious reductions} \ref{def:pars-reduction}.
 
@@ -62,13 +60,13 @@ Lastly we introduce the idea of correlating two counting problems with the help 
 Below we are introducing a variant of parimonious reductions that allows
 for one-to-many reductions. 
 \begin{definitionbox}{Poly-Function Bounded Parsimonious Reductions}{func-pars}
-    Given two counting problems $A, B : \{0,1\}* \to \mathbb{N}$
-    and a function $f : {0,1}^{*} \to \mathbb{N}$ such that $f \in n^{O(1)}$, we
+    Given two counting problems $A, B : \mathbb{B}* \to \mathbb{N}$
+    and a function $f : \mathbb{B}^{*} \to \mathbb{N}$ such that $f \in n^{O(1)}$, we
     say that:
     $$
     A \subseteq^f B
     $$
-    If for input $w \in \{0,1\}^*$, if $a$ represent the number of solutions
+    If for input $w \in \mathbb{B}^*$, if $a$ represent the number of solutions
     for problem $A$ and $b$ the number of solutions for problem $B$, we have:
     $$
     a \leq b \leq f(|w|) \cdot a
@@ -84,21 +82,21 @@ We give a brief overview of \textbf{TFNP} and \textbf{PPAD}.
 
 
 \begin{definitionbox}{Search Problems and Total Search Problems}{search-problems}
-    \textbf{Search problems} can be defined as relations $R \subseteq \{0,1\}^* \times \{0,1\}^*$,
-    where given $x \in \{0,1\}^*$, we want to find $y \in \{0,1\}^*$  such that $x Ry$.
+    \textbf{Search problems} can be defined as relations $R \subseteq \mathbb{B}^* \times \mathbb{B}^*$,
+    where given $x \in \mathbb{B}^*$, we want to find $y \in \mathbb{B}^*$  such that $x Ry$.
 
     \textbf{Total Search problems} are search problems such that:
     $$
-    \forall x \in \{0,1\}^*, \exists y \in \{0,1\}^* : xRy
+    \forall x \in \mathbb{B}^*, \exists y \in \mathbb{B}^* : xRy
     $$
 \end{definitionbox}
 
 
 \begin{definitionbox}{$\scn{FNP}$ and $\scn{TFNP}$}{fnp-tfnp}
-    \textbf{FNP} are \textit{search problems} such that there exists poly-time TM $M: \{0,1\}^* \to \{0,1\}$
+    \textbf{FNP} are \textit{search problems} such that there exists poly-time TM $M: \mathbb{B}^* \to \mathbb{B}$
     and a poly function $p : \mathbb{N} \to \mathbb{N}$ such that:
     $$
-    \forall x \in \{0,1\}^*, y \in \{0,1\}^{p(|x|)}: xRy \iff M(x,y) = 1
+    \forall x \in \mathbb{B}^*, y \in \mathbb{B}^{p(|x|)}: xRy \iff M(x,y) = 1
     $$
     Lastly $\textbf{TFNP} = \{L \in \textbf{FNP} \mid L \text{ is total}\}$
 \end{definitionbox}
@@ -120,8 +118,8 @@ which is defined as follows:
 
 \begin{minipage}{0.55\linewidth}
 \begin{definitionbox}{\textit{EndOfLine} problem \cite{papadimitriou_ComplexityParityArgument_1994}}{eol-ppad}
-    Given circuits $S, P \in \{0,1\}^n \to \{0,1\}^n$ such that $S,P \in n^{O(1)}$
-    we define a directed graph $G = (V,E)$, such that $V= \{0,1\}^n$ and $E$ defined as:
+    Given circuits $S, P \in \mathbb{B}^n \to \mathbb{B}^n$ such that $S,P \in n^{O(1)}$
+    we define a directed graph $G = (V,E)$, such that $V= \mathbb{B}^n$ and $E$ defined as:
     $$
     E = \{(x,y) \in V^2: S(x) = y \wedge P(y) = x\}
     $$
@@ -184,8 +182,8 @@ such that for all nodes we have:
 
     \item \textit{Purify}: 
        \begin{gather*}
-           \forall b \in \{0,1\}: \mathbf{x}[u] = b \implies \mathbf{x}[v] = b \wedge \mathbf{x}[w] =  b\\
-           \mathbf{x}[u] = \bot \implies \{\mathbf{x}[v] \cup \mathbf{x}[w] \} \cap \{0,1\} \neq \emptyset
+           \forall b \in \mathbb{B}: \mathbf{x}[u] = b \implies \mathbf{x}[v] = b \wedge \mathbf{x}[w] =  b\\
+           \mathbf{x}[u] = \bot \implies \{\mathbf{x}[v] \cup \mathbf{x}[w] \} \cap \mathbb{B}\neq \emptyset
         \end{gather*}
 \end{enumerate}
 \end{definitionbox}
@@ -249,9 +247,9 @@ confusion.
 
 \begin{definitionbox}{\textsc{SourceOrExcess} problem}{source-or-excess}
     We define as $\textit{SourceOrExcess}(k,1)$ for $k \in \mathbb{N}_{\geq 2}$
-    the search problem as such: Given a poly-sized successor circuit $S : \{0,1\}^n$
+    the search problem as such: Given a poly-sized successor circuit $S : \mathbb{B}^n$
     and a set of predecssor poly-sized circuits $\{P_i\}_{i \in [k]}$, we define
-    the graph $G = (V,E)$ such that, $V = \{0,1\}^n$ and $E$ as:
+    the graph $G = (V,E)$ such that, $V = \mathbb{B}^n$ and $E$ as:
     $$
     \forall x, y \in V: (x,y) \in E \iff (S(x) = y) \wedge \bigvee_{i \in [k]} P_i(y) = x
     $$
@@ -310,10 +308,10 @@ For the sake of clarity, we will stick to $\textsc{StrongSperner}$.
 
 \begin{definitionbox}{$\scn{nD-StrongSperner}$ problem}{nd-strong-sperner}
     \textbf{Input}: A tuple $(\lambda,0^k)$ of a $\scn{StrongSperner}$ instance but for only $n$ dimensions, such that
-    $\lambda : (\{0,1\}^k)^n \to \{-1, +1\}^n$.\\
-    \textbf{Output}: A point $\alpha = (a_1, \hdots, a_n) \in A^n$, where $A=\{0,1\}^k \setminus \{1^k\}$ such that:
+    $\lambda : (\mathbb{B}^k)^n \to \{-1, +1\}^n$.\\
+    \textbf{Output}: A point $\alpha = (a_1, \hdots, a_n) \in A^n$, where $A=\mathbb{B}^k \setminus \{1^k\}$ such that:
     $$
-    \{\alpha + x \mid x \in \{0,1\}^n\} \text{ cover all the labels \ref{def:bipolar-colouring}}
+    \{\alpha + x \mid x \in \mathbb{B}^n\} \text{ cover all the labels \ref{def:bipolar-colouring}}
     $$
     We use $A$ to avoid edge cases. We assume dimensionality $n \geq 2$.
 \end{definitionbox}
@@ -335,9 +333,9 @@ and demonstrate the counting complexity of \textsc{PureCircuit}.
 
 \begin{definitionbox}{\textsc{SourceOrExcess} problem}{source-or-excess}
     We define as $\textit{SourceOrExcess}(k,1)$ for $k \in \mathbb{N}_{\geq 2}$
-    the search problem as such: Given a poly-sized successor circuit $S : \{0,1\}^n$
+    the search problem as such: Given a poly-sized successor circuit $S : \mathbb{B}^n$
     and a set of predecssor poly-sized circuits $\{P_i\}_{i \in [k]}$, we define
-    the graph $G = (V,E)$ such that, $V = \{0,1\}^n$ and $E$ as:
+    the graph $G = (V,E)$ such that, $V = \mathbb{B}^n$ and $E$ as:
     $$
     \forall x, y \in V: (x,y) \in E \iff (S(x) = y) \wedge \bigvee_{i \in [k]} P_i(y) = x
     $$
