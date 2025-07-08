@@ -1,53 +1,31 @@
 \subsection{Theory Crafting Next steps}
 
-Our next steps will focus mainly on two directions. One is lowering the bound as we declare in our conjecture with the
-usage of snake embeddings. We believe that each dimension can be parsimoniously reduced with another. This implies
-that, if we can show that $\forall n \in \mathbb{N}_{\geq 3}: \textsc{\#nD-StrongSperner} \subseteq \textsc{\#2D-StrongSperner}$
-we get to prove our conjecture.
-
-
-With regards to, our second direction, we want to emphasize on the hardness of \textsc{PureCircuit}.
-Or more specifically we will investigate as to if any of the following statements hold true.
-
-\begin{gather*}
-    \exists n, \alpha \in \mathbb{N}_{\geq 2}:
-    \textsc{\#SourceOrExcess}(\alpha,1) - 1  \subseteq \textsc{\#nD-StrongSperner} -1 \\
-    \exists n \in \mathbb{N}_{\geq 2}: \textsc{\#SourceOrExcess}(n,1) - 1 \subseteq \textsc{\#PureCircuit} -1 \\
-\end{gather*}
-
-We believe the above two should be our next steps in order to get close to the main question of our project.
-Ideally generalising, the above reductions to the infinity hierarchy of
-$\textsc{\#SourceOrExcess}(\cdot,1)$ would be ideal as it may lead to finding an overall upper bound
-towards the entire $\textsc{\#PPAD} -1$ class.
+For the remaining duration, we will focus on three main objectives:
+One will be to demonstrate that, the \textit{bipolar} colouring
+of \textsc{nD-StrongSperner} will keep the reduction parsimonious.
+Second, will be to demonstrate hardness over \textsc{\#P} class either by findning
+reductions from the \textsc{SourceOrExcess} problem.
+And lastly, we will be to generalise our reduction to all $\#PPAD$ problems.
 
 
 \subsection{Software Next Steps}
 
-In the next steps we aim to complete the tasks that were mentioned in the above table,
-as well as finding a solution or even better finding all possible solutions. Of
-course due to the nature of the problem, finding a single or all solutions for big instances
-is computationally difficult. We aim to investigate a method introduced by Eichelberger, where
-he utilised repeated applications of the circuit to detect oscillations and replace them with
-$\bot$ values. The usage of that procedure was to detect hazard but aim to utilise that procedure
-as a heuristical approach to reach a satisfying assignment. We do not primarily aim
-to fully optimise these algorithms, as the project focuses more on analysing the theoretical findings
-of \textsc{PureCircuit}.
+In the next steps we aim to complete the rest of the milestones. 
+We believe that the usage of methods by Eichelberger et al. \cite{eichelberger_HazardDetectionCombinational_1965}
+and or polynomial algorithm for specific cases by \cite{deligkas_PureCircuitTightInapproximability_2024}
+will allow us to identify solutions. With regards to counting, we can only hope
+to count solutions for small instances.
 
 
-Alternatively, one can use some facts of \textsc{PureCircuit} showed by Deligkas et al.
-\cite{deligkas_PureCircuitTightInapproximability_2024}, were under specific 
-gate sets, one can find a \textsc{PureCircuit} instance in polynomial time.
-Additionally we were able to find instances or variants of \textsc{PureCircuit}
-that are much easier. Conditions like acyclicity make our problem much easier to deal with
-or permutation free circuit, make the problem easier to solve.
-But just because a solution can be easy to find, does not imply that finding the total number of solutions
-is easy, as \cite{valiant_ComplexityComputingPermanent_1979} indicated, or from a more direct
-example by \cite{arora_ComputationalComplexityModern_2009}, where
-$$
-\textsc{HamiltonianCycle} \leq_P \textsc{\#Cycle}
-$$
+\subsection{Timetable}
 
+The figure \ref{fig:gantt-new} depicts how the remaining project will progress with regards
+to the milestones we aim to achieve. Overall we modified our timeline to prioritise
+theory crafting and therefore we hope this adjusted timeline will capture accurately the remaining duration
+of the project.
 
-
-
+\begin{figure}
+    \includegraphics[width=0.5\textwidth]{assets/gantt_new.png}
+    \caption{Updated gantt chart}\label{fig:gantt-new}
+\end{figure}
 

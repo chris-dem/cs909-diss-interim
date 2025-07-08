@@ -39,7 +39,7 @@
   boxed title style={colback=white, boxrule=0pt},
 }{def}
 
-\newtcbtheorem[auto counter, number within=section]{theorembox}{theorem}{
+\newtcbtheorem[auto counter, number within=section]{theorembox}{Theorem}{
   colback=gray!5!white,
   colframe=black!60,
   coltitle=black,
@@ -91,9 +91,26 @@
   boxed title style={colback=white, boxrule=0pt},
 }{prop}
 
+\newtcbtheorem[auto counter, number within=section]{corollarybox}{Corollary}{
+  colback=gray!5!white,
+  colframe=black!60,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.3mm,
+  arc=1mm,
+  left=1mm,
+  right=1mm,
+  top=1mm,
+  bottom=1mm,
+  enhanced,
+  sharp corners=south,
+  attach boxed title to top left={xshift=0.5cm, yshift=-2mm},
+  boxed title style={colback=white, boxrule=0pt},
+}{cor}
 
 
-\newtcbtheorem[auto counter, number within=theorem]{lemmabox}{Lemma}{
+
+\newtcbtheorem[auto counter, number within=section]{lemmabox}{Lemma}{
   colback=gray!5!white,
   colframe=black!60,
   coltitle=black,
@@ -167,8 +184,8 @@ u2018918@live.warwick.ac.uk, u2018918}}
 \section{Next Steps}
 \input{sections/next_steps}
 
-\section{Appraisals}
-\input{sections/appraisals.tex}
+% \section{Appraisals}
+% \input{sections/appraisals.tex}
 
 \section{Project Management} 
 \input{sections/management.tex}

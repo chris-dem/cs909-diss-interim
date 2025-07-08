@@ -4,29 +4,22 @@
 
 To avoid ambiguity, we introduce the following notation conventions used throughout the paper.
 For any $n \in \mathbb{N}$, we write $[n] \triangleq \{1, \ldots, n\}$  and $[n]_0 \triangleq [n] \cup \{0\}$. 
-When using the notation $\bar{n}$, we refer to the unary representation of the number $n$; the plain symbol $n$
-denotes the binary representation by default.
-Given sets $A$ and $B$, we denote by $A^B \triangleq \{ f \mid f : A \to B \}$
-the set of all functions from $B$ to $A$.
-We define the Boolean domain as $\mathbb{B} \triangleq \{0, 1\}$,
-the natural numbers as $\mathbb{N} \triangleq \mathbb{Z}_{\geq 1}$,
-and the non-negative integers as $\mathbb{N}_0 \triangleq \mathbb{Z}_{\geq 0}$.
+We define the Boolean domain as $\mathbb{B} \triangleq \{0, 1\}$ and
+three value domain $\mathbb{T} \triangleq \{0, 1, \bot\}$.
 
 
 \subsection{Background overview}
-As mentioned in the introduction, the current project works as an interaction
-of three different fields: 1. counting complexity and combinatorial interpretation, 
-2. total search problems and PPAD and 3. Kleene logic.
 
 
 \subsubsection{Counting Complexity and Combinatorial Interpretations}
-As we previously mentioned, we say that an object or a structure $f$
-has a combinatorial interpretation if $f \in \textbf{\#P}$. $\textbf{\#P}$
-is a complexity class created by Valiant \cite{valiant_ComplexityComputingPermanent_1979},
-to define a formal combinatorial framework in complexity theory.
 
+Counting complexity looks into complexity of counting solutions using notions
+such as $\textbf{\#P}$.
+$\textbf{\#P}$ was created by \cite{valiant_ComplexityComputingPermanent_1979},
+to demonstrate the difficulty of counting the number of solutions to a problem,
+even they are polynomially verifiable.
 
-\begin{definitionbox}{$\textsc{\#P}$ Complexity Class}{sharpp-class}
+\begin{definitionbox}{$\textsc{\#P}$ Complexity Clas \cite{valiant_ComplexityComputingPermanent_1979}}{sharpp-class}
     $\textbf{\#P}$ is a class of functions $f: \{0,1\}^* \to \mathbb{N}$
     such that: there
     exists a polynomial-time deterministic TM $M$, and
@@ -36,19 +29,14 @@ to define a formal combinatorial framework in complexity theory.
     $$
 \end{definitionbox}
 
-$\textbf{\#P}$ was initially created by \cite{valiant_ComplexityComputingPermanent_1979},
-to demonstrate, that even if we have a problem $L \in P$, $\#L$ can be computationally
-hard to compute, by providing an example of computing the permanent of
-a 01-matrix, with number of perfect matchings. 
 
 As we can see, $\textbf{\#P}$ allows us to define a set of objects,
-whose cardinality equals $f(w)$. Core reasoning for choosing
-$\textbf{\#P}$ to define combinatorial objects is mainly for the 
-following two reasons \cite{ikenmeyer_PositivitySymmetricGroup_2024}: 
+whose cardinality equals $f(w)$. The reason for choosing
+$\textbf{\#P}$ to define combinatorial interpretations is \cite{ikenmeyer_PositivitySymmetricGroup_2024}: 
 
 \begin{enumerate}
-    \item By polynomially bounding words, we avoid cases such as: $f(w) = \{1, \hdots, f(w)\}$
-    \item Current framework allows us to work with $f(\cdot)$, whose direct computation can be computationally hard
+    \item By polynomially bounding words, we avoid cases such as: $f(w) = |\{1, \hdots, f(w)\}|$.
+    \item Current framework allows us to work with $f(\cdot)$, whose direct computation can be computationally hard.
 \end{enumerate}
 
 
@@ -57,17 +45,13 @@ The current framework was used in several papers such as
 where they were able to use tools from complexity theory to show that
 many structures do or do not have a combinatorial interpretation.
 For the purposes of the current project, we are focusing on \cite{ikenmeyer_WhatWhatNot_2022},
-where they demonstrated how several $\textsc{TFNP}$ problems, 
-change in complexity as we ignore one of its solutions.
-
-
-Any class of problems in complexity theory utilises the notion of reduction
-to indicate the similarity between problems. For counting complexity
-this is referred to as \textit{parsimonious reductions} \ref{def:pars-reduction}.
+and $\textsc{TFNP}$ problems.
+Lastly we introduce the idea of correlating two counting problems with the help of
+\textit{parsimonious reductions} \ref{def:pars-reduction}.
 
 
 \begin{definitionbox}{Parsimonious reductions}{pars-reduction}
-    Let $R, R'$ be search problems and let $M$ be a Karp reduction of
+    Let $R, R'$ be search problems and let $f$ be a reduction of
     $S_R = \{x \mid R(x) \neq \emptyset \}$ to $S_{R'} = \{x \mid R'(x) \neq \emptyset \}$.
     We say $f$ is \textbf{parsimonious} if:
     $$
@@ -75,8 +59,29 @@ this is referred to as \textit{parsimonious reductions} \ref{def:pars-reduction}
     $$ 
 \end{definitionbox}
 
+Below we are introducing a variant of parimonious reductions that allows
+for one-to-many reductions. 
+\begin{definitionbox}{Poly-Function Bounded Parsimonious Reductions}{func-pars}
+    Given two counting problems $A, B : \{0,1\}* \to \mathbb{N}$
+    and a function $f : {0,1}^{*} \to \mathbb{N}$ such that $f \in n^{O(1)}$, we
+    say that:
+    $$
+    A \subseteq^f B
+    $$
+    If for input $w \in \{0,1\}^*$, if $a$ represent the number of solutions
+    for problem $A$ and $b$ the number of solutions for problem $B$, we have:
+    $$
+    a \leq b \leq f(|w|) \cdot a
+    $$
+    If $\forall x : f(x) = c$ for $c \in \mathbb{N}$ then we will just say 
+    $$
+    A \subseteq^c B
+    $$
+\end{definitionbox}
+
 \subsubsection{Total Search Problems and PPAD}
-When talking about search problems, we are using the following definition:
+We give a brief overview of \textbf{TFNP} and \textbf{PPAD}.
+
 
 \begin{definitionbox}{Search Problems and Total Search Problems}{search-problems}
     \textbf{Search problems} can be defined as relations $R \subseteq \{0,1\}^* \times \{0,1\}^*$,
@@ -88,7 +93,6 @@ When talking about search problems, we are using the following definition:
     $$
 \end{definitionbox}
 
-Using the above, we can define the following complexity classes
 
 \begin{definitionbox}{$\scn{FNP}$ and $\scn{TFNP}$}{fnp-tfnp}
     \textbf{FNP} are \textit{search problems} such that there exists poly-time TM $M: \{0,1\}^* \to \{0,1\}$
@@ -99,20 +103,19 @@ Using the above, we can define the following complexity classes
     Lastly $\textbf{TFNP} = \{L \in \textbf{FNP} \mid L \text{ is total}\}$
 \end{definitionbox}
 
+%
+% \begin{definitionbox}{Levin Reductions}{levin-red}
+%     Given a pair of search problems $R_A, R_B$, a pair of
+%     computable time functions $(f,g)$ is called a Levin reduction from $R_A \to R_B$
+%     \begin{gather*}
+%         S_R \triangleq \{x \mid \exists y : xRy  \}\\
+%         R(x) \triangleq \{y \mid x Ry \} \\
+%         \forall x \in S_{R_A}, y_b \in R(f(x)):  (x , g(x, y_b)) \in R_A
+%     \end{gather*}
+% \end{definitionbox}
 
-\begin{definitionbox}{Levin Reductions}{levin-red}
-    Given a pair of search problems $R_A, R_B$, a pair of
-    computable time functions $(f,g)$ is called a Levin reduction from $R_A \to R_B$
-    \begin{gather*}
-        S_R \triangleq \{x \mid \exists y : xRy  \}\\
-        R(x) \triangleq \{y \mid x Ry \} \\
-        \forall x \in S_{R_A}, y_b \in R(f(x)):  (x , g(x, y_b)) \in R_A
-    \end{gather*}
-\end{definitionbox}
 
-
-Levin reductions are the equivalent of \textit{Kerp reductions} for search
-problems. Our current work focuses on a specific subclass of $\textbf{TFNP}$ problems
+Our current work focuses on a specific subclass of $\textbf{TFNP}$ problems
 which is defined as follows:
 
 \begin{definitionbox}{\textit{EndOfLine} problem \cite{papadimitriou_ComplexityParityArgument_1994}}{eol-ppad}
@@ -137,30 +140,27 @@ which is defined as follows:
 \end{figure}
 
 
-An illustrative example of an instance can be seen in the figure \ref{fig:eol-subgraphs}. A solution
-to such problem instances are all the directed leafs and to ensure that a solution always
-exists, we ensure that the $0^n$. Using the \textsc{EndOfLine} problem, we define the
+An illustrative example of an instance can be seen in the figure \ref{fig:eol-subgraphs}. 
+Using the \textsc{EndOfLine} problem, we define the
 \textsc{PPAD} complexity class \ref{def:ppad-complexity-class}
 
 
 \begin{definitionbox}{\textsc{PPAD} complexity class \cite{papadimitriou_ComplexityParityArgument_1994}}{ppad-complexity-class}
     \textsc{PPAD} is defined as the set of search problems that
-    are \textit{Levin reducible} \ref{def:levin-red} to the \scn{EndOfLine} problem \ref{def:eol-ppad}.
+    are reducible to the \scn{EndOfLine} problem \ref{def:eol-ppad}.
 \end{definitionbox}
 
 \textbf{PPAD} has been created by Papadimitriou \cite{papadimitriou_ComplexityParityArgument_1994}
 to demonstrate a subset of problems in \textbf{NP} that are guaranteed to have
 a solution but can be very difficult to find. In the next section
-we will introduce the core set of \textsc{PPAD} problems that we are working with.
+we will introduce the relevant of \textsc{PPAD} problems.
 
 \paragraph{The PureCircuit problem}
+\label{par:pure-circ-def}
 
-Below we will introduce the
-\textsc{PureCircuit}, which was create initially by
-Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024}
+The  \textsc{PureCircuit} was created by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024}
 to demonstrate the hardness of approximating \textsc{PPAD} problems.
-This problem uses a kleene-logic based circuit construction with the help
-of continuity of arguments, they demonstrated \textsc{PPAD-completeness}.
+it uses kleene-logic based circuits and with continuity of arguments, they demonstrated \textsc{PPAD-completeness}.
 
 \begin{definitionbox}{\textsc{PureCiruit} Problem Definition \cite{deligkas_PureCircuitTightInapproximability_2024}}{purecircuit-def}
 An instance of \textit{PureCircuit} is given by vertex set $V= [n]$ and gate set $G$ such that
@@ -192,9 +192,43 @@ such that for all nodes we have:
 The definition of \textsc{PureCircuit} that we will be using for the standard set of gates
 $\{\wedge, \vee, \neg\}$, is based Kleene's three-valued strong logic of indeterminancy
 which extends the traditional $\mathbb{B}$ logic \cite{kleene_IntroductionMetamathematics_2009}.
-In addition to that, we will make use of the \textit{Copy} gate but adding the robustness
-constraint such that if $(\textit{Copy},u,v) \in G \implies x[u] = x[v]$.
+Their behaviour can be described in the tables shown in \ref{tab:three-val-logic}
+In addition to that, we will make use of the \textit{Copy} gate which we can define as $\textit{Copy}(x) = \neg (\neg x)$.
 This allows our circuits to be robust and easier to work with.
+
+\begin{table}[h!]
+    \centering
+    \subfloat[\texttt{not} gate]{
+    \begin{tabular}{c|c}
+\texttt{not} & \textbf{} \\
+\hline
+0 & 1 \\
+$\bot$ & $\bot$ \\
+1 & 0 \\
+\end{tabular}
+}
+\subfloat[\texttt{and} gate]{
+\begin{tabular}{c|ccc}
+\texttt{and} & 0 & $\bot$ & 1 \\
+\hline
+0    & 0 & 0 & 0 \\
+$\bot$ & 0 & $\bot$ & $\bot$ \\
+1    & 0 & $\bot$ & 1 \\
+\end{tabular}
+} \quad
+\subfloat[\texttt{or} gate]{
+\begin{tabular}{c|ccc}
+\texttt{or} & 0 & $\bot$ & 1 \\
+\hline
+0    & 0     & $\bot$ & 1 \\
+$\bot$ & $\bot$  & $\bot$ & 1 \\
+1    & 1 & 1 & 1 \\
+\end{tabular}
+}
+
+    \caption{Three-valued logic \cite{kleene_IntroductionMetamathematics_2009}}\label{tab:three-val-logic}
+\end{table}
+
 
 
 
@@ -202,10 +236,11 @@ For the \textit{Purify} gate,
 Deligkas et al. showed that the only solutions that are essential for \textit{Purify}
 are $\{(0,\bot), (\bot,1), (0,1)\}$ with the help of continuity arguments \cite{deligkas_PureCircuitTightInapproximability_2024}.
 Adding more solutions does not change the complexity as he showed in the original variant of the problem.
-We acknowledge that the solution set will be different than the original one but
-we can easily observe that  $\textsc{\#PureCircuit-simplified} \subseteq \textsc{\#PureCircuit}$,
-and therefore any proposition or argument of the sort: $\textsc{\#A} \subseteq \textsc{\#PureCircuit-simplified}$
-still holds true. For the purposes of the report, any solution change will be made explicit
+We acknowledge that the solution set will be different from the original one but,
+one can observe that  $\textsc{\#PureCircuit-simplified} \subseteq \textsc{\#PureCircuit}$,
+and therefore any proposition or argument of the sort:
+$\textsc{\#A} \subseteq \textsc{\#PureCircuit-simplified} \implies \textsc{\#A} \subseteq \textsc{\#PureCircuit}$.
+For the purposes of the report, any solution change will be made explicit
 and we will refer to all such simplified variants as $\textsc{\#PureCircuit}$ to avoid
 confusion. 
 
@@ -292,63 +327,121 @@ with \textit{linear} colouring. The authors of these papers
 use these problems indifferently when talking about the reductions
 and therefore we can assume that either colouring will create a correct reduction.
 
-\paragraph{Other PPAD problems}
+\paragraph{Other PPAD problems} 
+
+We will define several problems in \textsc{PPAD} that are related with our project
+and demonstrate the counting complexity of \textsc{PureCircuit}.
+
+\begin{definitionbox}{\textsc{SourceOrExcess} problem}{source-or-excess}
+    We define as $\textit{SourceOrExcess}(k,1)$ for $k \in \mathbb{N}_{\geq 2}$
+    the search problem as such: Given a poly-sized successor circuit $S : \{0,1\}^n$
+    and a set of predecssor poly-sized circuits $\{P_i\}_{i \in [k]}$, we define
+    the graph $G = (V,E)$ such that, $V = \{0,1\}^n$ and $E$ as:
+    $$
+    \forall x, y \in V: (x,y) \in E \iff (S(x) = y) \wedge \bigvee_{i \in [k]} P_i(y) = x
+    $$
+    We ensure that $0^n$ is as sink, meaning $\text{deg}(0^n) = (0,1)$.
+    A valid solution is a vertex $v$ such that $\textit{in-deg}(v) \neq \textit{out-deg}(v)$
+\end{definitionbox}
+
+Lastly we will introduce \textsc{Tarski} \ref{def:tarski-ppad}, which is a problem in $\textsc{PLS} \cap \textsc{PPAD}$
+where $\textsc{PLS}$ is a class of problems based on the idea of local search \cite{johnson_HowEasyLocal_1988}
+and uses the Knaster-Tarski fixed point theorem \ref{thm:knaster-tarski}. We will use this problem in later
+sections to connect Kleene algebra with \textsc{PPAD}.
 
 
+\begin{definitionbox}{Monotone functions}{mono-func}
+    Given two posets $(L_1, \preceq_{L_1})$ and $(L_2, \preceq_{L_2})$, a function
+    $f: L_1 \to L_2$ is \textbf{monotone} if and only if:
+    $$
+    \forall x,y \in L_1: x \preceq_{L_1} y \implies f(x) \preceq_{L_2} f(y)
+    $$
+\end{definitionbox}
+    
 
+\begin{theorembox}{Knaster Tarski Fixed point theorem\cite{bronislaw_TheoremeFunctionsDensembles_1928, fearnley_FasterAlgorithmFinding_2022}}{knaster-tarski}
+    Given a lattice $(L, \wedge, \vee)$ and a \textit{monotone} $f: L \to L$ \ref{def:mono-func}
+    $$
+    \exists c \in L: f(c) = c
+    $$
+\end{theorembox}
 
+Using the Tarski theorem, Fearnley et al. \cite{fearnley_FasterAlgorithmFinding_2022}
+created a \textsc{TFNP} variant of the problem which finds fixed points or 
+identifies points that break the monotone argument. We will be using Tarski 
+with Kleene logic to connect the two.
+% \begin{definitionbox}{$\scn{Tarski}$ problem definition \cite{fearnley_FasterAlgorithmFinding_2022}}{tarski-ppad}
+%     Given a lattice $(L, \wedge, \vee)$, and a \textit{monotone} function $f : L \to L$ 
+%     we define solutions to the problem as:
+%     \begin{enumerate}
+%         \item Find $x \in L: f(x) = x$
+%         \item Find $x,y \in L$ such that $x \preceq y$ and $f(x) \not\preceq f(y)$
+%     \end{enumerate}
+%     We assume that $f$ is described by circuit.
+% \end{definitionbox}
+%
+\paragraph{Counting complexity of PPAD}
 
-\pargraph{Counting complexity of PPAD}
+The current project looks on the counting complexity of such problems as despite two problems
+being \textsc{PPAD-complete}, Ikenmeyer et al. \cite{pak_WhatCombinatorialInterpretation_2022} has showed examples where
+their counting difficulty can differ vastly as it can be seen in the figure \ref{fig:ppad-count-hier}.
 
-These problems have found
-connections with various other problems such as Nash Equilbria,
-Fixed point theorems or Sperner Lemmas. The current project looks
-on the counting complexity of such problems as despite two problems
-being PPAD-complete, Ikenmeyer et al. \cite{pak_WhatCombinatorialInterpretation_2022} has showed several examples where
-their counting difficulty can differ vastly. Examples of such statements
-can be summarised as:
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{assets/chart-plot.png}
+    \caption{Hierarchy graph between \textsc{\#PPAD} problems. Figure from \cite{ikenmeyer_WhatWhatNot_2022}}\label{fig:ppad-count-hier}
+\end{figure}
 
-\begin{gather*}
-    \textbf{\#PPAD}(\textsc{SourceOrSink})-1/2  = \textbf{\#P}\\
-    \textbf{\#P}^A \not\subseteq \textbf{\#PPAD}(\textsc{SourceOrExcess(2,1)})^A-1
-\end{gather*} 
-
-
-Currently we are mainly focused into the study of a certain 
-$\textbf{PPAD}\textit{-complete}$ problem, known as $\textsc{PureCircuit}$
 
 \subsubsection{Kleene Logic and Hazard-Free Circuits}
 
-Kleene logic, is the type of system that extends the traditional %% Please triple check it just in case you get nuked for this
-binary system to: $\mathbb{T} = \{0, \bot,1 \}$. 
-Study of such systems has an impact to both
-the development of robust systems and from a theoritical point of view,
-people developed systems such as \textit{Alternative Turing mahcines}, as well as
-showing important correlations between the complexity of monotone circuits
-and the robustness of hazard free circuits. 
+Kleene logic uses the boolean system with an additional \textit{unstable} value \cite{kleene_IntroductionMetamathematics_2009}. 
+Study of Kleene logic aided in
+the development of robust physical systems \cite{friedrichs_MetastabilityContainingCircuits_2018}, as well as
+giving definitions to \textit{Alternative Turing mahcines} \cite{kozen_TheoryComputation_2006}, and
+showing correlations complexity of monotone circuits sizes
+\cite{eichelberger_HazardDetectionCombinational_1965, ikenmeyer_ComplexityHazardfreeCircuits_2019,ikenmeyer_KarchmerWigdersonGamesHazardfree_2022,  bund_SmallHazardFreeTransducers_2025}. 
 
-We want to introduce the following concepts:
+Our current report will focus on specific concepts with Kleene logic as \textsc{PureCircuit} instances
+use the underlying logic directly. Below we introduce important concepts \cite{mukaidono_BternaryLogicFunction_1972}.
 
-\begin{definition}[Kleene Resolutions]
+\begin{definitionbox}{Kleene value ordering \cite{mukaidono_BternaryLogicFunction_1972}}{kleene-order}
+    The instability ordering for $\leq^u$ is defined as: $\bot \leq^u 0,1$. The $n$-dimensional
+    extension of the ordering is:
+    $$
+    \forall x,y \in \mathbb{T}^n: x \leq^u y \implies \forall j \in [n]: (x_j \in \mathbb{B} \implies x_i = y_i)
+    $$
+\end{definitionbox}
+
+
+\begin{definitionbox}{Kleene Resolutions \cite{mukaidono_BternaryLogicFunction_1972, ikenmeyer_ComplexityHazardfreeCircuits_2019}}{kleene-res}
     Given $x \in \mathbb{T}^n$, we define the \textit{resolutions} of $x$, using the following notation:
     $$
-    \scn{Res}(x) \triangleq \big\{ y \in \mathbb{B}^n \mid \forall j \in [n]: x_i \in \mathbb{B} \implies x_i = y_i \big\}
+    \scn{Res}(x) \triangleq \big\{ y \in \mathbb{B}^n \mid x \leq^u y  \big\}
     $$
-\end{definition}
+\end{definitionbox}
 
-\begin{definition}[Hazard circuit]
+Detecting hazards is a concept that is analysed heavily when talking about Kleene logic.
+The idea is ensuring robustness of our circuits, meaning if all resolutions of $x \in \mathbb{T}^n$
+give the same value, then we should expect circuit to behave the same way \ref{def:hf-def}.
+An example of hazard values can be seen in the figure \ref{fig:hazard-example}.
+
+\begin{definitionbox}{Hazard \cite{ikenmeyer_ComplexityHazardfreeCircuits_2019, eichelberger_HazardDetectionCombinational_1965}}{hf-def}
     A \textit{circuit} $C$, on $n$ inputs has \textbf{hazard} at $x \in \mathbb{T}^n \iff C(x) = \bot$
-    and $\exists b \in \mathbb{B}, \forall r \in \scn{Res}(x): C(r) = b$
-\end{definition}
+    and $\exists b \in \mathbb{B}, \forall r \in \scn{Res}(x): C(r) = b$. If such value does not exists
+    then we say that $C$ is hazard-free.
+\end{definitionbox}
 
-
-\begin{definition}[Natural function]
-    A function $F: \mathbb{T}^n \to \mathbb{T}$ can be computed by stable values and is monotone with respect to $\preceq$
-\end{definition}
+\begin{figure}[h!]
+    \centering
+    \subfloat[Multiplexer with hazard at $(1,1,\bot)$]{\includegraphics[width=0.3\textwidth]{assets/hazard_circuit.png}}
+    \subfloat[Hazard free multiplexer]{\includegraphics[width=0.3\textwidth]{assets/hazard-free-circuit.png}}
+    \caption{Hazard circuit and hazard-free circuit. Figure by \cite{ikenmeyer_ComplexityHazardfreeCircuits_2019}}\label{fig:hazard-example}
+\end{figure}
 
 \begin{definition}[K-bit Hazard]
     For $k \in \mathbb{N}$ at $x \in \mathbb{T}^n \iff C$  has a \textit{hazard} at $x$ and $\bot$ appears at most $k$ times in $x$
 \end{definition}
-
-
-
+%
+%
+%
