@@ -5,41 +5,32 @@ the notion of counting objects with certain properties. Over time, this notion
 has shifted, especially in the subfield of algebraic combinatorics, where
 there is no clear notion of the object that we are counting,
 and the numbers express something more abstract \cite{pak_WhatCombinatorialInterpretation_2022}.
-This gave a need to be able to assign a combinatorial interpretation to such numbers, or
-more simply, do these numbers correspond to some counting over a set of objects.
-Being able to find such definitions or interpretations can be very important,
-it allows us to utilise tools from combinatorics as well as allow us to understand
-and reveal hidden structures and properties for such numbers \cite{pak_WhatCombinatorialInterpretation_2022}. 
-Moreover, there are several problems or numbers such as \textit{Kronecker coefficients},
+This gave a need to be able to assign a combinatorial interpretation to such numbers.
+Being able to find such definitions or interpretations can be very important
+as it allows us to utilise tools from combinatorics and allow us to understand
+and reveal hidden structures and properties \cite{pak_WhatCombinatorialInterpretation_2022}. 
+Moreover, there are several problems or numbers such as \textit{Kronecker coefficients} \cite{makar_AnalysisKroneckerProduct_1949},
 whose combinatorial interpretation, would give a step towards the resolution of the $\textit{P} \neq \textit{NP}$
-conjecture \cite{ikenmeyer_WhatWhatNot_2022}.
+conjecture \cite{ikenmeyer_WhatWhatNot_2022, ikenmeyer_VanishingKroneckerCoefficients_2017}.
 
 
-To reiterate the previous statement, we can understand combinatorial interpretation as
-the process of: given a sequence of numbers $\{a_x\}$,
-find a set of combinatorial objects $A_x$ such that $|A_x| = a_x$
-To formalise the current idea, Igor Pak et al. has concluded that
-$f \in \textit{\#P}$, implies that $f$ has a combinatorial interpretation
-\cite{pak_WhatCombinatorialInterpretation_2022, ikenmeyer_WhatWhatNot_2022}.
-We will explore this idea in much greater detail in the upcoming section,
-but the main benefit is the ability to use a very expressive but formal language
-that encapsulates this notion of a combinatorial interpretation.
-
-
+% To formalise that idea, Pak et al. has argued that if a function $f$
+% belongs to $\textit{\#P}$, it implies that $f$ has a combinatorial interpretation
+% \cite{pak_WhatCombinatorialInterpretation_2022, ikenmeyer_WhatWhatNot_2022}. We invest
 In our current work, we focus on extending the work done by
 Ikenmeyer et al., where they focused on the creation of frameworks
-that determine whether $f \in^? \textbf{\#P}$, by looking
-at the complexity class of $\textbf{\#}\textit{TFNP -1}$.
-This is a class of problems that are guaranteed to have a solution
-and their solutions are verifiable in polynomial time.
-In their paper, they were able to show that for a subclass of
-problems, also known as $\textit{PPAD} \subseteq \textit{TFNP}$,
-different $\textit{PPAD-complete}$ problems, may or may not have a combinatorial
-interpretation. Our contribution, comes to the analysis of a specific
-problem, known as $\text{PureCircuit}$, which utilises
-Kleene logic, to find satisfying assignments in sequential circuits.
-We hope to demonstrate that such problem could help us bound, the
-counting complexity limits of $\textbf{\#}\text{PureCircuit} -1$.
+that determines whether $f \in^? \textbf{\#P}$, by looking
+at the subclasses of $\textsc{\#TFNP}$ problems.
+In our work we focus specifically on the $\textsc{PPAD}$ class of problems, under the lens of $\text{PureCircuit}$,
+which utilises sequential Kleene-based circuits, to find satisfying assignments.
+We hope to uncover many insights of the $\textsc{\#PureCircuit} -1$ problem 
+as well as the limits of $\textsc{\#PPAD} -1$.
+
+% In their paper, they were able to show that for a subclass of
+% problems, also known as $\textit{PPAD} \subseteq \textit{TFNP}$,
+% different $\textit{PPAD-complete}$ problems, may or may not have a combinatorial
+% interpretation.
+
 
 \subsection{Project objectives}
 
@@ -72,21 +63,16 @@ the current ones as well as general reflections.
 
 \subsection{Research Question}
 
-Our main objectives lead to the following conjecture:
+Our main objectives revolve around the conjecture in \ref{conj:ppad-1-hardness}, where
+we investigate the boundaries of $\scn{\#PPAD}-1$ with the help of the \textsc{PureCircuit} problem.
 \begin{conjecturebox}{$\scn{\#PPAD}-1$ hardness}{ppad-1-hardness}
-    We conjecture that proposition that every language in $\scn{\#PPAD}-1$
-    can be parsimoniously reduced up to some polynomial factor to  $\scn{\#PureCircuit} -1$.
-    We express that idea more formally as such:
+    Every lanaguage in \scn{PPAD} can be parsimoniously reduced up to some polynomial factor, to the
+    pure circuit problem,  or more formally:
     $$
-    \forall L \in \textsc{PPAD}, \exists f \in n^{O(1)}: 
-    \#L -1 \subseteq^f \scn{\#PureCircuit} -1
+    \forall L \in \scn{PPAD}, \exists f \in n^{O(1)}: 
+    \#L \subseteq^f \scn{\#PureCircuit}
     $$
 \end{conjecturebox}
-
-The conjecture \ref{conj:ppad-1-hardness} captures the essence of our work. Being
-able to finding such relations will allow us to understand in greater depth the complexities
-behind $\scn{\#TFNP} - 1$ class.
-
 
 %
 % Below we will present our main list of findings up to this point:
