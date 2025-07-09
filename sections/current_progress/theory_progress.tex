@@ -3,14 +3,15 @@ We have experimented with various approaches
 such as investigating easier variants of \textsc{PureCircuit} to find reductions
 to the \textsc{EndOfLine}. Moreover, we looked into modifying the \textsc{Purify} gate
 or finding a variant where we have more control over the $\bot$ value. We soon
-realised that under Marino et al. \cite{marino_GeneralTheoryMetastable_1981} continuity
-arguments, such variants are not guaranteed to exist.
+realised that such variants may not exist, supported by evidence by Marino's continuity 
+arguments \cite{marino_GeneralTheoryMetastable_1981}.
 Our core breakthrough was realised when experimenting with
-Hazard-Free circuits  and \textit{UniqueEndOfPotentialLine}) problems. Specifically,
+Hazard-Free circuits and \textit{UniqueEndOfPotentialLine} problems. Specifically,
 we looked at a problem by Fearnley et al. \cite{fearnley_UniqueEndPotential_2020} where
-they introduced a variant Brouwer problems known as \textsc{OPDC}, which is a 
-local descent problem with fixed point topologies. Combining ideas of the two 
-lead to the main find of our project in \ref{sect:main-result}.
+they introduced next variant Brouwer problems known as \textsc{OPDC}, which is a 
+local descent problem with fixed point topologies. Extending these ideas
+to problems such as \textsc{2D-StrongSperner} and \textsc{3D-StrongSperner},
+which have beenn studied extensively, lead to the main find of our project in \ref{sect:main-result}.
 
 
 % In addition, for the last point, we made several efforts to ensure our problem is
@@ -34,7 +35,7 @@ done by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024},
 under the condition of unbounded dimensionality and polynomial width and without any parsimonious bounds.
 We offer a polynomial parimonious reduction \ref{def:func-pars}
 for every $\scn{nD-StrongSperner}$ problem to  $\scn{PureCircuit}$.
-We will subsequently demonstrate our reduction for 3 dimensions and then we will generalise.
+We will first demonstrate our reduction for 3 dimensions and then we will generalise.
 
 \begin{theorembox}{3D-StrongSperner to PureCircuit}{thm:strong-pure}
     $$
@@ -80,7 +81,7 @@ Given that $S$ is the original set of solutions as described in \ref{def:nd-stro
 
 \begin{claimbox}{Transformation claim}{trans-main}
     \label{clm:main-proof:trans-claim}
-    Given $S_{\text{even}}$ the set of even solutions or more formally:
+    Given $S_{\text{even}}$ the set of even solutions of the transformed space or more formally:
     $$
         S_{\text{even}} \triangleq
         \Big\{(i0,j0,k0) \in (\mathbb{B}^{(m+1)})^3 \mid (i0,j0,k0) \text{ covers all labels by \ref{def:bipolar-colouring}} \Big\}
@@ -92,7 +93,7 @@ Given that $S$ is the original set of solutions as described in \ref{def:nd-stro
     We argue that we can bijectively map between $S \leftrightarrow S_{\text{even}}$.
     To show the left to right direction, assume $(i,j,k) \in S$.
     Using equation \ref{eq:trans-eq}, only the point $(2\bar{i}, 2\bar{j}, 2\bar{k}) = (i0, j0,k0)$ will be mapped to all even coordinates.
-    Additonally, we can observe its neighbourhood set:
+    Additionally, we can observe its neighbourhood set:
     $$
     N = \Big\{\Lambda(2\bar{i} + x_1, 2\bar{j} + x_2, 2\bar{k} + x_3) \mid x \in \mathbb{B}^3 \Big\}
     $$
@@ -139,7 +140,8 @@ We create the gadget described in the figure \ref{fig:main-proof:purification}.
 \end{figure}
 \FloatBarrier
 
-Given that construction we make the following lemma
+The core idea is to exploit our solution set such that we are able to force only the Least Significant Bit to 
+be $\bot$. We prove this using the lemma \ref{lem:bit-gen}.
 
 \begin{lemmabox}{Bit Generator Lemma}{bit-gen}
     The following hold true in our construction:
