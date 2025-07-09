@@ -8,9 +8,9 @@ arguments, such variants are not trivial to find.
 Our core breakthrough, came when experimenting with
 Hazard-Free circuits  and \textsc{EOPL} problems. Specifically,
 we looked at a problem by Fearnley et al. \cite{fearnley_UniqueEndPotential_2020} where
-they introduced a variant brouwer problems known as \textsc{OPDC}, which is a 
+they introduced a variant Brouwer problems known as \textsc{OPDC}, which is a 
 local descent problem with fixed point topologies. Combining ideas of the two 
-lead to the main find of our project in \ref{sect:main-result}
+lead to the main find of our project in \ref{sect:main-result}.
 
 
 % In addition, for the last point, we made several efforts to ensure our problem is
@@ -32,7 +32,7 @@ lead to the main find of our project in \ref{sect:main-result}
 The reduction from \textsc{StrongSperner} to \textsc{PureCircuit} was first
 done by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024},
 but with unbounded dimensionality and polynomial width and without any parsimonious bounds.
-Our contribution parsimoniounsly constant reduces \ref{def:func-pars}
+Our contribution parsimoniously constant reduces \ref{def:func-pars}
 every $\scn{nD-StrongSperner}$ problem to  $\scn{PureCircuit}$. 
 We will demonstrate our reduction for 3 dimensions and then we will generalise.
 
@@ -44,7 +44,7 @@ We will demonstrate our reduction for 3 dimensions and then we will generalise.
 
 When referring to the fact that $x$ is a solution, we imply the definition described in  \ref{def:nd-strong-sperner}.
 Additionally we will restrict the solution set of the \textit{Purify} gate of \textsc{PureCircuit}
-to $(0,\bot),(\bot, 1), (0,1), (1, \bot)$.  We explaind in \ref{par:pure-circ-def} why this
+to $(0,\bot),(\bot, 1), (0,1), (1, \bot)$.  We explained in \ref{par:pure-circ-def} why this
 does not affect the \textsc{PPAD-hardness} of the problem nor any counting arguments.
 
 \begin{proof} 
@@ -188,11 +188,11 @@ we extract a specific edge or face of the cube.
 
 
 \begin{lemmabox}{Correctness lemma}{corr-lem}
-    A valid assingment $x$ of the current instace, corresponds to a point in $S_{\text{even}}$
+    A valid assignment $x$ of the current instance, corresponds to a point in $S_{\text{even}}$
 \end{lemmabox}
 
 \begin{proof}
-    It suffices to show that a valid assingment only occurs when $o_1 = o_2 = o_3 = \bot$. Assume
+    It suffices to show that a valid assignment only occurs when $o_1 = o_2 = o_3 = \bot$. Assume
     $\exists i \in \{1,2,3\}$ such that label $i$ is not covered, meaning $o_i \neq \bot$.
     WLOG assume that $o_i = 0$. Our verification stage, will copy $0$ onto $s_i$. By lemma \ref{lem:bit-gen}, $u^{(i)} = 0^n$. From the boundary
     conditions of our circuits and the k-bit hazard-freeness construction,
@@ -327,7 +327,7 @@ We define the following subclass of \textsc{Tarski} \ref{def:tarski-ppad}:
 \end{proposition}
 
 \begin{proof}
-Given an input circuit $C$, consturct $\textsc{PureCircuit}$ instance:
+Given an input circuit $C$, construct $\textsc{PureCircuit}$ instance:
 \begin{enumerate}
     \item Initiate a vector of nodes $s$
     \item Apply $C(x)$ and store result on output vector $o$.

@@ -1,10 +1,10 @@
 To manage our software we are using \textit{Rust},
 as the main language of development, due to its high expressibility and low level management.
-We utilise methods such as Test-Driven-Developmen with the help of \texttt{Proptest},
+We utilise methods such as Test-Driven-Development with the help of \texttt{Proptest},
 for property testing and kanban boards to accurately track our progress as seen
 in the figure \ref{fig:management:tooling}. Lastly we are making use of 
-\textit{Bevy} which is a game engine that use the Entitiy-Component-System
-for render interactinos between entities as seen in \ref{fig:soft:ecs-workflow}.
+\textit{Bevy} which is a game engine that use the Entity-Component-System
+for render interactions between entities as seen in \ref{fig:soft:ecs-workflow}.
 
 
 \begin{figure}[h!]
@@ -62,14 +62,14 @@ finding connections until we can connect all the necessary pieces to do the jump
         Low    & Medium & Software not identifying a correct solution & Usage of TDD techniques and property testing to ensure correctness.  Comparison with hand-made instances & Not yet      \\ \hline
         High   & High   & Inability to extend the reductions of the PureCircuit problem to SourceOrExcess & Find a path of parsimonious reductions between the two problems. If we cannot ensure a one-to-one relation between the solutions, we will focus on $1-c$ for some $c \in \mathbb{N}$  & $\checkmark$ \\ \hline
         Medium & High   & Inability to prove the main conjecture & We can make some heuristical arguments or find reductions between other problems. We argue that if we are able to unravel enough correlations, we will hope to at least bridge the problems. Develop useful gadgets one can use with PureCircuit & Not yet     \\ \hline
-        High   & High   & Incorrect proofs or reductions. & Analyse the problem under different constraints. Apply the duck method, where attempt to explain the solution to a person which not necesserily an expert. Validate proof with supervisor & Not yet  \\ \hline
+        High   & High   & Incorrect proofs or reductions. & Analyse the problem under different constraints. Apply the duck method, where attempt to explain the solution to a person which not necessarily an expert. Validate proof with supervisor & Not yet  \\ \hline
         High   & Medium & Develop combinatorial friendly variants of \textsc{PureCircuit} & Apply robustness on the gate set of \textsc{PureCircuit}. Develop new gates or variants are easier to work with.  & $\checkmark$  \\ \hline
-        \caption{Risk managment table.} \label{tab:management:risk-management}
+        \caption{Risk management table.} \label{tab:management:risk-management}
 \end{xltabular}
 
 
 From our table, it is worth expanding on some of the points. The best method
 we found when tackling this problem is when we try to uncover reductions between other
-PPAD problems or when trying to incorporate gadgets from Kleene theory. We hope
-that by expereminting enough we will be able to get close to resolve our conjectures.
+\textsc{PPAD} problems or when trying to incorporate gadgets from Kleene theory. We hope
+that by experimenting enough we will be able to get close to resolve our conjectures.
 

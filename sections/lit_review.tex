@@ -217,7 +217,7 @@ $\bot$ & $\bot$  & $\bot$ & 1 \\
 \begin{definitionbox}{\textsc{SourceOrExcess} problem \cite{ikenmeyer_WhatWhatNot_2022}}{source-or-excess}
     We define as $\textit{SourceOrExcess}(k,1)$ for $k \in \mathbb{N}_{\geq 2}$
     the search problem as such: Given a poly-sized successor circuit $S : \mathbb{B}^n$
-    and a set of predecssor poly-sized circuits $\{P_i\}_{i \in [k]}$, we define
+    and a set of predecessor poly-sized circuits $\{P_i\}_{i \in [k]}$, we define
     the graph $G = (V,E)$ such that, $V = \mathbb{B}^n$ and $E$ as:
     $$
     \forall x, y \in V: (x,y) \in E \iff (S(x) = y) \wedge \bigvee_{i \in [k]} P_i(y) = x
@@ -269,15 +269,15 @@ it suffices for $|A|$ to be at most $d$ for covering condition to hold.
     \end{itemize}
     \textbf{Output}: A set of points $\{x^{(i)}\}_{i \in [N]} \subseteq [M]^{N}$, such that:
     \begin{itemize}
-        \item \textit{Closessness condition}: $\forall i,j \in [N]: \|x^{(i)} - x^{(j)}\|_{\infty} \leq 1$
+        \item \textit{Closeness condition}: $\forall i,j \in [N]: \|x^{(i)} - x^{(j)}\|_{\infty} \leq 1$
         \item \textit{Covers all labels} as defined in \ref{def:bipolar-colouring}
     \end{itemize}
 \end{definitionbox}
 
-The above is a generalised variant of the tradtional Sperner problem to
+The above is a generalised variant of the traditional Sperner problem to
 a grid of dimensions $N$ with width of $M$. 
 Throughout literature the same variants of the problem or specifications
-have been defined using the names sperner or discrete brouwer \cite{chen_SettlingComplexityComputing_2009, chen_Complexity2DDiscrete_2009, daskalakis_ComplexityComputingNash_2006, deligkas_PureCircuitTightInapproximability_2024}.
+have been defined using the names Sperner or discrete Brouwer \cite{chen_SettlingComplexityComputing_2009, chen_Complexity2DDiscrete_2009, daskalakis_ComplexityComputingNash_2006, deligkas_PureCircuitTightInapproximability_2024}.
 For the sake of clarity, we will stick to $\textsc{StrongSperner}$.
 
 \begin{definitionbox}{$\scn{nD-StrongSperner}$ problem}{nd-strong-sperner}
@@ -296,7 +296,7 @@ We mainly use this to show counting arguments with respect to the
 \textsc{EndOfLine} as people have indicated a parsimonious reductions
 between $\textsc{2D-StrongSperner}$ 
 and $\textsc{3D-StrongSperner}$ to the \textsc{EndOfLine} problem but 
-with \textit{linear} colouring. The authors of these papers use the colorings interchangeably when discussing their reductions,
+with \textit{linear} colouring. The authors of these papers use the colourings interchangeably when discussing their reductions,
 so we can assume that all reductions (not necessarily counting reductions) work the similarly for either colouring
 \cite{chen_SettlingComplexityComputing_2009, deligkas_PureCircuitTightInapproximability_2024}.
 
@@ -309,7 +309,7 @@ and demonstrate the counting complexity of \textsc{PureCircuit}.
 \begin{definitionbox}{\textsc{SourceOrExcess} problem}{source-or-excess}
     We define as $\textit{SourceOrExcess}(k,1)$ for $k \in \mathbb{N}_{\geq 2}$
     the search problem as such: Given a poly-sized successor circuit $S : \mathbb{B}^n$
-    and a set of predecssor poly-sized circuits $\{P_i\}_{i \in [k]}$, we define
+    and a set of predecessor poly-sized circuits $\{P_i\}_{i \in [k]}$, we define
     the graph $G = (V,E)$ such that, $V = \mathbb{B}^n$ and $E$ as:
     $$
     \forall x, y \in V: (x,y) \in E \iff (S(x) = y) \wedge \bigvee_{i \in [k]} P_i(y) = x
@@ -370,7 +370,7 @@ We base the seperation between easy and hard problems using the two aforemention
 Kleene logic uses the boolean system with an additional \textit{unstable} value \cite{kleene_IntroductionMetamathematics_2009}. 
 Study of Kleene logic aided in
 the development of robust physical systems \cite{friedrichs_MetastabilityContainingCircuits_2018}, as well as
-defining frameworks like \textit{Alternative Turing mahcines} \cite{kozen_TheoryComputation_2006}, and
+defining frameworks like \textit{Alternative Turing machines} \cite{kozen_TheoryComputation_2006}, and
 aiding in the development of lower bounds for monotone circuits
 \cite{eichelberger_HazardDetectionCombinational_1965, ikenmeyer_ComplexityHazardfreeCircuits_2019,ikenmeyer_KarchmerWigdersonGamesHazardfree_2022,  bund_SmallHazardFreeTransducers_2025}. 
 Our current report will focus on specific concepts with Kleene logic as \textsc{PureCircuit} instances
