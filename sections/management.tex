@@ -1,8 +1,8 @@
 To manage our software we are using \textit{Rust},
 as the main language of development, due to its high expressibility and low level management.
-We utilise methods such as Test-Driven-Development with the help of \texttt{Proptest},
+We utilise methods such as Test-Driven-Development with the help of \texttt{Proptest}
 for property testing and kanban boards to accurately track our progress as seen
-in the figure \ref{fig:management:tooling}. Lastly we are making use of 
+in figure \ref{fig:soft:ecs-workflow}. Lastly we are making use of 
 \textit{Bevy} which is a game engine that use the Entity-Component-System
 for render interactions between entities as seen in \ref{fig:soft:ecs-workflow}.
 
@@ -12,13 +12,14 @@ for render interactions between entities as seen in \ref{fig:soft:ecs-workflow}.
     \includegraphics[width=0.2\linewidth]{assets/ECS-visualisatoin.png}
     \includegraphics[width=0.2\textwidth]{assets/research-visualisation.png}
     \includegraphics[width=0.2\textwidth]{assets/kanban-board.png}
-    \caption{ECS workflow visualisation}
+    \caption{ECS workflow visualisation. Entities which exist in a world state are equipped with components.
+    Systems query entities with specific components and modify the world state.}
     \label{fig:soft:ecs-workflow}
 \end{figure}
 
-With regards to the our research management, we revolved our work around obsidian. As we can see in the figure \ref{fig:theory:obsidian-usages}, 
-\texttt{Obsidian} beyond its traditional usage of note taking, it comes
-with several handy tools such as note organisation and mind-mapping.
+With regards to the our research management, we revolved our work around obsidian.
+As we can observe in the figure \ref{fig:theory:obsidian-usages}, 
+\texttt{Obsidian} beyond its traditional usage of note taking, entails several handy tools such as note organisation and mind-mapping.
 
 
 
@@ -45,14 +46,11 @@ with several handy tools such as note organisation and mind-mapping.
 \subsection{Risk Management}
 
 With regards to risks and mitigations, the biggest risk we face
-is the inability to resolve our main question. Due to the
-limited literature surrounding \textsc{PureCircuit} and its
-counting nature as well as the recency in the development of
-$\textsc{TFNP} -1$, our question could go into many directions.
-The discovery of our reduction allowed us to step closer to our question
-and in our table \ref{tab:management:risk-management}, we will analyze this is greater depth.
-The general mitigation strategy we can do is to keep researching, keep
-finding connections until we can connect all the necessary pieces to do the jump.
+is the inability to resolve our main question.
+The discovery of our reduction allowed us to step closer to our question. 
+Our table \ref{tab:management:risk-management} expand on the risks
+of the project as well as their mitigation tasks.
+
 
 \begin{xltabular}{0.95\linewidth}{|Z{1.2cm}|Z{1.75cm}|Y|Y|Z{1.2cm}|}
         \hline
@@ -67,9 +65,9 @@ finding connections until we can connect all the necessary pieces to do the jump
         \caption{Risk management table.} \label{tab:management:risk-management}
 \end{xltabular}
 
-
-From our table, it is worth expanding on some of the points. The best method
-we found when tackling this problem is when we try to uncover reductions between other
-\textsc{PPAD} problems or when trying to incorporate gadgets from Kleene theory. We hope
-that by experimenting enough we will be able to get close to resolve our conjectures.
-
+%
+% From our table, it is worth expanding on some of the points. The best method
+% we found when tackling this problem is when we try to uncover reductions between other
+% \textsc{PPAD} problems or when trying to incorporate gadgets from Kleene theory. We hope
+% that by experimenting enough we will be able to get close to resolve our conjectures.
+%

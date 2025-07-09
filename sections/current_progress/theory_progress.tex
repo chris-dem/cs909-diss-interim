@@ -1,12 +1,12 @@
-In the current section we will be focusing on progress made.
-We experimented with various approach
+This section focuses on the theory progress we made.
+We have experimented with various approaches
 such as investigating easier variants of \textsc{PureCircuit} to find reductions
-to the \textsc{EndOfLine}. Moreover, we looked into using the \textsc{Purify} gate
-or a variant where we have more control over the $\bot$ value but we
+to the \textsc{EndOfLine}. Moreover, we looked into modifying the \textsc{Purify} gate
+or finding a variant where we have more control over the $\bot$ value. We soon
 realised that under Marino et al. \cite{marino_GeneralTheoryMetastable_1981} continuity
-arguments, such variants are not trivial to find.
-Our core breakthrough, came when experimenting with
-Hazard-Free circuits  and \textsc{EOPL} problems. Specifically,
+arguments, such variants are not guaranteed to exist.
+Our core breakthrough was realised when experimenting with
+Hazard-Free circuits  and \textit{UniqueEndOfPotentialLine}) problems. Specifically,
 we looked at a problem by Fearnley et al. \cite{fearnley_UniqueEndPotential_2020} where
 they introduced a variant Brouwer problems known as \textsc{OPDC}, which is a 
 local descent problem with fixed point topologies. Combining ideas of the two 
@@ -31,10 +31,10 @@ lead to the main find of our project in \ref{sect:main-result}.
 % 2 dimensions by reducing the problem to a 2D planar graph variant of \textsc{EndOfLine}.
 The reduction from \textsc{StrongSperner} to \textsc{PureCircuit} was first
 done by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024},
-but with unbounded dimensionality and polynomial width and without any parsimonious bounds.
-Our contribution parsimoniously constant reduces \ref{def:func-pars}
-every $\scn{nD-StrongSperner}$ problem to  $\scn{PureCircuit}$. 
-We will demonstrate our reduction for 3 dimensions and then we will generalise.
+under the condition of unbounded dimensionality and polynomial width and without any parsimonious bounds.
+We offer a polynomial parimonious reduction \ref{def:func-pars}
+for every $\scn{nD-StrongSperner}$ problem to  $\scn{PureCircuit}$.
+We will subsequently demonstrate our reduction for 3 dimensions and then we will generalise.
 
 \begin{theorembox}{3D-StrongSperner to PureCircuit}{thm:strong-pure}
     $$
@@ -44,42 +44,42 @@ We will demonstrate our reduction for 3 dimensions and then we will generalise.
 
 When referring to the fact that $x$ is a solution, we imply the definition described in  \ref{def:nd-strong-sperner}.
 Additionally we will restrict the solution set of the \textit{Purify} gate of \textsc{PureCircuit}
-to $(0,\bot),(\bot, 1), (0,1), (1, \bot)$.  We explained in \ref{par:pure-circ-def} why this
+to $(0,\bot),(\bot, 1), (0,1), (1, \bot)$. \ref{par:pure-circ-def} explains that this
 does not affect the \textsc{PPAD-hardness} of the problem nor any counting arguments.
+Lastly $\forall b \in \mathbb{B}^n, \bar{b}$ will denote the decimal representation of $b$.
 
 \begin{proof} 
-    The first step of the proof requires constructing a colouring function $\Lambda: (\mathbb{B}^{n+1})^3$ such that:
+    Given input $(\lambda, 0^m)$, we first construct a colouring function $\Lambda: (\mathbb{B}^{(m+1)})^3$ such that:
 $$
-\forall (i,j,k) \in (\mathbb{B}^{(n+1)})^3: \Lambda(i,j,k) \triangleq 
-\lambda\left( \left\lfloor  \frac{{i+1}}{2}  \right\rfloor, \left\lfloor  \frac{{j+1}}{2} \right\rfloor, \left\lfloor  \frac{{k+1}}{2} \right\rfloor \right)  \\
+\forall (i,j,k) \in (\mathbb{B}^{(m+1)})^3: \Lambda(i,j,k) \triangleq 
+\lambda\left( \left\lfloor  \frac{{\bar{i}+1}}{2}  \right\rfloor, \left\lfloor  \frac{{\bar{j}+1}}{2} \right\rfloor, \left\lfloor  \frac{{\bar{k}+1}}{2} \right\rfloor \right)  \\
 $$
 
 Conversely we can say that we map from our original domain to our new domain as such
 
 \begin{equation}
     \label{eq:trans-eq}
-\forall  x \in \{ 0,1 \}^{3n}, i \subseteq \{ 0,1,2 \}: \lambda(x_{-i}, x_{i}) \to \Lambda(2x_{i}, 2x_{-i} -1)
+    \forall  x \in (\mathbb{B}^{m})^3: \lambda(x) \to \{\Lambda[(\max\{2\bar{x_i} - b_i, 0\})_{i \in [3]}] \mid b \in \mathbb{B}^{3}\}
 \end{equation}
-
 The transformation can be visualised in the figure \ref{fig:main-proof:set_mapping}.
 The reasoning for doubling the dimensions will be explained in the later sections.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\textwidth]{assets/1751381227.png}
-\caption{Transformation of solutions. In the original cube we have as solutions $(0, i,j)$ and $(1, i,j)$. In our new mapping, these solutions correspond to
-$(0, i,j), (2,i,j)$}
+\caption{Transformation of solutions. In the original cube assume we have solutions $(0, i,j)$ and $(1, i,j)$ for some $i,j$. In our new mapping, these solutions correspond to
+$(0, i,j), (2,i,j)$.}
     \label{fig:main-proof:set_mapping}
 \end{figure}
 
-Given that $S$ is the original set of solution, we define the claim \ref{clm:trans-main}.
+Given that $S$ is the original set of solutions as described in \ref{def:nd-strong-sperner}, we define the claim \ref{clm:trans-main}.
 
 \begin{claimbox}{Transformation claim}{trans-main}
     \label{clm:main-proof:trans-claim}
     Given $S_{\text{even}}$ the set of even solutions or more formally:
     $$
         S_{\text{even}} \triangleq
-        \Big\{(i0,j0,k0) \in (\mathbb{B}^{(n+1)})^3 \mid (i0,j0,k0) \text{ covers all labels by \ref{def:bipolar-colouring}} \Big\}
+        \Big\{(i0,j0,k0) \in (\mathbb{B}^{(m+1)})^3 \mid (i0,j0,k0) \text{ covers all labels by \ref{def:bipolar-colouring}} \Big\}
     $$
     We claim $|S| = |S_{\text{even}}|$
 \end{claimbox}
@@ -87,24 +87,24 @@ Given that $S$ is the original set of solution, we define the claim \ref{clm:tra
 \begin{proof}
     We argue that we can bijectively map between $S \leftrightarrow S_{\text{even}}$.
     To show the left to right direction, assume $(i,j,k) \in S$.
-    Using equation \ref{eq:trans-eq}, only the points $(2i, 2j, 2k) = (i0, j0,k0)$ will be mapped to all even coordinates.
+    Using equation \ref{eq:trans-eq}, only the point $(2\bar{i}, 2\bar{j}, 2\bar{k}) = (i0, j0,k0)$ will be mapped to all even coordinates.
     Additonally, we can observe its neighbourhood set:
     $$
-    N = \Big\{\Lambda(2i + x_1, 2j + x_2, 2k + x_3) \mid x \in \mathbb{B}^3 \Big\}
+    N = \Big\{\Lambda(2\bar{i} + x_1, 2\bar{j} + x_2, 2\bar{k} + x_3) \mid x \in \mathbb{B}^3 \Big\}
     $$
     We can observe that WLOG $\Lambda(2i + 1, \cdot, \cdot) = \lambda(i + 1, \cdot, \cdot)$, which implies:
     $$
-    N = \Big\{\lambda(i + x_i, j + x_j, k + x_k) \mid x \in \mathbb{B}^3 \Big\}
+    N = \Big\{\lambda(\bar{i} + x_i, \bar{j} + x_j, \bar{k} + x_k) \mid x \in \mathbb{B}^3 \Big\}
     $$
-    And therefore the point $(i0, j0,k0)$ is also a solution. Conversely we can use the previous neighbourhood argument to show the opposite
-    direction.
+    And therefore the point $(i0, j0,k0)$ is also a solution. We can use the previous neighbourhood argument to prove the converse direction.
 \end{proof}
-We will redefine $n + 1$ as $n$ to keep the notation consistent.
+We will redefine $m + 1$ as $n$ to keep the notation consistent.
 Given the above we provide a main sketch of our tranformation as such:
 \begin{enumerate}
     \item \textbf{Input bits}: We initialize input nodes $s_1, s_2, s_3$
     \item \textbf{Bit generator}: We apply the \textit{Bit Generator gadget} $\hat{P}$ for each $s_i$,
-        to create numbers $u^1, u^2, u^3 \in \mathbb{B}^{k}$
+        to create numbers $u^1, u^2, u^3 \in \mathbb{B}^{n}$.  We will use notation $\mathbf{x}[u^i]$ to
+        describe the assingment of all nodes in $u^i$.
     \item \textbf{Circuit application}: We apply circuit $\bar{\Lambda}(u^1, u^2, u^3)$ to create output values $o_1, o_2, o_3$, where 
 $\bar{\Lambda}$ is a 3-bit hazard-free variant of $\Lambda$.
     \item \textbf{Validation}: Copy the results to $s_1, s_2, s_3$
@@ -129,7 +129,7 @@ We create the gadget described in the figure \ref{fig:main-proof:purification}.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\textwidth, clip]{assets/purification_generator.png}
-    \caption{Bit generator gadget which is defined as a linear stack of $P$ gates.} 
+    \caption{Bit generator gadget which is defined as a linear stack of $P$ gates. The red nodes denote the output of the construction.} 
     \label{fig:main-proof:purification}
 \end{figure}
 \FloatBarrier
@@ -140,16 +140,16 @@ Given that construction we make the following lemma
     \label{lem:bit-gen}
     The following hold true in our construction:
     \begin{enumerate}
-        \item if $s_i = b \implies u^i = b^n$, given $b \in \mathbb{B}$
-        \item if $s_i = \bot \implies \forall j \in [n-1]: u^i_j \in \mathbb{B}$ and $u^i_{n} \in \{1, \bot\}$
+        \item if $\mathbf{x}[s_i] = b \implies \mathbf{x}[u^i] = b^n$, given $b \in \mathbb{B}$
+        \item if $\mathbf{x}[s_i] = \bot \implies \forall j \in [n-1]: \mathbf{x}[u^i_j] \in \mathbb{B}$ and $\mathbf{x}[u^i_{n}] \in \{1, \bot\}$
     \end{enumerate}
     The above translates to: if we have $\bot$ in our number, it can only be found in the LSB.
 \end{lemma}
 
 \begin{proof}
-    The first part follows trivially from the defintion of the \scn{Purify} gate.
+    The first part follows trivially from the defintion of the \textit{Purify} gate.
     To prove the second part of lemma, WLOG we choose $u^i$ out of the three outputs and
-    assume $\exists j \in [n-1]: [u^i]_j = \bot$. It implies  that one of the purify gates had an output of $(\bot, 1)$.
+    assume $\exists j \in [n-1]: \mathbf{x}[u^i_j] = \bot$. It implies  that one of the purify gates had an output of $(\bot, 1)$.
     But due to our $\textsc{OR}$ gate, the input would be $1$ which implies the output is $1,1$, which leads to a contradiction.
 \end{proof}
 
@@ -157,48 +157,51 @@ Given that construction we make the following lemma
 \paragraph{Circuit Application}
 
 In the current phase, we apply a polynomial transformation to $\Lambda$ to be 3-bit hazard-free using the construction
-by Ikenmeyer et al. \cite{ikenmeyer_ComplexityHazardfreeCircuits_2019} \textit{Corollary 10} or 
-by \cite{bund_SmallHazardFreeTransducers_2025} \textit{Corollary 1.9}.
+by \textit{Corollary 1.10} \cite{ikenmeyer_ComplexityHazardfreeCircuits_2019} or 
+by \textit{Corollary 1.9} \cite{bund_SmallHazardFreeTransducers_2025}.
 By lemma \ref{lem:bit-gen}, we can have at most 3 $\bot$ values 
 in our input. Using that property we create the lemma below:
 
 \begin{lemmabox}{Circuit Application Lemma}{circuit}
-    Given $o_1 = o_2 = o_3 = \bot$ it implies $u^1, u^2, u^3$ correspond to a solution $(i0,j0,k0) \in S_\text{even}$
+    Given assignment $\mathbf{x}$ where $\mathbf{x}[o_1] = \mathbf{x}[o_2] = \mathbf{x}[o_3] = \bot$, it implies assingments of
+    $\mathbf{x}[u^1], \mathbf{x}[u^2], \mathbf{x}[u^3]$
+    correspond to a solution $(i0,j0,k0) \in S_\text{even}$
 \end{lemmabox}
 
 
 \begin{proof}
-    First we argue that if $i\bot, j\bot, k\bot = u^1, u^2, u^3$, then
-    its its resolutions can represent hypercubes as shown in figure \ref{fig:main-proof:cube-vis}.
+    First we argue that if $i\bot, j\bot, k\bot = \mathbf{x}[u^1],\mathbf{x}[u^2], \mathbf{x}[u^3]$, then
+    its resolutions can represent hypercubes as shown in figure \ref{fig:main-proof:cube-vis}.
     \begin{figure}[h!]
         \centering
         \includegraphics[width=0.2\textwidth]{assets/3d-cube.png}
-        \caption{Resolutions of $i\bot, j\bot, k\bot$}\label{fig:main-proof:cube-vis}
+        \caption{Resolutions of $i\bot, j\bot, k\bot$. We say the coordinate with the smallest $\|\cdot\|$ anchors the cube}\label{fig:main-proof:cube-vis}
     \end{figure}
 
     If $(i0, j0, k0)$ is a solution that implies:
     $$
-    \forall i \in \{1,2,3\}, b \in \{-1, 1\} \exists c \in \textsc{Res}(i\bot, j\bot, k\bot): [\bar{\Lambda}(c)]_i = b
+    \forall i \in \{1,2,3\}, \exists c,c' \in \textsc{Res}(i\bot, j\bot, k\bot): [\bar{\Lambda}(c)]_i = +1 \wedge [\bar{\Lambda}(c')]_i = -1
     $$
-    Since $\bar{\Lambda}$ is 3-bit hazard free, if all outputs are $\bot$, we satisfy the colouring criteria.
+    Since $\bar{\Lambda}$ is 3-bit hazard free, if all outputs are $\bot$, we satisfy the colouring criteria \ref{def:bipolar-colouring}.
 \end{proof}
-The above proof also demonstrates why the domain transformation we did in our first step is needed as we only
-capture cubes with even smallest corners.  We can observe by fixing the LSB of the input to some value,
+This also highlights the necessity of the initial domain transformation: 
+it guarantees that all cube-aligned solutions are anchored at the $(i0, j0,k0)$ coordinates.
+We can observe by fixing the LSB of the input to some value,
 we extract a specific edge or face of the cube.
 
 
 \begin{lemmabox}{Correctness lemma}{corr-lem}
-    A valid assignment $x$ of the current instance, corresponds to a point in $S_{\text{even}}$
+    A valid assignment $\mathbf{x}$ of the current instance, corresponds to a point in $S_{\text{even}}$
 \end{lemmabox}
 
 \begin{proof}
-    It suffices to show that a valid assignment only occurs when $o_1 = o_2 = o_3 = \bot$. Assume
-    $\exists i \in \{1,2,3\}$ such that label $i$ is not covered, meaning $o_i \neq \bot$.
-    WLOG assume that $o_i = 0$. Our verification stage, will copy $0$ onto $s_i$. By lemma \ref{lem:bit-gen}, $u^{(i)} = 0^n$. From the boundary
+    It suffices to show that a valid assignment only occurs when $\mathbf{x}[o_1] = \mathbf{x}[o_2] = \mathbf{x}[o_3] = \bot$. Assume
+    $\exists i \in \{1,2,3\}$ such that label $i$ is not covered, meaning $\mathbf{x}[o_i] \neq \bot$.
+    WLOG assume that $\mathbf{x}[o_i] = 0$. Our verification stage, will copy $0$ onto $s_i$. By lemma \ref{lem:bit-gen}, $\mathbf{x}[u^{(i)}] = 0^n$. From the boundary
     conditions of our circuits and the k-bit hazard-freeness construction,
     we know that $\Lambda(*, 0^n, *) = \{*, 1,  *\}$. But that implies
-    $o_i = 1$ which leads to a contradiction. We can make a similar argument to when $o_i = 1$.
-    Therefore, by \ref{lem:circuit}, if $o_1 = o_2 = o_3\bot$, we have a found a panchromatic
+    $\mathbf{x}[o_i] = 1$ which leads to a contradiction. We can make a similar argument to when $\mathbf{x}[o_i] = 1$.
+    Therefore, by \ref{lem:circuit}, if $\mathbf{x}[o_1] = \mathbf{x}[o_2] = \mathbf{x}[o_3]\bot$, we have a found a panchromatic
     solution of $S_\text{even}$.
 \end{proof}
 
@@ -219,14 +222,14 @@ under \textbf{linear} colouring \cite{chen_Complexity2DDiscrete_2009, daskalakis
 work has to been done in order to determine whether this still holds for bipolar colouring.
 
 
-The reduction described above can work with any dimensionality.
-and we know $\forall n \in \mathbb{N}_{\geq 2}$, Chen et al. showed that
-$\textsc{nD-StrongSperner}$ is still \textit{PPAD-Hard} in \cite{chen_SettlingComplexityComputing_2009}.
+The reduction described above can work with any dimensionality
+and $\forall n \in \mathbb{N}_{\geq 2}$, Chen et al. \cite{chen_SettlingComplexityComputing_2009} showed that
+$\textsc{nD-StrongSperner}$ is still \textit{PPAD-Hard}.
 Therefore the following corollary holds \ref{cor:pars-bounds}
 
 \begin{corollarybox}{\scn{nD-StrongSperner} parsimonious reduction bounds}{pars-bounds}
     \begin{gather*}
-        f(\cdot) = 1 + \sum_{i = 1}^{n - 1}\binom{n}{i} = 2^n - 1 = a_n \\
+        f(\cdot) = \sum_{i = 1}^{n}\binom{n}{i} = 2^n - 1 = a_n \\
         \scn{\#nD-StrongSperner} \subseteq^{a_n} \scn{\#PureCircuit}
     \end{gather*}
 \end{corollarybox}
@@ -310,15 +313,11 @@ We define the following subclass of \textsc{Tarski} \ref{def:tarski-ppad}:
 
 
 \begin{definitionbox}{$\scn{KleeneTarski}$ problem definition}{kleene-tarski}
-    Given $F: \mathbb{T}^n \to \mathbb{T}^n$, where $F$ is a \textit{natural} function,
-    we want to find the set of points $\textbf{Fix}^\star$ such that
-    $$
-        \forall x \in \textbf{Fix}^\star: F(x)  = x
-    $$
-    We assume $F$ will be represented as a circuit, that uses
-    $\{*, +, \neg, \mathbf{0}, \mathbf{1}\}$.
+    Given $F: \mathbb{T}^n \to \mathbb{T}^n$, where $F$ is a \textit{natural} function \ref{def:nat-func},
+    find $x \in \mathbb{T}^n$ such that $F(x) = x$
+    We assume $F$ will be represented as a circuit that uses set of gates
+    $\{\wedge, \vee, \neg, \mathbf{0}, \mathbf{1}\}$.
 \end{definitionbox}
-
 
 \begin{proposition}[Parsimonious Reduction between $\scn{KleeneTarski}$ and $\scn{PureCircuit}$]
     $$
@@ -327,16 +326,26 @@ We define the following subclass of \textsc{Tarski} \ref{def:tarski-ppad}:
 \end{proposition}
 
 \begin{proof}
-Given an input circuit $C$, construct $\textsc{PureCircuit}$ instance:
+    Given an input circuit $C: \mathbb{T}^n \to \mathbb{T}^n$, construct $\textsc{PureCircuit}$ instance:
 \begin{enumerate}
-    \item Initiate a vector of nodes $s$
-    \item Apply $C(x)$ and store result on output vector $o$.
-    \item Copy the results back into $s$
+    \item Initiate a vector of $n$ nodes, which we denote as $s$.
+    \item Construct the $C$ using the standard set of gates and apply $C(x)$ to create output vector $o$.
+    \item Copy the results back into $s$.
 \end{enumerate}
 
-We can observe that for any valid assignment, $\mathbf{x}[s]= \mathbf{x}[o]$.
-Therefore, our construction can find all fix points for Kleene Circuits.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{assets/tarski-constrution.png}
+    \caption{\textsc{Tarski} construction}\label{fig:tarski-constr}
+\end{figure}
+
+
+We can visualise the above construction in figure \ref{fig:tarski-constr}.
+We can observe that, for any valid assignment $\mathbf{x} \implies \mathbf{x}[s]= \mathbf{x}[o]$,
+which implies $\mathbf{x}[o] = F(x) = \mathbf{x}[s]$.
 \end{proof}
+
+
 
 % \subsubsection{Reductions to the EndOfLine}
 %
