@@ -4,7 +4,7 @@ We utilise methods such as Test-Driven-Development with the help of \texttt{Prop
 for property testing and kanban boards to accurately track our progress as seen
 in figure \ref{fig:soft:ecs-workflow}. Lastly we are making use of 
 \textit{Bevy} which is a game engine that use the Entity-Component-System
-for render interactions between entities as seen in \ref{fig:soft:ecs-workflow}.
+for render interactions between entities as seen in \ref{fig:soft:ecs-workflow} \cite{bevyengine}.
 
 
 \begin{figure}[h!]
@@ -45,23 +45,32 @@ As we can observe in the figure \ref{fig:theory:obsidian-usages},
 
 \subsection{Risk Management}
 
-With regards to risks and mitigations, the biggest risk we face
-is the inability to resolve our main question.
-The discovery of our reduction allowed us to step closer to our question. 
-Our table \ref{tab:management:risk-management} expand on the risks
-of the project as well as their mitigation tasks.
+Due to the limited prior research on the counting complexity of $\textsc{\#TFNP} -1$,
+this project involved significant risks.
+Our justification for the proposed milestones was largely informed by existing knowledge regarding the complexity of circuit constructions.
+However, it remained entirely possible that our proposed reductions could prove to be infeasible.
+Furthermore, working with Kleene logic introduced additional complexity, and it maybe the reason why 
+establishing fully parsimonious reductions between the target problems may not be achievable.
+This is also the reason why we diverted our attention to bounded parsimonious reductions instead.
+A detailed overview of the associated risks and our proposed mitigation strategies is provided in the table \ref{tab:management:risk-management}.
 
 
 \begin{xltabular}{0.95\linewidth}{|Z{1.2cm}|Z{1.75cm}|Y|Y|Z{1.2cm}|}
         \hline
         \textbf{Severity} & \textbf{Probability} & \textbf{Description} & \textbf{Mitigation} & \textbf{Address} \\
         \hhline{|=|=|=|=|=|}
-        High   & Medium & Software may not be feasible within the remaining time frame. & Focus on the the first objective where the project. Restrict to solution finding or counting when the number of nodes is small. & Not yet      \\ \hline
+        High   & Medium & Software may not be feasible within the remaining time frame. & We focus instead purely on the validation and creation of instances. & Not yet      \\ \hline
         Low    & Medium & Software not identifying a correct solution & Usage of TDD techniques and property testing to ensure correctness.  Comparison with hand-made instances & Not yet      \\ \hline
-        High   & High   & Inability to extend the reductions of the PureCircuit problem to SourceOrExcess & Find a path of parsimonious reductions between the two problems. If we cannot ensure a one-to-one relation between the solutions, we will focus on $1-c$ for some $c \in \mathbb{N}$  & $\checkmark$ \\ \hline
-        Medium & High   & Inability to prove the main conjecture & We can make some heuristical arguments or find reductions between other problems. We argue that if we are able to unravel enough correlations, we will hope to at least bridge the problems. Develop useful gadgets one can use with PureCircuit & Not yet     \\ \hline
-        High   & High   & Incorrect proofs or reductions. & Analyse the problem under different constraints. Apply the duck method, where attempt to explain the solution to a person which not necessarily an expert. Validate proof with supervisor & Not yet  \\ \hline
-        High   & Medium & Develop combinatorial friendly variants of \textsc{PureCircuit} & Apply robustness on the gate set of \textsc{PureCircuit}. Develop new gates or variants are easier to work with.  & $\checkmark$  \\ \hline
+        Medium & Low    & Difficulty of showing the parsmonious reduction between  \textsc{PureCircuit} and  \textsc{nD-StrongSperner} & Consult with the researchers that actively work on these problems. Lower the requirements
+               to polynomially bounded reductions instead. &  Not yet \\ \hline
+        High   & High   & Inability to make significantt progress on the \textsc{SourceOrExcess} problems or the generalised statement &
+        Establish reductions from other problems in order to demonstrate \textsc{\#P} hardness by starting from $\textsc{nD-StrongSperner}$& Not yet \\ \hline
+        High   & High   & Incorrect proofs or reductions. &
+        Analyse the problem under different constraints.
+            Apply the duck method, where attempt to explain the solution to a person which not necessarily an expert. Validate proof with supervisor or
+               use the tool to investigate sample cases. & On-going  \\ \hline
+        High   & Medium & Develop combinatorial friendly variants of \textsc{PureCircuit} & Apply robustness on the gate set of \textsc{PureCircuit}. Develop new gates or variants are easier to work with or work
+        on a subset of solutions as explained in \ref{par:pure-circ-def} & $\checkmark$  \\ \hline
         \caption{Risk management table.} \label{tab:management:risk-management}
 \end{xltabular}
 
