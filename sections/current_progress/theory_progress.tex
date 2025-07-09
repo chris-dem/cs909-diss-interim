@@ -29,9 +29,9 @@ lead to the main find of our project in \ref{sect:main-result}
 % $\scn{EndOfLine}$ and $\scn{3D-Brouwer}$, which is a variant of $\scn{3D-StrongSperner}$ and is based on the same principal. Later on
 % Chen et al. \cite{chen_Complexity2DDiscrete_2009} was able to show that it suffices to use 
 % 2 dimensions by reducing the problem to a 2D planar graph variant of \textsc{EndOfLine}.
-Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024} proved
-\textsc{PPAD-hardness} by reducing from \textsc{StrongSperner} \ref{def:strong-sperner},
-but with unbounded dimensions of polynomial width.
+The reduction from \textsc{StrongSperner} to \textsc{PureCircuit} was first
+done by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024},
+but with unbounded dimensionality and polynomial width and without any parsimonious bounds.
 Our contribution parsimoniounsly constant reduces \ref{def:func-pars}
 every $\scn{nD-StrongSperner}$ problem to  $\scn{PureCircuit}$. 
 We will demonstrate our reduction for 3 dimensions and then we will generalise.
@@ -87,7 +87,7 @@ Given that $S$ is the original set of solution, we define the claim \ref{clm:tra
 \begin{proof}
     We argue that we can bijectively map between $S \leftrightarrow S_{\text{even}}$.
     To show the left to right direction, assume $(i,j,k) \in S$.
-    Using equation \ref{eq:trans-eq}, only one transformation maps all points to even coordinates.
+    Using equation \ref{eq:trans-eq}, only the points $(2i, 2j, 2k) = (i0, j0,k0)$ will be mapped to all even coordinates.
     Additonally, we can observe its neighbourhood set:
     $$
     N = \Big\{\Lambda(2i + x_1, 2j + x_2, 2k + x_3) \mid x \in \mathbb{B}^3 \Big\}
@@ -96,7 +96,7 @@ Given that $S$ is the original set of solution, we define the claim \ref{clm:tra
     $$
     N = \Big\{\lambda(i + x_i, j + x_j, k + x_k) \mid x \in \mathbb{B}^3 \Big\}
     $$
-    And therefore the the point is also a solution. Conversely we can use the previous neighbourhood argument to show the opposite
+    And therefore the point $(i0, j0,k0)$ is also a solution. Conversely we can use the previous neighbourhood argument to show the opposite
     direction.
 \end{proof}
 We will redefine $n + 1$ as $n$ to keep the notation consistent.
@@ -116,7 +116,8 @@ to the original instance.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.75\textwidth]{assets/reduction_sketch.png}
-    \caption{Testing}
+    \caption{Construction map. The green nodes indicate the start nodes. The green squares indicate $u^1, u^2, u^3$. The orange circle denote
+    $o_1, o_2, o_3$ and the blue lines denote the $\textit{COPY}$ operation to the starting nodes.}
     \label{fig:main-proof:visualisation}
 \end{figure}
 
@@ -193,12 +194,12 @@ we extract a specific edge or face of the cube.
 \begin{proof}
     It suffices to show that a valid assingment only occurs when $o_1 = o_2 = o_3 = \bot$. Assume
     $\exists i \in \{1,2,3\}$ such that label $i$ is not covered, meaning $o_i \neq \bot$.
-    WLOG assume that $o_i = 0$. Our verification stage, will copy $0$ onto $s_i$. By lemma \ref{lem:bit-gen}, $u^{(i)} = 1^n$. From the boundary
+    WLOG assume that $o_i = 0$. Our verification stage, will copy $0$ onto $s_i$. By lemma \ref{lem:bit-gen}, $u^{(i)} = 0^n$. From the boundary
     conditions of our circuits and the k-bit hazard-freeness construction,
     we know that $\Lambda(*, 0^n, *) = \{*, 1,  *\}$. But that implies
     $o_i = 1$ which leads to a contradiction. We can make a similar argument to when $o_i = 1$.
-    Therefore, by \ref{lem:circuit}, if $o_1 = o_2 = \bot$, we have a found a panchromatic
-    cube. Lastly, every assingment $u^1, u^2, u^3k$  corresponds to a cube with even corners.
+    Therefore, by \ref{lem:circuit}, if $o_1 = o_2 = o_3\bot$, we have a found a panchromatic
+    solution of $S_\text{even}$.
 \end{proof}
 
 \end{proof}
@@ -219,7 +220,7 @@ work has to been done in order to determine whether this still holds for bipolar
 
 
 The reduction described above can work with any dimensionality.
-and we know $forall n \in \mathbb{N}_{\geq 2}$, Chen et al. showed that
+and we know $\forall n \in \mathbb{N}_{\geq 2}$, Chen et al. showed that
 $\textsc{nD-StrongSperner}$ is still \textit{PPAD-Hard} in \cite{chen_SettlingComplexityComputing_2009}.
 Therefore the following corollary holds \ref{cor:pars-bounds}
 

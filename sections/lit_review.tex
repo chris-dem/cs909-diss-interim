@@ -5,7 +5,7 @@
 To avoid ambiguity, we introduce the following notation conventions used throughout the paper.
 For any $n \in \mathbb{N}$, we write $[n] \triangleq \{1, \ldots, n\}$  and $[n]_0 \triangleq [n] \cup \{0\}$. 
 We define the Boolean domain as $\mathbb{B} \triangleq \{0, 1\}$ and
-three value domain $\mathbb{T} \triangleq \{0, 1, \bot\}$.
+three-value domain $\mathbb{T} \triangleq \{0, 1, \bot\}$.
 
 
 \subsection{Background overview}
@@ -13,37 +13,34 @@ three value domain $\mathbb{T} \triangleq \{0, 1, \bot\}$.
 
 \subsubsection{Counting Complexity and Combinatorial Interpretations}
 
-Counting complexity looks into complexity of counting solutions using notions
-such as $\textbf{\#P}$.
-$\textbf{\#P}$ was created by \cite{valiant_ComplexityComputingPermanent_1979},
+Counting complexity looks into complexity of the numebr counting solutions
+of a given problem. There are several classes that were defined but the one
+of most interest is known as  $\textsc{\#P}$.
+$\textsc{\#P}$ was created by Valint \cite{valiant_ComplexityComputingPermanent_1979},
 to demonstrate the difficulty of counting the number of solutions to a problem,
-even they are polynomially verifiable.
+where each solution can be polynomially verified. More formally:
 
 \begin{definitionbox}{$\textsc{\#P}$ Complexity Clas \cite{valiant_ComplexityComputingPermanent_1979}}{sharpp-class}
-    $\textbf{\#P}$ is a class of functions $f: \mathbb{B}^* \to \mathbb{N}$
-    such that: there
-    exists a polynomial-time deterministic TM $M$, and
-    $p : \mathbb{N} \to \mathbb{N}$ such that $p \in n^{O(1)}$, we have:
+    A function $f: \mathbb{B}^* \to \mathbb{N} \in \textsc{\#P}$, if there exists a
+    poly-function $p : \mathbb{N} \to \mathbb{N}$ and a poly-time TM $M$ such that:
     $$
     f(w) = \Big|\Big\{v \in \mathbb{B}^{p(|w|)} \mid M(w, v) =1 \Big\}\Big|
     $$
 \end{definitionbox}
 
-
-As we can see, $\textbf{\#P}$ allows us to define a set of objects,
-whose cardinality equals $f(w)$. The reason for choosing
-$\textbf{\#P}$ to define combinatorial interpretations is \cite{ikenmeyer_PositivitySymmetricGroup_2024}: 
+Given the above definition, Pak et al. \cite{pak_WhatCombinatorialInterpretation_2022, ikenmeyer_PositivitySymmetricGroup_2024} 
+gave the following reasons for choosing $\textsc{\#P}$:
 
 \begin{enumerate}
     \item By polynomially bounding words, we avoid cases such as: $f(w) = |\{1, \hdots, f(w)\}|$.
     \item Work wtih $f(\cdot)$, even if its direct computation is hard.
+    \item Formal system that can be highly flexible.
 \end{enumerate}
 
 
 The current framework was used in several papers such as
 \cite{ikenmeyer_WhatWhatNot_2022} and \cite{ikenmeyer_PositivitySymmetricGroup_2024}
-where they were able to use tools from complexity theory to show that
-many structures do or do not have a combinatorial interpretation.
+to demonstrate the existance of combinatorial interpretations.
 Lastly we introduce the idea of correlating two counting problems with the help of
 \textit{parsimonious reductions} \ref{def:pars-reduction}.
 
@@ -60,35 +57,26 @@ Lastly we introduce the idea of correlating two counting problems with the help 
 Below we are introducing a variant of parimonious reductions that allows
 for one-to-many reductions. 
 \begin{definitionbox}{Poly-Function Bounded Parsimonious Reductions}{func-pars}
-    Given two counting problems $A, B : \mathbb{B}* \to \mathbb{N}$
-    and a function $f : \mathbb{B}^{*} \to \mathbb{N}$ such that $f \in n^{O(1)}$, we
+    Given two counting problems $A, B : \mathbb{B}^* \to \mathbb{N}$
+    and a poly-function $f : \mathbb{N} \to \mathbb{N}$, we
     say that:
     $$
-    A \subseteq^f B
+    A \subseteq^f B \iff \forall x \in \mathbb{B}^n:  A(x) \leq B(x) \leq f(|x|) \cdot A(x)
     $$
-    If for input $w \in \mathbb{B}^*$, if $a$ represent the number of solutions
-    for problem $A$ and $b$ the number of solutions for problem $B$, we have:
-    $$
-    a \leq b \leq f(|w|) \cdot a
-    $$
-    If $\forall x : f(x) = c$ for $c \in \mathbb{N}$ then we will just say 
+    If $\forall x : f(x) = c$ for $c \in \mathbb{N}$, we use the abbreviation:
     $$
     A \subseteq^c B
     $$
 \end{definitionbox}
 
 \subsubsection{Total Search Problems and PPAD}
-We give a brief overview of \textbf{TFNP} and \textbf{PPAD}.
-
+We give a brief overview of total search problems and their relevancy with the project.
 
 \begin{definitionbox}{Search Problems and Total Search Problems}{search-problems}
     \textbf{Search problems} can be defined as relations $R \subseteq \mathbb{B}^* \times \mathbb{B}^*$,
-    where given $x \in \mathbb{B}^*$, we want to find $y \in \mathbb{B}^*$  such that $x Ry$.
+    where given $x \in \mathbb{B}^*$, we want to find $y \in \mathbb{B}^*$  such that $xRy$.
 
-    \textbf{Total Search problems} are search problems such that:
-    $$
-    \forall x \in \mathbb{B}^*, \exists y \in \mathbb{B}^* : xRy
-    $$
+    \textbf{Total Search problems} are search problems such that for each input, there must exist at least one solution.
 \end{definitionbox}
 
 
@@ -100,33 +88,19 @@ We give a brief overview of \textbf{TFNP} and \textbf{PPAD}.
     $$
     Lastly $\textbf{TFNP} = \{L \in \textbf{FNP} \mid L \text{ is total}\}$
 \end{definitionbox}
-
-%
-% \begin{definitionbox}{Levin Reductions}{levin-red}
-%     Given a pair of search problems $R_A, R_B$, a pair of
-%     computable time functions $(f,g)$ is called a Levin reduction from $R_A \to R_B$
-%     \begin{gather*}
-%         S_R \triangleq \{x \mid \exists y : xRy  \}\\
-%         R(x) \triangleq \{y \mid x Ry \} \\
-%         \forall x \in S_{R_A}, y_b \in R(f(x)):  (x , g(x, y_b)) \in R_A
-%     \end{gather*}
-% \end{definitionbox}
-
-
-Our current work focuses on a specific subclass of $\textbf{TFNP}$ problems
-which is defined as follows:
+ 
 
 \begin{minipage}{0.55\linewidth}
 \begin{definitionbox}{\textit{EndOfLine} problem \cite{papadimitriou_ComplexityParityArgument_1994}}{eol-ppad}
-    Given circuits $S, P \in \mathbb{B}^n \to \mathbb{B}^n$ such that $S,P \in n^{O(1)}$
-    we define a directed graph $G = (V,E)$, such that $V= \mathbb{B}^n$ and $E$ defined as:
+    Given poly-sized circuits $S, P \in \mathbb{B}^n \to \mathbb{B}^n$,
+    we define a digraph $G = (V,E)$, such that $V= \mathbb{B}^n$ and $E$ defined as:
     $$
     E = \{(x,y) \in V^2: S(x) = y \wedge P(y) = x\}
     $$
     We define source or sinks $\forall v \in V: \textit{deg}(v) = (0,1)$ or
     $\textit{deg}(v) = (1,0)$, respectively. 
     We also syntactially ensure that the $0^n$ node is always a source, meaning
-    $S(P(0^n) \neq 0 \wedge P(S(0^n)) = 0^n$.
+    $S(P(0^n)) \neq 0 \wedge P(S(0^n)) = 0^n$.
     A node $v \in V$ is a solution if and only if $\textit{deg}(v)$ is either
     $(0,1)$  or $(1,0)$.
 \end{definitionbox}
@@ -139,9 +113,8 @@ which is defined as follows:
 
 \vspace{0.2cm}
 
-An illustrative example of an instance can be seen in the figure \ref{fig:eol-subgraphs}. 
-Using the \textsc{EndOfLine} problem, we define the
-\textsc{PPAD} complexity class \ref{def:ppad-complexity-class}
+An illustrative example of an \textsc{EndOfLine} instance can be seen in the figure \ref{fig:eol-subgraphs}. 
+Using that, we define the \textsc{PPAD} complexity class \ref{def:ppad-complexity-class}.
 
 
 \begin{definitionbox}{\textsc{PPAD} complexity class \cite{papadimitriou_ComplexityParityArgument_1994}}{ppad-complexity-class}
@@ -149,17 +122,20 @@ Using the \textsc{EndOfLine} problem, we define the
     are reducible to the \scn{EndOfLine} problem \ref{def:eol-ppad}.
 \end{definitionbox}
 
-\textbf{PPAD} has been created by Papadimitriou \cite{papadimitriou_ComplexityParityArgument_1994}
-to demonstrate a subset of problems in \textbf{NP} that are guaranteed to have
-a solution but can be very difficult to find. In the next section
-we will introduce the relevant of \textsc{PPAD} problems.
+\textsc{PPAD} has been created by Papadimitriou \cite{papadimitriou_ComplexityParityArgument_1994}
+to demonstrate a subset of problems in \textsc{NP} that are guaranteed to have
+a solution but are very difficult to find.
+In the next section,
+we introduce relevant \textsc{PPAD} problems.
 
 \paragraph{The PureCircuit problem}
 \label{par:pure-circ-def}
 
-The  \textsc{PureCircuit} was created by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024}
-to demonstrate the hardness of approximating \textsc{PPAD} problems.
-it uses kleene-logic based circuits and with continuity of arguments, they demonstrated \textsc{PPAD-completeness}.
+The definition of \textsc{PureCircuit} is based Kleene's three-valued strong logic of indeterminancy,
+which extends the traditional $\mathbb{B}$ logic \cite{kleene_IntroductionMetamathematics_2009}.
+This problem was created by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024}
+to demonstrate the hardness of approximating \textsc{PPAD} problems and was shown to be \textsc{PPAD-complete}.
+
 
 \begin{definitionbox}{\textsc{PureCiruit} Problem Definition \cite{deligkas_PureCircuitTightInapproximability_2024}}{purecircuit-def}
 An instance of \textit{PureCircuit} is given by vertex set $V= [n]$ and gate set $G$ such that
@@ -171,9 +147,9 @@ Each gate is interpreted as:
 \end{enumerate}
 And each vertex is ensured to have $\text{in-deg}(v) \leq 1$.
 A solution to input instance $(V,G)$ is denoted as an assignment $\mathbf{x} : V \to \{0, \bot, 1\}$
-such that for all nodes we have:
+such that for all gates $g = (T,u,v,w)$ we have:
 \begin{enumerate}
-    \item if $v$ is the output of a $(\textit{NOR}, u,v,w)$ gate:
+    \item \textit{NOR}:
        \begin{gather*}
             \mathbf{x}[u] = \mathbf{x}[v] = 0 \implies \mathbf{x}[w] = 1\\
             (\mathbf{x}[u] =1 \vee \mathbf{x}[v] =1) \implies \mathbf{x}[w] = 0 \\
@@ -188,12 +164,21 @@ such that for all nodes we have:
 \end{enumerate}
 \end{definitionbox}
 
-The definition of \textsc{PureCircuit} that we will be using for the standard set of gates
-$\{\wedge, \vee, \neg\}$, is based Kleene's three-valued strong logic of indeterminancy
-which extends the traditional $\mathbb{B}$ logic \cite{kleene_IntroductionMetamathematics_2009}.
-Their behaviour can be described in the tables shown in \ref{tab:three-val-logic}
-In addition to that, we will make use of the \textit{Copy} gate which we can define as $\textit{Copy}(x) = \neg (\neg x)$.
-This allows our circuits to be robust and easier to work with.
+In addition to the gates above, we will make use of the standard set of gates $\{\vee, \wedge, \neg\}$,
+whose behaviour is depicted in the tables shown \ref{tab:three-val-logic}.
+Moreover, we will make use of the \textit{Copy} gate which we can define as $\textit{Copy}(x) = \neg (\neg x)$.
+These gates are well defined based on the \textit{NOR} gate as showed by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024}.
+Lastly with respect to the \textit{Purify} gate,
+Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024} showed that the only \textit{Purify} solutions essential
+for \textsc{PPAD-completeness} are $\{(0,\bot), (\bot,1), (0,1)\}$, and the addition of more solutions does not affect its complexity.
+We will base our constructions around that limited set of solutions.
+We acknowledge that this simplified variant of the problem captures subset of the solutions but,
+one can observe that $\textsc{\#PureCircuit-simplified} \subseteq \textsc{\#PureCircuit}$,
+and therefore any proposition or argument of the sort:
+$\textsc{\#A} \subseteq \textsc{\#PureCircuit-simplified} \implies \textsc{\#A} \subseteq \textsc{\#PureCircuit}$.
+All solution sets will be made explicit before analysing the counting complexity of the problem,
+and we will refer to all such simplified variants as $\textsc{\#PureCircuit}$ to avoid
+confusion. 
 
 \begin{table}[h!]
     \centering
@@ -229,23 +214,7 @@ $\bot$ & $\bot$  & $\bot$ & 1 \\
 \end{table}
 
 
-
-
-For the \textit{Purify} gate,
-Deligkas et al. showed that the only solutions that are essential for \textit{Purify}
-are $\{(0,\bot), (\bot,1), (0,1)\}$ with the help of continuity arguments \cite{deligkas_PureCircuitTightInapproximability_2024}.
-Adding more solutions does not change the complexity as he showed in the original variant of the problem.
-We acknowledge that the solution set will be different from the original one but,
-one can observe that  $\textsc{\#PureCircuit-simplified} \subseteq \textsc{\#PureCircuit}$,
-and therefore any proposition or argument of the sort:
-$\textsc{\#A} \subseteq \textsc{\#PureCircuit-simplified} \implies \textsc{\#A} \subseteq \textsc{\#PureCircuit}$.
-For the purposes of the report, any solution change will be made explicit
-and we will refer to all such simplified variants as $\textsc{\#PureCircuit}$ to avoid
-confusion. 
-
-
-
-\begin{definitionbox}{\textsc{SourceOrExcess} problem}{source-or-excess}
+\begin{definitionbox}{\textsc{SourceOrExcess} problem \cite{ikenmeyer_WhatWhatNot_2022}}{source-or-excess}
     We define as $\textit{SourceOrExcess}(k,1)$ for $k \in \mathbb{N}_{\geq 2}$
     the search problem as such: Given a poly-sized successor circuit $S : \mathbb{B}^n$
     and a set of predecssor poly-sized circuits $\{P_i\}_{i \in [k]}$, we define
@@ -253,9 +222,13 @@ confusion.
     $$
     \forall x, y \in V: (x,y) \in E \iff (S(x) = y) \wedge \bigvee_{i \in [k]} P_i(y) = x
     $$
-    We ensure that $0^n$ is as sink, meaning $\text{deg}(0^n) = (0,1)$.
+    We ensure that $0^n$ is as source, meaning $\text{deg}(0^n) = (0,1)$.
     A valid solution is a vertex $v$ such that $\textit{in-deg}(v) \neq \textit{out-deg}(v)$
 \end{definitionbox}
+
+The above problem generalises the \textsc{EndOfLine} problem which 
+does not have an explicit combinatorial interpretation as Ikenmeyer et al. \cite{ikenmeyer_WhatWhatNot_2022}
+demonstrated.
 
 \paragraph{Sperner problems}
 
@@ -272,28 +245,29 @@ to use this naming scheme for clarity.
 
 
 \begin{definitionbox}{Bipolar colouring}{bipolar-colouring}
-    Given dimension $d$, we refer to the bipolar colouring $C$ of a point $v \in S^d$
-    where $S$ is some arbitrary set in $d$ dimensionality the following:
+    Given a set $S^d$, where $S$ is some arbitrary set, we refer
+    to bipolar colouring $C$ as:
     $$
-    \forall j \in [d]: [C(v)]_j \in \{-1,1\}
+    \forall v \in S, j \in [d]: [C(v)]_j \in \{-1,1\}
     $$
-    Essentially a point is a associate with a $d$ dimensionaly binary vector.
     We say that a set of points $A \subseteq S^d$ \textbf{cover all the labels} if:
     $$
         \forall i \in [d], \ell \in \{-1, +1\}, \exists x \in A: [\lambda(x)]_{i} = \ell
     $$
+
 \end{definitionbox}
 
-
+Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024} showed that
+it suffices for $|A|$ to be at most $d$ for covering condition to hold.
 
 \begin{definitionbox}{\textsc{StrongSperner} problem}{strong-sperner}
     \textbf{Input}: A boolean circuit that computes a bipolar labelling $\lambda: [M]^N \to \{-1, 1\}^N$ \ref{def:bipolar-colouring}
-    satisfying the following boundary conditions $\forall i \in [N]$:
+    satisfying the following boundary conditions for every $i \in [N]$:
     \begin{itemize}
         \item if $x_i = 1 \implies [\lambda(x)]_i = +1$
         \item if $x_i = M \implies [\lambda(x)]_i = -1$
     \end{itemize}
-    \textbf{Output}: A set of points $\{x^{(i)}\}_{i \in [N]} \subseteq [M]^{[N]}$, such that:
+    \textbf{Output}: A set of points $\{x^{(i)}\}_{i \in [N]} \subseteq [M]^{N}$, such that:
     \begin{itemize}
         \item \textit{Closessness condition}: $\forall i,j \in [N]: \|x^{(i)} - x^{(j)}\|_{\infty} \leq 1$
         \item \textit{Covers all labels} as defined in \ref{def:bipolar-colouring}
@@ -301,30 +275,31 @@ to use this naming scheme for clarity.
 \end{definitionbox}
 
 The above is a generalised variant of the tradtional Sperner problem to
-a grid of dimensions $N$ and width of $M$. 
+a grid of dimensions $N$ with width of $M$. 
 Throughout literature the same variants of the problem or specifications
-have been defined using sperner or discrete brouwer \cite{chen_SettlingComplexityComputing_2009, chen_Complexity2DDiscrete_2009, daskalakis_ComplexityComputingNash_2006, deligkas_PureCircuitTightInapproximability_2024}.
+have been defined using the names sperner or discrete brouwer \cite{chen_SettlingComplexityComputing_2009, chen_Complexity2DDiscrete_2009, daskalakis_ComplexityComputingNash_2006, deligkas_PureCircuitTightInapproximability_2024}.
 For the sake of clarity, we will stick to $\textsc{StrongSperner}$.
 
 \begin{definitionbox}{$\scn{nD-StrongSperner}$ problem}{nd-strong-sperner}
     \textbf{Input}: A tuple $(\lambda,0^k)$ of a $\scn{StrongSperner}$ instance but for only $n$ dimensions, such that
     $\lambda : (\mathbb{B}^k)^n \to \{-1, +1\}^n$.\\
-    \textbf{Output}: A point $\alpha = (a_1, \hdots, a_n) \in A^n$, where $A=\mathbb{B}^k \setminus \{1^k\}$ such that:
+    \textbf{Output}: A point $\alpha = (a_1, \hdots, a_n) \in (\mathbb{B}^k \setminus{1^k})^n$ such that
     $$
     \{\alpha + x \mid x \in \mathbb{B}^n\} \text{ cover all the labels \ref{def:bipolar-colouring}}
     $$
-    We use $A$ to avoid edge cases. We assume dimensionality $n \geq 2$.
+    We assume dimensionality $n \geq 2$.
 \end{definitionbox}
 
 Chen et al. \cite{chen_SettlingComplexityComputing_2009} demonstrated 
 that all $\textsc{nD-StrongSperner}$ are $\textsc{PPAD-complete}$.
 We mainly use this to show counting arguments with respect to the
-\textsc{EndOfLine} as people have indicated a parsimonious reduction
+\textsc{EndOfLine} as people have indicated a parsimonious reductions
 between $\textsc{2D-StrongSperner}$ 
-and $\textsc{3D-StrongSperner}$ to the EndOfLine problem but 
-with \textit{linear} colouring. The authors of these papers
-use these problems indifferently when talking about the reductions
-and therefore we can assume that either colouring will create a correct reduction.
+and $\textsc{3D-StrongSperner}$ to the \textsc{EndOfLine} problem but 
+with \textit{linear} colouring. The authors of these papers use the colorings interchangeably when discussing their reductions,
+so we can assume that all reductions (not necessarily counting reductions) work the similarly for either colouring
+\cite{chen_SettlingComplexityComputing_2009, deligkas_PureCircuitTightInapproximability_2024}.
+
 
 \paragraph{Other PPAD problems} 
 
@@ -343,47 +318,45 @@ and demonstrate the counting complexity of \textsc{PureCircuit}.
     A valid solution is a vertex $v$ such that $\textit{in-deg}(v) \neq \textit{out-deg}(v)$
 \end{definitionbox}
 
-Lastly we will introduce \textsc{Tarski} \ref{def:tarski-ppad}, which is a problem in $\textsc{PLS} \cap \textsc{PPAD}$
-where $\textsc{PLS}$ is a class of problems based on the idea of local search \cite{johnson_HowEasyLocal_1988}
-and uses the Knaster-Tarski fixed point theorem \ref{thm:knaster-tarski}. We will use this problem in later
-sections to connect Kleene algebra with \textsc{PPAD}.
 
-
-\begin{definitionbox}{Monotone functions}{mono-func}
-    Given two posets $(L_1, \preceq_{L_1})$ and $(L_2, \preceq_{L_2})$, a function
-    $f: L_1 \to L_2$ is \textbf{monotone} if and only if:
-    $$
-    \forall x,y \in L_1: x \preceq_{L_1} y \implies f(x) \preceq_{L_2} f(y)
-    $$
-\end{definitionbox}
-    
-
+Lastly we will introduce \textsc{Tarski} \ref{def:tarski-ppad}
+which uses the Knaster-Tarski fixed point theorem \ref{thm:knaster-tarski} and
+belongs in $\textsc{PLS} \cap \textsc{PPAD}$, where  $\textsc{PLS}$ is a class of problems based on the idea of local search \cite{johnson_HowEasyLocal_1988}.
+%
+%
+% \begin{definitionbox}{Monotone functions}{mono-func}
+%     Given two posets $(L_1, \preceq_{L_1})$ and $(L_2, \preceq_{L_2})$, a function
+%     $f: L_1 \to L_2$ is \textbf{monotone} if and only if:
+%     $$
+%     \forall x,y \in L_1: x \preceq_{L_1} y \implies f(x) \preceq_{L_2} f(y)
+%     $$
+% \end{definitionbox}
+%     
+%
 \begin{theorembox}{Knaster Tarski Fixed point theorem\cite{bronislaw_TheoremeFunctionsDensembles_1928, fearnley_FasterAlgorithmFinding_2022}}{knaster-tarski}
-    Given a lattice $(L, \wedge, \vee)$ and a \textit{monotone} $f: L \to L$ \ref{def:mono-func}
+    Given a lattice $(L, \wedge, \vee)$ and a \textit{monotone} $f: L \to L$
     $$
     \exists c \in L: f(c) = c
     $$
 \end{theorembox}
 
-Using the Tarski theorem, Fearnley et al. \cite{fearnley_FasterAlgorithmFinding_2022}
-created a \textsc{TFNP} variant of the problem which finds fixed points or 
-identifies points that break the monotone argument. We will be using Tarski 
-with Kleene logic to connect the two.
-% \begin{definitionbox}{$\scn{Tarski}$ problem definition \cite{fearnley_FasterAlgorithmFinding_2022}}{tarski-ppad}
-%     Given a lattice $(L, \wedge, \vee)$, and a \textit{monotone} function $f : L \to L$ 
-%     we define solutions to the problem as:
-%     \begin{enumerate}
-%         \item Find $x \in L: f(x) = x$
-%         \item Find $x,y \in L$ such that $x \preceq y$ and $f(x) \not\preceq f(y)$
-%     \end{enumerate}
-%     We assume that $f$ is described by circuit.
-% \end{definitionbox}
+\begin{definitionbox}{$\scn{Tarski}$ problem definition \cite{fearnley_FasterAlgorithmFinding_2022}}{tarski-ppad}
+    Given a lattice $(L, \wedge, \vee)$, and a \textit{monotone} function $f : L \to L$ 
+    we define solutions to the problem as:
+    \begin{enumerate}
+        \item Find $x \in L: f(x) = x$
+        \item Find $x,y \in L$ such that $x \preceq y$ and $f(x) \not\preceq f(y)$
+    \end{enumerate}
+    We assume that $f$ is described by circuit and describes the size of the input.
+\end{definitionbox}
 %
 \paragraph{Counting complexity of PPAD}
 
-The current project looks on the counting complexity of such problems as despite two problems
-being \textsc{PPAD-complete}, Ikenmeyer et al. \cite{pak_WhatCombinatorialInterpretation_2022} has showed examples where
-their counting difficulty can differ vastly as it can be seen in the figure \ref{fig:ppad-count-hier}.
+
+Ikenmeyer et al. \cite{ikenmeyer_WhatWhatNot_2022} demonstrated that several \textsc{PPAD-complete}
+problems behave differently under $\textsc{\#PPAD} -1$. More specifically
+$\textsc{\#EndOfLine} - 1 \subseteq \textsc{\#P}$ but $\exists A: \textsc{\#SourceOrExcess}^A  - 1\not\subseteq \textsc{\#P}^A$.
+We base the seperation between easy and hard problems using the two aforementioned problems as seen in the figure \ref{fig:ppad-count-hier}.
 
 \begin{figure}[h!]
     \centering
@@ -397,12 +370,11 @@ their counting difficulty can differ vastly as it can be seen in the figure \ref
 Kleene logic uses the boolean system with an additional \textit{unstable} value \cite{kleene_IntroductionMetamathematics_2009}. 
 Study of Kleene logic aided in
 the development of robust physical systems \cite{friedrichs_MetastabilityContainingCircuits_2018}, as well as
-giving definitions to \textit{Alternative Turing mahcines} \cite{kozen_TheoryComputation_2006}, and
-showing correlations complexity of monotone circuits sizes
+defining frameworks like \textit{Alternative Turing mahcines} \cite{kozen_TheoryComputation_2006}, and
+aiding in the development of lower bounds for monotone circuits
 \cite{eichelberger_HazardDetectionCombinational_1965, ikenmeyer_ComplexityHazardfreeCircuits_2019,ikenmeyer_KarchmerWigdersonGamesHazardfree_2022,  bund_SmallHazardFreeTransducers_2025}. 
-
 Our current report will focus on specific concepts with Kleene logic as \textsc{PureCircuit} instances
-use the underlying logic directly. Below we introduce important concepts \cite{mukaidono_BternaryLogicFunction_1972}.
+use the underlying logic directly.
 
 \begin{definitionbox}{Kleene value ordering \cite{mukaidono_BternaryLogicFunction_1972}}{kleene-order}
     The instability ordering for $\leq^u$ is defined as: $\bot \leq^u 0,1$. The $n$-dimensional
@@ -421,7 +393,7 @@ use the underlying logic directly. Below we introduce important concepts \cite{m
 \end{definitionbox}
 
 Detecting hazards is a concept that is analysed heavily when talking about Kleene logic.
-The idea is ensuring robustness of our circuits, meaning if all resolutions of $x \in \mathbb{T}^n$
+The idea is ensuring robustness in our circuits, meaning if all resolutions of $x \in \mathbb{T}^n$
 give the same value, then we should expect circuit to behave the same way \ref{def:hf-def}.
 An example of hazard values can be seen in the figure \ref{fig:hazard-example}.
 
@@ -438,9 +410,9 @@ An example of hazard values can be seen in the figure \ref{fig:hazard-example}.
     \caption{Hazard circuit and hazard-free circuit. Figure by \cite{ikenmeyer_ComplexityHazardfreeCircuits_2019}}\label{fig:hazard-example}
 \end{figure}
 
-\begin{definition}[K-bit Hazard]
+\begin{definitionbox}{K-bit Hazard}{k-bit-haz}
     For $k \in \mathbb{N}$ at $x \in \mathbb{T}^n \iff C$  has a \textit{hazard} at $x$ and $\bot$ appears at most $k$ times in $x$
-\end{definition}
+\end{definitionbox}
 %
 %
 %
