@@ -13,11 +13,13 @@ three-value domain $\mathbb{T} \triangleq \{0, 1, \bot\}$.
 
 \subsubsection{Counting Complexity and Combinatorial Interpretations}
 
-Counting complexity looks into complexity of the number counting solutions
-of a given problem. In the current project we will focus specifically on the $\textsc{\#P}$ class.
+The general idea of combinatorial interpretations, is given a function $f: \mathbb{B}^n \to \mathbb{N}$, 
+for every word $w$, we want to find a set $A_w$ such that $f(w)= |A_w|$.
+To ground that notion, researchers looked into counting complexity.
+In the current project we will focus specifically on the $\textsc{\#P}$ class.
 $\textsc{\#P}$ was created by Valiant \cite{valiant_ComplexityComputingPermanent_1979},
 to demonstrate the difficulty of counting the number of solutions to a problem,
-where each solution can be polynomially verified. More formally:
+where each solution can be verified in polynomial time, or more formally:
 
 \begin{definitionbox}{$\textsc{\#P}$ Complexity Clas \cite{valiant_ComplexityComputingPermanent_1979}}{sharpp-class}
     A function $f: \mathbb{B}^* \to \mathbb{N} \in \textsc{\#P}$, if there exists a
@@ -27,15 +29,15 @@ where each solution can be polynomially verified. More formally:
     $$
 \end{definitionbox}
 
-Given the above definition, Pak et al. \cite{pak_WhatCombinatorialInterpretation_2022, ikenmeyer_PositivitySymmetricGroup_2024} 
-gave the following reasons for choosing $\textsc{\#P}$:
+Given the above definition, Pak et al. \cite{pak_WhatCombinatorialInterpretation_2022, ikenmeyer_PositivitySymmetricGroup_2024}
+interpret $A_w$ as the set of solutions given input $w$.
+Moreover, they argue that:
 
 \begin{enumerate}
     \item By polynomially bounding words, we avoid cases such as: $f(w) = |\{1, \hdots, f(w)\}|$.
-    \item Work with $f(\cdot)$, even if its direct computation is hard.
-    \item Formal system that can be highly flexible.
+    \item We can work with $f(\cdot)$, even if its direct computation is hard.
+    \item $\textsc{\#P}$ is a formal system that is highly flexible.
 \end{enumerate}
-
 
 The current framework was used in several papers such as
 \cite{ikenmeyer_WhatWhatNot_2022} and \cite{ikenmeyer_PositivitySymmetricGroup_2024}
@@ -131,7 +133,7 @@ we introduce relevant \textsc{PPAD} problems.
 \label{par:pure-circ-def}
 
 The definition of \textsc{PureCircuit} is based Kleene's three-valued strong logic of indeterminancy,
-which extends the traditional $\mathbb{B}$ logic \cite{kleene_IntroductionMetamathematics_2009}.
+which extends the traditional binary logic \cite{kleene_IntroductionMetamathematics_2009}.
 This problem was created by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024}
 to demonstrate the hardness of approximating \textsc{PPAD} problems and was shown to be \textsc{PPAD-complete}.
 
@@ -258,7 +260,7 @@ for the sake of clarity.
 \end{definitionbox}
 
 Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024} showed that
-it suffices for $|A|$ to be at most $d$ for covering condition to hold.
+it suffices for $|A|$ to be at most $d$ for the covering condition to hold.
 
 \begin{definitionbox}{\textsc{StrongSperner} problem}{strong-sperner}
     \textbf{Input}: A boolean circuit that computes a bipolar labelling $\lambda: [M]^N \to \{-1, 1\}^N$ \ref{def:bipolar-colouring}
@@ -285,13 +287,13 @@ For clarity, the subsequent analysis adopts $\textsc{StrongSperner}$.
     $\lambda : (\mathbb{B}^k)^n \to \{-1, +1\}^n$.\\
     \textbf{Output}: A point $\alpha = (a_1, \hdots, a_n) \in (\mathbb{B}^k \setminus \{1^k\})^n$ such that
     $$
-    \{\alpha + x \mid x \in \mathbb{B}^n\} \text{ cover all the labels \ref{def:bipolar-colouring}}
+    \{\alpha + x \mid x \in \mathbb{B}^n\} \text{ covers all the labels \ref{def:bipolar-colouring}}
     $$
     We assume dimensionality $n \geq 2$.
 \end{definitionbox}
 
 The authors of these papers refer to both colouring schemes interchangeably when discussing their reductions,
-so we can assume that all reductions (not necessarily counting reductions) work the similarly for either colouring
+so we can assume that all reductions (not necessarily counting reductions) work similarly for either colouring
 \cite{chen_SettlingComplexityComputing_2009, deligkas_PureCircuitTightInapproximability_2024, daskalakis_ComplexityComputingNash_2006, chen_Complexity2DDiscrete_2009}.
 
 
@@ -301,7 +303,7 @@ We will define several problems in \textsc{PPAD} that are related with our proje
 and demonstrate the counting complexity of \textsc{PureCircuit}.
 
 \begin{definitionbox}{\textsc{SourceOrExcess} problem \cite{ikenmeyer_WhatWhatNot_2022}}{source-or-excess}
-    We define as $\textit{SourceOrExcess(k,1)}$ for $k \in \mathbb{N}_{\geq 2}$
+    We define as $\textsc{SourceOrExcess(k,1)}$ for $k \in \mathbb{N}_{\geq 2}$
     the search problem as such: Given a poly-sized successor circuit $S : \mathbb{B}^n \to \mathbb{B}^n$
     and a set of predecessor poly-sized circuits $\{P_i\}_{i \in [k]}$, where $P_i : \mathbb{B}^n \to \mathbb{B}^n$, we define
     the graph $G = (V,E)$ such that, $V = \mathbb{B}^n$ and $E$ as:
@@ -316,7 +318,8 @@ The $\textsc{SourceOrExcess(k,1)}$ problem can be thought of as the generalisati
 problem for graphs with $\textit{in-deg}(\cdot) \leq k$ and $\textit{out-deg}(\cdot) \leq 1$.
 Lastly we will introduce \textsc{Tarski} \ref{def:tarski-ppad}
 which uses the Knaster-Tarski fixed point theorem \ref{thm:knaster-tarski} and
-belongs in $\textsc{PLS} \cap \textsc{PPAD}$, where  $\textsc{PLS}$ is a class of problems based on the idea of local search \cite{johnson_HowEasyLocal_1988}.
+belongs in $\textsc{PLS} \cap \textsc{PPAD}$,
+where  $\textsc{PLS}$ is a class of problems based on the idea of local search \cite{johnson_HowEasyLocal_1988}.
 %
 %
 \begin{definitionbox}{Monotone functions}{mono-func}
@@ -346,6 +349,7 @@ belongs in $\textsc{PLS} \cap \textsc{PPAD}$, where  $\textsc{PLS}$ is a class o
 \end{definitionbox}
 %
 \paragraph{Counting complexity of PPAD}
+\label{par:count-ppad}
 
 
 Ikenmeyer et al. \cite{ikenmeyer_WhatWhatNot_2022} demonstrated that several \textsc{PPAD-complete}
@@ -386,7 +390,7 @@ The current section offers a brief summary to relevant notions and concepts in K
     $$
 \end{definitionbox}
 
-Unless otherwise specified, we assume that all functions are \textit{natural} \ref{def:nat-func}, since
+Unless otherwise specified, we assume that all kleene functions are \textit{natural} \ref{def:nat-func}, since
 they can be represented by circuits \ref{prop:nat-func-circ}.
 Detecting hazards is a concept that is analysed heavily when talking about Kleene logic.
 The idea is ensuring robustness in our circuits, meaning if all resolutions of $x \in \mathbb{T}^n$

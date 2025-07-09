@@ -57,10 +57,14 @@ $$
 
 Conversely we can say that we map from our original domain to our new domain as such
 
-\begin{equation}
-    \label{eq:trans-eq}
-    \forall  x \in (\mathbb{B}^{m})^3: \lambda(x) \to \{\Lambda[(\max\{2\bar{x_i} - b_i, 0\})_{i \in [3]}] \mid b \in \mathbb{B}^{3}\}
-\end{equation}
+\begin{align}
+    g(a, b) &\triangleq \begin{cases}
+        0 &\text{if } a = 0 \\
+        2a - b &\text{otherwise}\\
+    \end{cases} \\
+        \forall  x \in (\mathbb{B}^{m})^3: \lambda(x) &\to \{\Lambda[(g(x_i,b))_{i \in [3]}] \mid b \in \mathbb{B}^{3}\}
+\label{eq:trans-eq}
+\end{align}
 The transformation can be visualised in the figure \ref{fig:main-proof:set_mapping}.
 The reasoning for doubling the dimensions will be explained in the later sections.
 
@@ -92,7 +96,8 @@ Given that $S$ is the original set of solutions as described in \ref{def:nd-stro
     $$
     N = \Big\{\Lambda(2\bar{i} + x_1, 2\bar{j} + x_2, 2\bar{k} + x_3) \mid x \in \mathbb{B}^3 \Big\}
     $$
-    We can observe that WLOG $\Lambda(2i + 1, \cdot, \cdot) = \lambda(i + 1, \cdot, \cdot)$, which implies:
+    We can observe that WLOG $\Lambda(2i + 1, \cdot, \cdot) = \lambda(i + 1, \cdot, \cdot)$ and
+    $\Lambda(2i, \cdot, \cdot) = \lambda(i, \cdot, \cdot)$, which implies:
     $$
     N = \Big\{\lambda(\bar{i} + x_i, \bar{j} + x_j, \bar{k} + x_k) \mid x \in \mathbb{B}^3 \Big\}
     $$
@@ -136,15 +141,14 @@ We create the gadget described in the figure \ref{fig:main-proof:purification}.
 
 Given that construction we make the following lemma
 
-\begin{lemma}[Bit Generator Lemma]
-    \label{lem:bit-gen}
+\begin{lemmabox}{Bit Generator Lemma}{bit-gen}
     The following hold true in our construction:
     \begin{enumerate}
         \item if $\mathbf{x}[s_i] = b \implies \mathbf{x}[u^i] = b^n$, given $b \in \mathbb{B}$
         \item if $\mathbf{x}[s_i] = \bot \implies \forall j \in [n-1]: \mathbf{x}[u^i_j] \in \mathbb{B}$ and $\mathbf{x}[u^i_{n}] \in \{1, \bot\}$
     \end{enumerate}
     The above translates to: if we have $\bot$ in our number, it can only be found in the LSB.
-\end{lemma}
+\end{lemmabox}
 
 \begin{proof}
     The first part follows trivially from the defintion of the \textit{Purify} gate.
@@ -201,7 +205,7 @@ we extract a specific edge or face of the cube.
     conditions of our circuits and the k-bit hazard-freeness construction,
     we know that $\Lambda(*, 0^n, *) = \{*, 1,  *\}$. But that implies
     $\mathbf{x}[o_i] = 1$ which leads to a contradiction. We can make a similar argument to when $\mathbf{x}[o_i] = 1$.
-    Therefore, by \ref{lem:circuit}, if $\mathbf{x}[o_1] = \mathbf{x}[o_2] = \mathbf{x}[o_3]\bot$, we have a found a panchromatic
+    Therefore, by \ref{lem:circuit}, if $\mathbf{x}[o_1] = \mathbf{x}[o_2] = \mathbf{x}[o_3] = \bot$, we have a found a panchromatic
     solution of $S_\text{even}$.
 \end{proof}
 
@@ -319,11 +323,11 @@ We define the following subclass of \textsc{Tarski} \ref{def:tarski-ppad}:
     $\{\wedge, \vee, \neg, \mathbf{0}, \mathbf{1}\}$.
 \end{definitionbox}
 
-\begin{proposition}[Parsimonious Reduction between $\scn{KleeneTarski}$ and $\scn{PureCircuit}$]
+\begin{propositionbox}{Parsimonious Reduction between $\scn{KleeneTarski}$ and $\scn{PureCircuit}$}{kleene-pure}
     $$
     \scn{\#KleeneTarski} \subseteq \scn{\#PureCircuit}
     $$
-\end{proposition}
+\end{propositionbox}
 
 \begin{proof}
     Given an input circuit $C: \mathbb{T}^n \to \mathbb{T}^n$, construct $\textsc{PureCircuit}$ instance:

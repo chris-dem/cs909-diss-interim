@@ -3,17 +3,17 @@ as the main language of development, due to its high expressibility and low leve
 We utilise methods such as Test-Driven-Development with the help of \texttt{Proptest}
 for property testing and kanban boards to accurately track our progress as seen
 in figure \ref{fig:soft:ecs-workflow}. Lastly we are making use of 
-\textit{Bevy} which is a game engine that use the Entity-Component-System
-for render interactions between entities as seen in \ref{fig:soft:ecs-workflow} \cite{bevyengine}.
+\textit{Bevy} which is a game engine that uses the Entity-Component-System
+architecture to render interactions between entities as seen in \ref{fig:soft:ecs-workflow} \cite{bevyengine}.
 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.2\linewidth]{assets/ECS-visualisatoin.png}
-    \includegraphics[width=0.2\textwidth]{assets/research-visualisation.png}
-    \includegraphics[width=0.2\textwidth]{assets/kanban-board.png}
-    \caption{ECS workflow visualisation. Entities which exist in a world state are equipped with components.
-    Systems query entities with specific components and modify the world state.}
+    \subfloat[ECS workflow visualisation. Entities which exist in a world state are equipped with components.
+    Systems query entities with specific components and modify the world state.]{\includegraphics[width=0.4\linewidth]{assets/ECS-visualisatoin.png}}
+    \hfill
+    \subfloat[Kanban board]{\includegraphics[width=0.4\textwidth]{assets/kanban-board.png}}
+    \caption{Software management}
     \label{fig:soft:ecs-workflow}
 \end{figure}
 
@@ -59,8 +59,9 @@ A detailed overview of the associated risks and our proposed mitigation strategi
         \hline
         \textbf{Severity} & \textbf{Probability} & \textbf{Description} & \textbf{Mitigation} & \textbf{Address} \\
         \hhline{|=|=|=|=|=|}
-        High   & Medium & Software may not be feasible within the remaining time frame. & We focus instead purely on the validation and creation of instances. & Not yet      \\ \hline
-        Low    & Medium & Software not identifying a correct solution & Usage of TDD techniques and property testing to ensure correctness.  Comparison with hand-made instances & Not yet      \\ \hline
+        High   & Medium & Software may not be feasible within the remaining time frame. & We focus on the validation and creation of instances.
+        The current project is primarly research-based, and therefore we are mainly prioritising the theory development aspect of the project. & Not yet      \\ \hline
+        Low    & Medium & Software not identifying a correct solution & Usage of TDD techniques and property testing to ensure correctness.  Comparison with hand-made instances. & Not yet      \\ \hline
         Medium & Low    & Difficulty of showing the parsmonious reduction between  \textsc{PureCircuit} and  \textsc{nD-StrongSperner} & Consult with the researchers that actively work on these problems. Lower the requirements
                to polynomially bounded reductions instead. &  Not yet \\ \hline
         High   & High   & Inability to make significantt progress on the \textsc{SourceOrExcess} problems or the generalised statement &

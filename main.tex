@@ -6,9 +6,9 @@
 \usepackage[most]{tcolorbox}
 \usepackage{lineno}
 \usepackage{amsmath,amssymb,amsfonts, amsthm}
+\usepackage{float}
 \usepackage{enumitem}
 \usepackage{placeins}
-\usepackage{hyperref}
 \usepackage{algorithmic}
 \usepackage{xltabular}
 \usepackage{graphicx}
@@ -17,6 +17,12 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{subcaption}
+% Set hyperref options before loading (to avoid option clash)
+\PassOptionsToPackage{unicode=true,pdfusetitle}{hyperref}
+% Load hyperref last (except for some specific packages)
+\usepackage{hyperref}
+
+
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -145,13 +151,13 @@
 }{clm}
 
 
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{corollary}{Corollary}[theorem]
-\newtheorem{definition}{Definition}[section]
+% \newtheorem{theorem}{Theorem}[section]
+% \newtheorem{conjecture}[theorem]{Conjecture}
+% \newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem{lemma}[theorem]{Lemma}
+% \newtheorem{claim}[theorem]{Claim}
+% \newtheorem{corollary}{Corollary}[theorem]
+% \newtheorem{definition}{Definition}[section]
 
 \newcommand{\scn}[1]{\textnormal{\textsc{#1}}}
 \newcolumntype{Z}[1]{>{\centering\arraybackslash}p{#1}}

@@ -1,12 +1,12 @@
 In recent years, there has been a revolutionary
 initiative in the field of combinatronics.
-Combinatronics has been a field of study in mathematics that primarily focused on
+Combinatronics has been a field of study in mathematics that primarily focuses on
 the notion of counting objects with certain properties. Over time, this notion
 has shifted, especially in the subfield of algebraic combinatorics, where
 there is no clear notion of the object that we are counting,
 and the numbers express something more abstract \cite{pak_WhatCombinatorialInterpretation_2022}.
 This created the need to assign combinatorial interpretations to such numbers.
-Being able to find such definitions or interpretations is be very important
+Being able to find such definitions or interpretations is very important
 as it allows us to utilise tools from combinatorics to understand
 and reveal hidden structures and properties \cite{pak_WhatCombinatorialInterpretation_2022}. 
 Moreover, there are several problems or numbers such as \textit{Kronecker coefficients} \cite{makar_AnalysisKroneckerProduct_1949},
@@ -19,7 +19,7 @@ conjecture \cite{ikenmeyer_WhatWhatNot_2022, ikenmeyer_VanishingKroneckerCoeffic
 % \cite{pak_WhatCombinatorialInterpretation_2022, ikenmeyer_WhatWhatNot_2022}. We invest
 In our current work, we focus on extending the work done by
 Ikenmeyer et al. \cite{ikenmeyer_WhatWhatNot_2022}, where they focused on the creation of frameworks
-that determines whether $f \in^? \textbf{\#P}$, by looking
+that determines whether $f \in^? \textsc{\#P}$, by looking
 at the subclasses of $\textsc{\#TFNP - 1}$ problems.
 In our work we focus specifically on the complexity class of $\textsc{PPAD}$, under the lens of $\text{PureCircuit}$,
 due to circuit-based nature.
@@ -31,11 +31,28 @@ as well as explore the boundaries of $\textsc{\#PPAD} -1$.
 % different $\textit{PPAD-complete}$ problems, may or may not have a combinatorial
 % interpretation.
 
+\subsection{Research Question}
+
+Our objectives revolve around the conjecture in \ref{conj:ppad-1-hardness}, where
+we investigate the boundaries of $\scn{\#PPAD}-1$ with the help of the \textsc{PureCircuit} problem.
+\begin{conjecturebox}{$\scn{\#PPAD}-1$ hardness}{ppad-1-hardness}
+    Every language in \scn{PPAD} can be parsimoniously reduced up to some polynomial factor, to the
+    \textsc{PureCircuit} problem, or more formally:
+    $$
+    \forall L \in \scn{PPAD}, \exists f \in n^{O(1)}: 
+    \scn{\#L} \subseteq^f \scn{\#PureCircuit}
+    $$
+\end{conjecturebox}
+
+
+
 
 \subsection{Project objectives}
 
-Our project requires the extending the theory of $\textsc{\#PureCircuit}$
-as well as developing a software to visualise its instances.
+To tackle our research question, we propose the following list of objectives. 
+These objectives outline a series of reductions between problems that were identified as necessary,
+as explained in paragraph \ref{par:count-ppad}.
+We hope that by completing these milestones, we will be able to answer our research question.
 
 \begin{enumerate}[label*=R.\arabic*)]
     \item Find a parsimonious reduction from the $\textit{EndOfLine}$ to $\textit{PureCircuit}$.
@@ -67,19 +84,6 @@ We will compile the rest of the report, based on our current findings, how we al
 and general reflections. Moreover we will give a brief summary as to the subsequent steps
 and how plan to achieve the remaining milestones.
 
-
-\subsection{Research Question}
-
-Our objectives revolve around the conjecture in \ref{conj:ppad-1-hardness}, where
-we investigate the boundaries of $\scn{\#PPAD}-1$ with the help of the \textsc{PureCircuit} problem.
-\begin{conjecturebox}{$\scn{\#PPAD}-1$ hardness}{ppad-1-hardness}
-    Every language in \scn{PPAD} can be parsimoniously reduced up to some polynomial factor, to the
-    \textsc{PureCircuit} problem, or more formally:
-    $$
-    \forall L \in \scn{PPAD}, \exists f \in n^{O(1)}: 
-    \scn{\#L} \subseteq^f \scn{\#PureCircuit}
-    $$
-\end{conjecturebox}
 
 %
 % Below we will present our main list of findings up to this point:
