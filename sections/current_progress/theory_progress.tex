@@ -49,7 +49,7 @@ does not affect the \textsc{PPAD-hardness} of the problem nor any counting argum
 Lastly $\forall b \in \mathbb{B}^n, \bar{b}$ will denote the decimal representation of $b$.
 
 \begin{proof} 
-    Given input $(\lambda, 0^m)$, we first construct a colouring function $\Lambda: (\mathbb{B}^{(m+1)})^3$ such that:
+    Given input $(\lambda, 0^m)$, we first construct a colouring function $\Lambda: (\mathbb{B}^{(m+1)})^3 \to \{-1,+1\}^3$ such that:
 $$
 \forall (i,j,k) \in (\mathbb{B}^{(m+1)})^3: \Lambda(i,j,k) \triangleq 
 \lambda\left( \left\lfloor  \frac{{\bar{i}+1}}{2}  \right\rfloor, \left\lfloor  \frac{{\bar{j}+1}}{2} \right\rfloor, \left\lfloor  \frac{{\bar{k}+1}}{2} \right\rfloor \right)  \\
@@ -71,8 +71,8 @@ The reasoning for doubling the dimensions will be explained in the later section
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\textwidth]{assets/1751381227.png}
-\caption{Transformation of solutions. In the original cube assume we have solutions $(0, i,j)$ and $(1, i,j)$ for some $i,j$. In our new mapping, these solutions correspond to
-$(0, i,j), (2,i,j)$.}
+\caption{Transformation of solutions. In the original cube assume we have solutions $(0,i,j)$ and $(1,i,j)$ for some $i,j$. In our new mapping, these solutions correspond to
+$(0,2i,2j), (2,2i,2j)$.}
     \label{fig:main-proof:set_mapping}
 \end{figure}
 
@@ -96,8 +96,8 @@ Given that $S$ is the original set of solutions as described in \ref{def:nd-stro
     $$
     N = \Big\{\Lambda(2\bar{i} + x_1, 2\bar{j} + x_2, 2\bar{k} + x_3) \mid x \in \mathbb{B}^3 \Big\}
     $$
-    We can observe that WLOG $\Lambda(2i + 1, \cdot, \cdot) = \lambda(i + 1, \cdot, \cdot)$ and
-    $\Lambda(2i, \cdot, \cdot) = \lambda(i, \cdot, \cdot)$, which implies:
+    We can observe that WLOG $\Lambda(2\bar{i} + 1, \cdot, \cdot) = \lambda(\bar{i} + 1, \cdot, \cdot)$ and
+    $\Lambda(2\bar{i}, \cdot, \cdot) = \lambda(\bar{i}, \cdot, \cdot)$, which implies:
     $$
     N = \Big\{\lambda(\bar{i} + x_i, \bar{j} + x_j, \bar{k} + x_k) \mid x \in \mathbb{B}^3 \Big\}
     $$

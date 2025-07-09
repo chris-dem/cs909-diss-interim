@@ -30,7 +30,7 @@ where each solution can be verified in polynomial time, or more formally:
 \end{definitionbox}
 
 Given the above definition, Pak et al. \cite{pak_WhatCombinatorialInterpretation_2022, ikenmeyer_PositivitySymmetricGroup_2024}
-interpret $A_w$ as the set of solutions given input $w$.
+used $\textsc{\#P}$ to interpret $A_w$ as the set of solutions to a problem given input $w$.
 Moreover, they argue that:
 
 \begin{enumerate}
@@ -250,7 +250,7 @@ for the sake of clarity.
     Given a set $S^d$, where $S$ is some arbitrary set, we refer
     to bipolar colouring $C$ as:
     $$
-    \forall v \in S, j \in [d]: [C(v)]_j \in \{-1,1\}
+    \forall v \in S^d, j \in [d]: [C(v)]_j \in \{-1,1\}
     $$
     We say that a set of points $A \subseteq S^d$ \textbf{cover all the labels} if:
     $$
@@ -259,8 +259,8 @@ for the sake of clarity.
 
 \end{definitionbox}
 
-Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024} showed that
-it suffices for $|A|$ to be at most $d$ for the covering condition to hold.
+Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024, deligkas_ConstantInapproximabilityPPA_2022} showed that
+$\forall A \subseteq S^d: |A| \geq d+1$ and satisfies the colouring, $\exists D \subseteq A: |D| = d$.
 
 \begin{definitionbox}{\textsc{StrongSperner} problem}{strong-sperner}
     \textbf{Input}: A boolean circuit that computes a bipolar labelling $\lambda: [M]^N \to \{-1, 1\}^N$ \ref{def:bipolar-colouring}
@@ -355,7 +355,7 @@ where  $\textsc{PLS}$ is a class of problems based on the idea of local search \
 Ikenmeyer et al. \cite{ikenmeyer_WhatWhatNot_2022} demonstrated that several \textsc{PPAD-complete}
 problems behave differently under $\textsc{\#PPAD} -1$. More specifically
 $\textsc{\#EndOfLine} - 1 \subseteq \textsc{\#P}$ but $\exists A: \textsc{\#SourceOrExcess}^A  - 1\not\subseteq \textsc{\#P}^A$.
-We base the seperation between easy and hard problems using the two aforementioned problems as seen in the figure \ref{fig:ppad-count-hier}.
+We estimate the counting difficulty of the aforementioned problems based on their position in the hierarchy as seen in the figure \ref{fig:ppad-count-hier}.
 
 \begin{figure}[h!]
     \centering
