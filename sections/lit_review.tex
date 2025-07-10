@@ -259,7 +259,7 @@ for of clarity.
 \end{definitionbox}
 
 Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024, deligkas_ConstantInapproximabilityPPA_2022} showed that
-$\forall A \subseteq S^d: |A| \geq d+1$ and satisfies the colouring, $\exists D \subseteq A: |D| = d$ where $D$ also satisfies
+$\forall A \subseteq S^d: |A| \geq d+1$ and satisfies the colouring, $\exists D \subseteq A: |D| \leq d$ where $D$ also satisfies
 the colouring condition.
 
 \begin{definitionbox}{\textsc{StrongSperner} problem}{strong-sperner}
@@ -332,10 +332,7 @@ where  $\textsc{PLS}$ is a class of problems based on the idea of local search \
 %     
 %
 \begin{theorembox}{Knaster Tarski Fixed point theorem\cite{bronislaw_TheoremeFunctionsDensembles_1928, fearnley_FasterAlgorithmFinding_2022}}{knaster-tarski}
-    Given a \textit{monotone} function $f: L \to L$ \ref{def:mono-func} of a lattice $(L, \wedge, \vee)$
-    $$
-    \exists c \in L: f(c) = c
-    $$
+    Given a \textit{monotone} function $f: L \to L$ \ref{def:mono-func} of a complete lattice $(L, \wedge, \vee)$,  $\exists c \in L: f(c) = c$.
 \end{theorembox}
 
 \begin{definitionbox}{$\scn{Tarski}$ problem definition \cite{fearnley_FasterAlgorithmFinding_2022}}{tarski-ppad}
