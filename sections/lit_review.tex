@@ -98,7 +98,7 @@ We give a brief overview of total search problems and their relevancy with the p
     $$
     E = \{(x,y) \in V^2: S(x) = y \wedge P(y) = x\}
     $$
-    We define source or sinks $\forall v \in V: \textit{deg}(v) = (0,1)$ or
+    We define source or sinks $v \in V: \textit{deg}(v) = (0,1)$ or
     $\textit{deg}(v) = (1,0)$, respectively. 
     We also syntactially ensure that the $0^n$ node is always a source, meaning
     $S(P(0^n)) \neq 0 \wedge P(S(0^n)) = 0^n$.
@@ -174,7 +174,7 @@ Lastly with respect to the \textit{Purify} gate,
 Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024} showed that the only \textit{Purify} solutions essential
 for \textsc{PPAD-completeness} are $\{(0,\bot), (\bot,1), (0,1)\}$, and the addition of more solutions does not affect its complexity.
 We will base our constructions around that limited set of solutions.
-We acknowledge that this simplified variant of the problem captures subset of the solutions but,
+We acknowledge that this simplified variant of the problem captures a subset of the original set of solutions but,
 one can observe that $\textsc{\#PureCircuit-simplified} \subseteq \textsc{\#PureCircuit}$,
 and therefore any proposition or argument of the sort:
 $\textsc{\#A} \subseteq \textsc{\#PureCircuit-simplified} \implies \textsc{\#A} \subseteq \textsc{\#PureCircuit}$.
@@ -360,8 +360,8 @@ We estimate the counting difficulty of the aforementioned problems based on thei
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{assets/chart-plot.png}
-    \caption{Hierarchy graph between \textsc{\#PPAD} problems. Figure from \cite{ikenmeyer_WhatWhatNot_2022}}\label{fig:ppad-count-hier}
+    \includegraphics[width=0.75\textwidth]{assets/chart-plot.pdf}
+    \caption{Counting hierarchy graph between \textsc{\#PPAD-complete} problems. Figure from \cite{ikenmeyer_WhatWhatNot_2022}}\label{fig:ppad-count-hier}
 \end{figure}
 
 
@@ -425,8 +425,9 @@ An example of hazard values can be seen in the figure \ref{fig:hazard-example}.
     \caption{Hazard circuit and hazard-free circuit. Figure by \cite{ikenmeyer_ComplexityHazardfreeCircuits_2019}}\label{fig:hazard-example}
 \end{figure}
 
-\begin{definitionbox}{K-bit Hazard}{k-bit-haz}
-    For $k \in \mathbb{N}$ at $x \in \mathbb{T}^n \iff C$  has a \textit{hazard} at $x$ and $\bot$ appears at most $k$ times in $x$
+\begin{definitionbox}{K-bit Hazard \cite{ikenmeyer_ComplexityHazardfreeCircuits_2019}}{k-bit-haz}
+    For $k \in \mathbb{N}$ a circuit $C: \mathbb{T}^n \to \mathbb{T}$ has a \textit{k-bit hazard} at $x \in \mathbb{T}^n$
+    $\iff$ $C$ has a hazard at $x$ and $\bot$ appears at most $k$ times.
 \end{definitionbox}
 %
 %

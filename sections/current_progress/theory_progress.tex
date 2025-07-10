@@ -8,10 +8,10 @@ arguments \cite{marino_GeneralTheoryMetastable_1981}.
 Our core breakthrough was realised when experimenting with
 Hazard-Free circuits and \textit{UniqueEndOfPotentialLine} problems. Specifically,
 we looked at a problem by Fearnley et al. \cite{fearnley_UniqueEndPotential_2020} where
-they introduced next variant Brouwer problems known as \textsc{OPDC}, which is a 
+they introduced a variant fixed-point problems known as \textsc{OPDC}, which is a 
 local descent problem with fixed point topologies. Extending these ideas
 to problems such as \textsc{2D-StrongSperner} and \textsc{3D-StrongSperner},
-which have beenn studied extensively, lead to the main find of our project in \ref{sect:main-result}.
+which have been studied extensively, lead to the main find of our project in \ref{sect:main-result}.
 
 
 % In addition, for the last point, we made several efforts to ensure our problem is
@@ -116,7 +116,7 @@ $\bar{\Lambda}$ is a 3-bit hazard-free variant of $\Lambda$.
     \item \textbf{Validation}: Copy the results to $s_1, s_2, s_3$
 \end{enumerate}
 The transformation can be summarised in the figure \ref{fig:main-proof:visualisation}.
-The goal of the above transformation is to show that if $o_1 = o_2 =o_3 = \bot$, then we have a solution
+The goal of the above transformation is to show that if $\mathbf{x}[o_1] = \mathbf{x}[o_2] = \mathbf{x}[o_3] = \bot$, then we have a solution
 to the original instance.
 
 \begin{figure}[h!]
@@ -320,7 +320,7 @@ We define the following subclass of \textsc{Tarski} \ref{def:tarski-ppad}:
 
 \begin{definitionbox}{$\scn{KleeneTarski}$ problem definition}{kleene-tarski}
     Given $F: \mathbb{T}^n \to \mathbb{T}^n$, where $F$ is a \textit{natural} function \ref{def:nat-func},
-    find $x \in \mathbb{T}^n$ such that $F(x) = x$
+    find $x \in \mathbb{T}^n$ such that $F(x) = x$.
     We assume $F$ will be represented as a circuit that uses set of gates
     $\{\wedge, \vee, \neg, \mathbf{0}, \mathbf{1}\}$.
 \end{definitionbox}
