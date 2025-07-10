@@ -1,15 +1,15 @@
-Combinatronics has been a field of study in mathematics that primarily focuses on
+Combinatorics has been a field of study in mathematics that primarily focuses on
 the notion of counting objects with certain properties. Over time, this notion
 has shifted, especially in the subfield of algebraic combinatorics, where
 there is no clear notion of the object that we are counting,
 and the numbers express something more abstract \cite{pak_WhatCombinatorialInterpretation_2022}.
 In recent years, there has been a revolutionary
 initiative in the field of combinatronics to assign combinatorial interpretations to such numbers.
-Being able to find such definitions or interpretations is very important
-as it allows us to utilise tools from combinatorics to understand
+Being able to find such definitions or interpretations is crucial,
+as it allows us to utilise tools from enumerative combinatorics to understand
 and reveal hidden structures and properties \cite{pak_WhatCombinatorialInterpretation_2022}. 
-Moreover, there are several problems or numbers such as \textit{Kronecker coefficients} \cite{makar_AnalysisKroneckerProduct_1949},
-whose combinatorial interpretation, would lead to groundbreaking breakthroughs such as a step closer to the resolution of the $\textit{P} \neq \textit{NP}$
+Moreover, there are several problems or numbers, such as \textit{Kronecker coefficients} \cite{makar_AnalysisKroneckerProduct_1949},
+whose combinatorial interpretation could lead to groundbreaking breakthroughs, such as a step closer to the resolution of the $\textit{P} \neq \textit{NP}$
 conjecture \cite{ikenmeyer_WhatWhatNot_2022, ikenmeyer_VanishingKroneckerCoefficients_2017}.
 
 
@@ -18,12 +18,12 @@ conjecture \cite{ikenmeyer_WhatWhatNot_2022, ikenmeyer_VanishingKroneckerCoeffic
 % \cite{pak_WhatCombinatorialInterpretation_2022, ikenmeyer_WhatWhatNot_2022}. We invest
 In our current work, we focus on extending the work done by
 Ikenmeyer et al. \cite{ikenmeyer_WhatWhatNot_2022}, where they focused on the creation of frameworks
-that determines whether $f \in^? \textsc{\#P}$, by looking
+that determine whether$f \in^? \textsc{\#P}$, by looking
 at the subclasses of $\textsc{\#TFNP - 1}$ problems.
 In our work we focus specifically on the complexity class of $\textsc{PPAD}$, under the lens of $\text{PureCircuit}$,
-due to circuit-based nature.
-We hope to uncover many insights of the $\textsc{\#PureCircuit} -1$ problem 
-as well as explore the boundaries of $\textsc{\#PPAD} -1$.
+due to its circuit-based nature.
+We aspire to uncover many insights of the $\textsc{\#PureCircuit} -1$ problem 
+and explore the boundaries of $\textsc{\#PPAD} -1$.
 
 % In their paper, they were able to show that for a subclass of
 % problems, also known as $\textit{PPAD} \subseteq \textit{TFNP}$,
@@ -33,9 +33,9 @@ as well as explore the boundaries of $\textsc{\#PPAD} -1$.
 \subsection{Research Question}
 
 Our objectives revolve around the conjecture in \ref{conj:ppad-1-hardness}, where
-we investigate the boundaries of $\scn{\#PPAD}-1$ with the help of the \textsc{PureCircuit} problem.
+we investigate the boundaries of $\scn{\#PPAD}-1$ with the aid of the \textsc{PureCircuit} problem.
 \begin{conjecturebox}{$\scn{\#PPAD}-1$ hardness}{ppad-1-hardness}
-    Every language in \scn{PPAD} can be parsimoniously reduced up to some polynomial factor, to the
+    Every language in \scn{PPAD} can be parsimoniously reduced up to some polynomial factor to the
     \textsc{PureCircuit} problem, or more formally:
     $$
     \forall L \in \scn{PPAD}, \exists f \in n^{O(1)}: 
@@ -50,8 +50,8 @@ we investigate the boundaries of $\scn{\#PPAD}-1$ with the help of the \textsc{P
 
 To tackle our research question, we propose the following list of objectives. 
 These objectives outline a series of reductions between problems that were identified as necessary,
-as explained in paragraph \ref{par:count-ppad}.
-We hope that by completing these milestones, we will be able to answer our research question.
+as explored in paragraph \ref{par:count-ppad}.
+We hope that by completing these milestones, we will be able to tackle the core conjecture \ref{conj:ppad-1-hardness}.
 
 \begin{enumerate}[label*=R.\arabic*)]
     \item Find a parsimonious reduction from the $\textsc{EndOfLine}$ to $\textsc{PureCircuit}$.
@@ -75,13 +75,13 @@ we have the following milestones:
 
 \begin{enumerate}[label=S.\arabic*)]
     \item Visualise and verify a \textsc{PureCircuit} instance.
-    \item Generate a solution for given a \textsc{PureCircuit} instance.
+    \item Generate a solution for a given \textsc{PureCircuit} instance.
     \item Count the number of solutions of a \textsc{PureCircuit} instance.
 \end{enumerate}
 
-We will compile the rest of the report, based on our current findings, how we altered our previous objectives 
-and general reflections. Moreover we will give a brief summary as to the subsequent steps
-and how plan to achieve the remaining milestones.
+We will compile the rest of the report, based on our current findings, how we altered our previous objectives, 
+and general reflections. Moreover, we will give a brief summary of the subsequent steps
+and the plan to achieve the remaining milestones.
 
 
 %

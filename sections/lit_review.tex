@@ -13,11 +13,11 @@ three-value domain $\mathbb{T} \triangleq \{0, 1, \bot\}$.
 
 \subsubsection{Counting Complexity and Combinatorial Interpretations}
 
-The general idea of combinatorial interpretations, is given a function $f: \mathbb{B}^n \to \mathbb{N}$, 
+The general idea of combinatorial interpretations is, given a function $f: \mathbb{B}^n \to \mathbb{N}$, 
 for every word $w$, we want to find a set $A_w$ such that $f(w)= |A_w|$.
 To ground that notion, researchers looked into counting complexity.
 In the current project we will focus specifically on the $\textsc{\#P}$ class.
-$\textsc{\#P}$ was created by Valiant \cite{valiant_ComplexityComputingPermanent_1979},
+$\textsc{\#P}$ was introduced by Valiant \cite{valiant_ComplexityComputingPermanent_1979},
 to demonstrate the difficulty of counting the number of solutions to a problem,
 where each solution can be verified in polynomial time, or more formally:
 
@@ -31,7 +31,7 @@ where each solution can be verified in polynomial time, or more formally:
 
 Given the above definition, Pak et al. \cite{pak_WhatCombinatorialInterpretation_2022, ikenmeyer_PositivitySymmetricGroup_2024}
 used $\textsc{\#P}$ to interpret $A_w$ as the set of solutions to a problem given input $w$.
-Moreover, they argue that the usage of $\textsc{\#P}$ has several benefits such as:
+Moreover, they argue that the usage of $\textsc{\#P}$ has several benefits:
 
 \begin{enumerate}
     \item By polynomially bounding words, we avoid cases such as: $f(w) = |\{1, \hdots, f(w)\}|$.
@@ -41,13 +41,13 @@ Moreover, they argue that the usage of $\textsc{\#P}$ has several benefits such 
 
 The current framework was used in several papers such as
 \cite{ikenmeyer_WhatWhatNot_2022} and \cite{ikenmeyer_PositivitySymmetricGroup_2024}
-to demonstrate the existance of combinatorial interpretations.
-Lastly we introduce the idea of correlating two counting problems with the help of
+to demonstrate the existence of combinatorial interpretations.
+Lastly, we introduce the idea of correlating two counting problems with the help of
 \textit{parsimonious reductions} \ref{def:pars-reduction}.
 
 
 \begin{definitionbox}{Parsimonious reductions}{pars-reduction}
-    Let $R, R'$ be search problems and let $f$ be a reduction of
+    Let $R, R'$ be search problems, and let $f$ be a reduction of
     $S_R = \{x \mid R(x) \neq \emptyset \}$ to $S_{R'} = \{x \mid R'(x) \neq \emptyset \}$.
     We say $f$ is \textbf{parsimonious} if:
     $$
@@ -55,7 +55,7 @@ Lastly we introduce the idea of correlating two counting problems with the help 
     $$ 
 \end{definitionbox}
 
-Below we are introducing a variant of parimonious reductions that allows
+The definition below introduces a variant of parsimonious reductions that allows
 for one-to-many reductions. 
 \begin{definitionbox}{Poly-Function Bounded Parsimonious Reductions}{func-pars}
     Given two counting problems $A, B : \mathbb{B}^* \to \mathbb{N}$
@@ -98,12 +98,11 @@ We give a brief overview of total search problems and their relevancy with the p
     $$
     E = \{(x,y) \in V^2: S(x) = y \wedge P(y) = x\}
     $$
-    We define source or sinks $v \in V: \textit{deg}(v) = (0,1)$ or
-    $\textit{deg}(v) = (1,0)$, respectively. 
-    We also syntactially ensure that the $0^n$ node is always a source, meaning
+    We define source nodes as $v \in V: \textit{deg}(v) = (0,1)$  and sink nodes as
+    $\textit{deg}(v) = (1,0)$. 
+    We also syntactically ensure that the $0^n$ node is always a source, meaning
     $S(P(0^n)) \neq 0 \wedge P(S(0^n)) = 0^n$.
-    A node $v \in V$ is a solution if and only if $\textit{deg}(v)$ is either
-    $(0,1)$  or $(1,0)$.
+    A node $v \in V$ is a solution \textit{iff} $\textit{in-deg}(v) \neq \textit{out-deg}(v)$.
 \end{definitionbox}
 \end{minipage}
 \begin{minipage}{0.45\linewidth}
@@ -114,8 +113,8 @@ We give a brief overview of total search problems and their relevancy with the p
 
 \vspace{0.2cm}
 
-An illustrative example of an \textsc{EndOfLine} instance can be seen in the figure \ref{fig:eol-subgraphs}. 
-Using that, we define the \textsc{PPAD} complexity class \ref{def:ppad-complexity-class}.
+An illustrative example of an \textsc{EndOfLine} instance can be seen in figure \ref{fig:eol-subgraphs}. 
+From this problem, we define the \textsc{PPAD} complexity class \ref{def:ppad-complexity-class}.
 
 
 \begin{definitionbox}{\textsc{PPAD} complexity class \cite{papadimitriou_ComplexityParityArgument_1994}}{ppad-complexity-class}
@@ -132,7 +131,7 @@ we introduce relevant \textsc{PPAD} problems.
 \paragraph{The PureCircuit problem}
 \label{par:pure-circ-def}
 
-The definition of \textsc{PureCircuit} is based Kleene's three-valued strong logic of indeterminancy,
+The definition of \textsc{PureCircuit} is based Kleene's three-valued strong logic of indeterminacy,
 which extends the traditional binary logic \cite{kleene_IntroductionMetamathematics_2009}.
 This problem was created by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024}
 to demonstrate the hardness of approximating \textsc{PPAD} problems and was shown to be \textsc{PPAD-complete}.
@@ -168,19 +167,19 @@ such that for all gates $g = (T,u,v,w)$ we have:
 In addition to the gates above, we will make use of the standard set of gates $\{\vee, \wedge, \neg\}$,
 whose behaviour is depicted in the tables \ref{tab:three-val-logic}.
 Moreover, we will make use of the \textit{Copy} gate which we can define as $\textit{Copy}(x) = \neg (\neg x)$.
-These gates are well defined based on the \textit{NOR} gate as showed by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024}
+These gates are well defined based on the \textit{NOR} gate as shown by Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024}
 and do not directly affect the complexity of the problem.
-Lastly with respect to the \textit{Purify} gate,
+Furthermore, with respect to the \textit{Purify} gate,
 Deligkas et al. \cite{deligkas_PureCircuitTightInapproximability_2024} showed that the only \textit{Purify} solutions essential
 for \textsc{PPAD-completeness} are $\{(0,\bot), (\bot,1), (0,1)\}$, and the addition of more solutions does not affect its complexity.
 We will base our constructions around that limited set of solutions.
-We acknowledge that this simplified variant of the problem captures a subset of the original set of solutions but,
+We acknowledge that this simplified variant of the problem captures a subset of the original set of solutions, but
 one can observe that $\textsc{\#PureCircuit-simplified} \subseteq \textsc{\#PureCircuit}$,
 and therefore any proposition or argument of the sort:
 $\textsc{\#A} \subseteq \textsc{\#PureCircuit-simplified} \implies \textsc{\#A} \subseteq \textsc{\#PureCircuit}$.
 All solution sets will be made explicit before analysing the counting complexity of the problem,
-and we will refer to all such simplified variants as $\textsc{\#PureCircuit}$ to avoid
-confusion. 
+and we will refer to all such simplified variants as $\textsc{\#PureCircuit}$ as they do not impact 
+the overall reduction. 
 
 \begin{table}[h!]
     \centering
@@ -234,15 +233,15 @@ $\bot$ & $\bot$  & $\bot$ & 1 \\
 
 \paragraph{Sperner problems}
 
-Below we will refer to the notion of Sperner problems which involve
-the idea of using the topology of a problem and a colouring scheme to ensure
-that a substructure is panchromatic. There two variants of colouring scheme
-that are used: one of them will be referred to as the \textbf{linear} colouring
+Below we will refer to the notion of Sperner problems, which uses
+the topology of a problem and a colouring scheme to ensure
+that a substructure is panchromatic. There are two variants of colouring scheme
+that are used: the first will be referred to as the \textbf{linear} colouring
 where for dimension $d$, assign $d+1$ distinct colours to each point \cite{daskalakis_ComplexityComputingNash_2006, chen_Complexity2DDiscrete_2009}.
-Below we will refer to \textbf{bipolar} colouring, which has been used grid-like topologies of the Sperner property
+Subsequently, we will refer to \textbf{bipolar} colouring, which has been used in grid-like topologies of the Sperner property
 \cite{chen_SettlingComplexityComputing_2009, deligkas_PureCircuitTightInapproximability_2024, daskalakis_ComplexityConstrainedMinmax_2021}.
 We note that these terms are not standard in literature; we adopt this naming convention
-for the sake of clarity.
+for of clarity.
 
 
 
@@ -293,7 +292,7 @@ For clarity, the subsequent analysis adopts $\textsc{StrongSperner}$.
     We assume dimensionality $n \geq 2$.
 \end{definitionbox}
 
-The authors of these papers refer to both colouring schemes interchangeably when discussing their reductions,
+The authors refer to both colouring schemes interchangeably when discussing their reductions,
 so we can assume that all reductions (not necessarily counting reductions) work similarly for either colouring
 \cite{chen_SettlingComplexityComputing_2009, deligkas_PureCircuitTightInapproximability_2024, daskalakis_ComplexityComputingNash_2006, chen_Complexity2DDiscrete_2009}.
 
@@ -315,9 +314,9 @@ and demonstrate the counting complexity of \textsc{PureCircuit}.
     A valid solution is a vertex $v$ such that $\textit{in-deg}(v) \neq \textit{out-deg}(v)$
 \end{definitionbox}
 
-The $\textsc{SourceOrExcess(k,1)}$ problem can be thought of as the generalisation of the \textsc{EndOfLine}
+The $\textsc{SourceOrExcess(k,1)}$ problem can be considered as the generalisation of the \textsc{EndOfLine}
 problem for graphs with $\textit{in-deg}(\cdot) \leq k$ and $\textit{out-deg}(\cdot) \leq 1$.
-Lastly we will introduce \textsc{Tarski} \ref{def:tarski-ppad}
+Lastly, we will introduce \textsc{Tarski} \ref{def:tarski-ppad}
 which uses the Knaster-Tarski fixed point theorem \ref{thm:knaster-tarski} and
 belongs in $\textsc{PLS} \cap \textsc{PPAD}$,
 where  $\textsc{PLS}$ is a class of problems based on the idea of local search \cite{johnson_HowEasyLocal_1988}.
@@ -346,7 +345,7 @@ where  $\textsc{PLS}$ is a class of problems based on the idea of local search \
         \item Find $x \in L: f(x) = x$
         \item Find $x,y \in L$ such that $x \preceq y$ and $f(x) \not\preceq f(y)$
     \end{enumerate}
-    We assume that $f$ is described by circuit and which describes the size of the input.
+    We assume that $f$ is represented by boolean circuits.
 \end{definitionbox}
 %
 \paragraph{Counting complexity of PPAD}
@@ -361,16 +360,15 @@ We estimate the counting difficulty of the aforementioned problems based on thei
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.75\textwidth]{assets/chart-plot.pdf}
-    \caption{Counting hierarchy graph between \textsc{\#PPAD-complete} problems. Figure from \cite{ikenmeyer_WhatWhatNot_2022}}\label{fig:ppad-count-hier}
+    \caption{Counting hierarchy graph between \textsc{\#PPAD-complete} problems. Figure obtained from \cite{ikenmeyer_WhatWhatNot_2022}.}\label{fig:ppad-count-hier}
 \end{figure}
 
 
 \subsubsection{Kleene Logic and Hazard-Free Circuits}
 
 Kleene logic uses the boolean system with an additional \textit{unstable} value \cite{kleene_IntroductionMetamathematics_2009}. 
-Study of Kleene logic aided in
-the development of robust physical systems \cite{friedrichs_MetastabilityContainingCircuits_2018}, as well as
-defining frameworks like \textit{Alternative Turing machines} \cite{kozen_TheoryComputation_2006}, and
+The study of Kleene logic assisted in
+the development of robust physical systems \cite{friedrichs_MetastabilityContainingCircuits_2018}, in addition to defining frameworks like \textit{Alternative Turing machines} \cite{kozen_TheoryComputation_2006}, and
 aiding in the development of lower bounds for monotone circuits
 \cite{eichelberger_HazardDetectionCombinational_1965, ikenmeyer_ComplexityHazardfreeCircuits_2019,ikenmeyer_KarchmerWigdersonGamesHazardfree_2022,  bund_SmallHazardFreeTransducers_2025}. 
 The current section offers a brief summary to relevant notions and concepts in Kleene logic.
@@ -391,11 +389,11 @@ The current section offers a brief summary to relevant notions and concepts in K
     $$
 \end{definitionbox}
 
-Unless otherwise specified, we assume that all kleene functions are \textit{natural} \ref{def:nat-func}, since
+Unless otherwise specified, we assume that all Kleene functions are \textit{natural} \ref{def:nat-func}, since
 they can be represented by circuits \ref{prop:nat-func-circ}.
 Detecting hazards is a concept that is analysed heavily when talking about Kleene logic.
 The idea is ensuring robustness in our circuits, meaning if all resolutions of $x \in \mathbb{T}^n$
-give the same value, then we should expect circuit to behave the same way \ref{def:hf-def}.
+give the same value, then we should expect the circuit to behave the same way \ref{def:hf-def}.
 An example of hazard values can be seen in the figure \ref{fig:hazard-example}.
 
 
@@ -409,7 +407,7 @@ An example of hazard values can be seen in the figure \ref{fig:hazard-example}.
 \end{definitionbox}
 
 \begin{propositionbox}{Natural functions and Circuits \cite{mukaidono_BternaryLogicFunction_1972,ikenmeyer_ComplexityHazardfreeCircuits_2019}}{nat-func-circ}
-    A function $F: \mathbb{T}^n \to \mathbb{T}^m$ can be computed by a circuit iff $F$ is \textit{natural} \ref{def:nat-func}
+    A function $F: \mathbb{T}^n \to \mathbb{T}^m$ can be computed by a circuit \textit{iff} $F$ is \textit{natural} \ref{def:nat-func}
 \end{propositionbox}
 
 \begin{definitionbox}{Hazard \cite{ikenmeyer_ComplexityHazardfreeCircuits_2019, eichelberger_HazardDetectionCombinational_1965}}{hf-def}
